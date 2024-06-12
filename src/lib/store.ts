@@ -1,8 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { cryptoApi } from "./features/cryptoApi";
+import cryptoSlice from "./features/cryptoSlice";
+
+const rootReducer = combineReducers({
+  [cryptoApi.reducerPath]: cryptoApi.reducer,
+  cryptoSlice: cryptoSlice,
+});
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {},
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(cryptoApi.middleware),
   });
 };
 
