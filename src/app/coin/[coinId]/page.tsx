@@ -1,5 +1,5 @@
 function Coin({ params }: { params: { coinId: string } }) {
-  return <div>{params.coinId}</div>;
+  return <div className="text-white">{params.coinId}</div>;
 }
 
 export default Coin;

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import StoreProvider from "./StoreProvider";
+import TopGlobalNavbar from "./components/blocks/TopGlobalNavbar/TopGlobalNavbar";
+import MainGlobalNavbar from "./components/blocks/MainGlobalNavbar/MainGlobalNavbar";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Crypto app",
@@ -18,7 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-        <body className={inter.className}>{children}</body>
+        <body className={spaceGrotesk.className}>
+          <TopGlobalNavbar />
+          <MainGlobalNavbar />
+          {children}
+        </body>
       </StoreProvider>
     </html>
   );
