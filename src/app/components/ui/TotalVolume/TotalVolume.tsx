@@ -20,7 +20,7 @@ const TotalVolume = ({
       )}
       <ProgressBar
         percentage={totalVolumePercentage}
-        fillBackground="#FFFFFF;"
+        fillBackground="bg-[#FFFFFF]"
       />
     </div>
   );

@@ -4,6 +4,7 @@ import StoreProvider from "./StoreProvider";
 import TopGlobalNavbar from "./components/blocks/TopGlobalNavbar/TopGlobalNavbar";
 import MainGlobalNavbar from "./components/blocks/MainGlobalNavbar/MainGlobalNavbar";
 import "./globals.css";
+import PageStyle from "./components/ui/PageStyle/PageStyle";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({
         <body className={spaceGrotesk.className}>
           <TopGlobalNavbar />
           <MainGlobalNavbar />
-          {children}
+          <PageStyle>{children}</PageStyle>
         </body>
       </StoreProvider>
     </html>

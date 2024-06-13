@@ -5,8 +5,8 @@ import React from "react";
 function ProgressBar({
   percentage,
   fillBackground,
-  background = "#FFFFFF66",
-  width = "53px",
+  background = "bg-[#FFFFFF66]",
+  width = "w-[53px]",
 }: {
   percentage: number;
   background?: string;
@@ -14,19 +14,10 @@ function ProgressBar({
   width?: string;
 }) {
   return (
-    <div
-      className="relative h-[6px] rounded-[2px]"
-      style={{
-        width: width,
-        background: background,
-      }}
-    >
+    <div className={`relative h-[6px] rounded-[2px] ${width} ${background}`}>
       <div
-        className="absolute top-0 left-0 h-[6px] rounded-[2px]"
-        style={{
-          width: `${percentage}%`,
-          background: fillBackground,
-        }}
+        className={`absolute top-0 left-0 h-[6px] rounded-[2px] ${fillBackground} ${percentage}`}
+        style={{ width: `${percentage}%` }}
       ></div>
     </div>
   );

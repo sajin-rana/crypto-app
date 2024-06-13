@@ -34,20 +34,17 @@ function CurrencyDropDown({
   return (
     <div className="relative" ref={ref}>
       <button
-        className="flex items-center gap-[8px] py-[12px] px-[16px] rounded-[6px]  border border-[#FFFFFF0D] "
+        className={`flex items-center gap-[8px] py-[12px] px-[16px] rounded-[6px]  border border-[#FFFFFF0D] ${isDarkColor}`}
         onClick={() => setDropDownOpen((isOpen) => !isOpen)}
-        style={{ backgroundColor: isDarkColor }}
       >
         <p
-          className="flex items-center justify-center h-[20px] w-[20px] rounded-full  p-3"
-          style={{
-            color: isDark ? "black" : "#EBEBFE",
-            backgroundColor: isDark ? "white" : "#353570",
-          }}
+          className={`flex items-center justify-center h-[20px] w-[20px] rounded-full  p-3 ${
+            isDark ? "text-[black] bg-[white]" : "text-[#EBEBFE] bg-[#353570]"
+          }`}
         >
           {currency.sign}
         </p>
-        <p style={{ color: textColor }}>{currency.name}</p>
+        <p className={`${textColor}`}>{currency.name}</p>
         <svg
           width="15"
           height="15"

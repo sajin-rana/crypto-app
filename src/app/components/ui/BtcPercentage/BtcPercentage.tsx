@@ -21,7 +21,7 @@ const BtcPercentage = ({
           {btcPercentage}%
         </p>
       )}
-      <ProgressBar percentage={btcPercentage} fillBackground="#F7931A" />
+      <ProgressBar percentage={btcPercentage} fillBackground="bg-[#F7931A]" />
     </div>
   );
 };
