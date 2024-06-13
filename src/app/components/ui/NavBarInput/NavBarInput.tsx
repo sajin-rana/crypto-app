@@ -38,8 +38,7 @@ const NavBarInput = ({
   return (
     <div className="flex flex-col relative" ref={ref}>
       <div
-        className="flex items-center gap-[12px]  py-[8px] px-[16px] rounded-[6px] border border-[#FFFFFF0D] w-[356px] h-[48px]"
-        style={{ backgroundColor: isDarkColor }}
+        className={`flex items-center gap-[12px]  py-[8px] px-[16px] rounded-[6px] border border-[#FFFFFF0D] w-[356px] h-[48px] ${isDarkColor}`}
       >
         <svg
           width="20"
@@ -57,20 +56,19 @@ const NavBarInput = ({
         <input
           type="text"
           className={`border-0 focus:outline-none  placeholder:w-400 placeholder:text-[14px]  w-full h-full ${
-            isDark ? "placeholder-[#D1D1D6]" : "placeholder-[#424286]"
-          }`}
+            isDark
+              ? "placeholder-[#D1D1D6] bg-[#191925]"
+              : "placeholder-[#424286] bg-[#EBEBFD]"
+          } ${textColor} `}
           placeholder="Search..."
           value={input}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          style={{
-            backgroundColor: isDark ? "#191925" : "#EBEBFD",
-            color: textColor,
-          }}
         />
       </div>
       {input && dropdownOpen && (
         <DropDown
+          isDark={isDark}
           isDarkColor={isDarkColor}
           textColor={textColor}
           input={input}

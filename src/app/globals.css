@@ -43,3 +43,20 @@
     background-position: 0% 50%, 50% 50%, 100% 100%;
   }
 }
+
+.darkSelectedBackground {
+  background: rgba(97, 97, 214, 0.5);
+  border-top: 1px solid #7777ff;
+  border-right: 1px solid #7777ff;
+  border-left: 1px solid #7777ff;
+  box-shadow: 4px 4px 20px 8px #7878fa26;
+}
+
+.lightSelectedBackground {
+  background: #6161d680;
+  border-top: 1px solid #7979ff;
+  border-right: 1px solid #7979ff;
+  border-left: 1px solid #7979ff;
+
+  box-shadow: 4px 4px 20px 8px #7878fa26;
+}

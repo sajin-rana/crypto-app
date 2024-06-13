@@ -11,8 +11,8 @@ import HomePortifolio from "../../ui/HomePortifolio/HomePortifolio";
 const MainGlobalNavbar = () => {
   const isDark = useSelector(selectIsDark);
   const svgIsDarkColor = isDark ? "#D1D1D6" : "#424286";
-  const isDarkColor = isDark ? "#191925" : "#CCCCFA66";
-  const textColor = isDark ? "#D1D1D3" : "#6464A2";
+  const isDarkColor = isDark ? "bg-[#191925]" : "bg-[#EBEBFC]";
+  const textColor = isDark ? "text-[#D1D1D3]" : "text-[#6464A2]";
   const hoverColor = isDark ? "hover:bg-[rgb(5,5,15)]" : "hover:bg-[white]";
   return (
     <div

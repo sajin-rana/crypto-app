@@ -21,8 +21,7 @@ const EthPercentage = ({
           {ethPercentage}%
         </p>
       )}
-
-      <ProgressBar percentage={ethPercentage} fillBackground="#849DFF" />
+      <ProgressBar percentage={ethPercentage} fillBackground="bg-[#849DFF]" />
     </div>
   );
 };
