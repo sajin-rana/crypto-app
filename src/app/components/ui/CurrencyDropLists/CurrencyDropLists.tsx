@@ -21,7 +21,9 @@ function CurrencyDropLists({
   const selectedColor = isDark ? "bg-[rgb(5,5,15)]" : "bg-[white]";
   return (
     <ul
-      className={`absolute  rounded-bl-[6px] rounded-br-[6px] border border-[#FFFFFF0D] w-[100%] top-[45px] border-t-1 border-t-[#B0B0EB] ${isDarkColor} ${textColor}`}
+      className={`absolute  rounded-bl-[6px] rounded-br-[6px] border border-[#FFFFFF0D] w-[100%] top-[45px] border-t-1  z-10 ${
+        isDark ? "border-t-[#FFFFFF0D] " : "border-t-[#B0B0EB] "
+      } ${isDarkColor} ${textColor}`}
     >
       {currencyLists.map((item) => (
         <li

@@ -1,11 +1,29 @@
-import React, { useState } from "react";
-import { selectIsDark } from "@/lib/features/cryptoSlice";
-import { useSelector } from "react-redux";
+import React from "react";
+import {
+  selectIsCompare,
+  selectIsDark,
+  setCoinOne,
+  setCoinTwo,
+  setIsCompare,
+} from "@/lib/features/cryptoSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Compare = () => {
-  const [isCompare, setIsCompare] = useState(false);
   const isDark = useSelector(selectIsDark);
+  const isCompare = useSelector(selectIsCompare);
+  const dispatch = useDispatch();
   const textColor = isDark ? "text-[#D1D1D1]" : "text-[#424286]";
+
+  function handleClick(e: any) {
+    e.preventDefault();
+    if (isCompare) {
+      dispatch(setCoinOne("bitcoin"));
+      dispatch(setCoinTwo(""));
+      dispatch(setIsCompare(false));
+    } else {
+      dispatch(setIsCompare(true));
+    }
+  }
   return (
     <div className={`mt-[40px] flex items-end justify-between ${textColor}`}>
       <p className="text-[14px] font-[400] ">
@@ -15,7 +33,7 @@ const Compare = () => {
         className={` py-[12px] px-[24px]  rounded-[6px] gap-[10px]  flex items-center justify-center text-[14px] font-[400] ${
           isDark ? "bg-[#232337]" : "bg-[white]"
         }`}
-        onClick={() => setIsCompare((compare) => !compare)}
+        onClick={(e) => handleClick(e)}
       >
         {isCompare ? (
           <svg
@@ -28,12 +46,9 @@ const Compare = () => {
             <path
               d="M13 1L1 13M1 1L13 13"
               stroke={isDark ? "#D1D1D1" : "#424286"}
-              // eslint-disable-next-line
-              stroke-width="2"
-              // eslint-disable-next-line
-              stroke-linecap="round"
-              // eslint-disable-next-line
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         ) : (

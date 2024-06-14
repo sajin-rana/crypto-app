@@ -44,7 +44,7 @@
   }
 }
 
-.darkSelectedBackground {
+.darkGlowBackground {
   background: rgba(97, 97, 214, 0.5);
   border-top: 1px solid #7777ff;
   border-right: 1px solid #7777ff;
@@ -52,11 +52,32 @@
   box-shadow: 4px 4px 20px 8px #7878fa26;
 }
 
-.lightSelectedBackground {
+.lightGlowBackground {
   background: #6161d680;
   border-top: 1px solid #7979ff;
   border-right: 1px solid #7979ff;
   border-left: 1px solid #7979ff;
 
   box-shadow: 4px 4px 20px 8px #7878fa26;
+}
+
+.lightGlowBackground p {
+  color: white;
+}
+
+.lightGlowBackground span:first-child {
+  color: #ffffffb2;
+}
+
+.skeleton {
+  animation: skeleton-loading 0.5s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsla(201, 20%, 80%, 0.792);
+  }
+  100% {
+    background-color: hsla(204, 20%, 95%, 0.753);
+  }
 }

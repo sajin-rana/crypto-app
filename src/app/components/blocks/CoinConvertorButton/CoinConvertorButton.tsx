@@ -16,18 +16,18 @@ const CoinConvertorButton = () => {
     : "text-[#424286]";
 
   const darkCoinBackground = isCoinSelected
-    ? "darkSelectedBackground"
+    ? "darkGlowBackground"
     : "bg-[#232336]";
 
   const lightCoinBackground = isCoinSelected
-    ? "lightSelectedBackground"
+    ? "lightGlowBackground"
     : "bg-[#ffff]";
 
   const darkConvertorBackground = isCovertorSelected
-    ? "darkSelectedBackground"
+    ? "darkGlowBackground"
     : "bg-[#232336]";
   const lightConvertorBackground = isCovertorSelected
-    ? "lightSelectedBackground"
+    ? "lightGlowBackground"
     : "bg-[#ffff]";
 
   const coinBackground = isDark ? darkCoinBackground : lightCoinBackground;
