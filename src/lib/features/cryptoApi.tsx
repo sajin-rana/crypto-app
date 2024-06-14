@@ -14,9 +14,17 @@ export const cryptoApi = createApi({
     getSearchQueryData: builder.query({
       query: (searchQuery) => `search?query=${searchQuery}&${apiKey}`,
     }),
+    getCoinList: builder.query({
+      query: (currency) =>
+        `coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`,
+    }),
   }),
 });
 
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
-export const { useGetMarketDataQuery, useGetSearchQueryDataQuery } = cryptoApi;
+export const {
+  useGetMarketDataQuery,
+  useGetSearchQueryDataQuery,
+  useGetCoinListQuery,
+} = cryptoApi;

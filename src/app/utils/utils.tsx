@@ -1,4 +1,5 @@
 "use client";
+
 export function formatNumber(marketCap: number) {
   const trillion = 1e12;
   const billion = 1e9;
@@ -24,7 +25,20 @@ export function setLocalStorage(key: string, value: any) {
 }
 
 export function getLocalStorage(key: string) {
-  return JSON.parse(window?.localStorage?.getItem(key) || "");
+  if (typeof window !== "undefined") {
+    return JSON.parse(window?.localStorage?.getItem(key) || "");
+  }
+}
+
+export function numberWithCommas(x: any) {
+  x = x.toString();
+  const pattern = /(-?\d+)(\d{3})/;
+  while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
+  return x;
+}
+
+export function greaterThanZero(number: number) {
+  return number > 0 ? true : false;
 }
 
 export const currencyLists = [
