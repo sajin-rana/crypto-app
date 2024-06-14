@@ -19,6 +19,7 @@ import {
 import { useGetCoinListQuery } from "@/lib/features/cryptoApi";
 import { greaterThanZero, numberWithCommas } from "@/app/utils/utils";
 import CoinCarouselLoading from "../CoinCarouselLoading/CoinCarouselLoading";
+import UpDownArrow from "../UpDownArrow/UpDownArrow";
 
 const EmblaCarousel = ({ options }: { options: any }) => {
   const isDark = useSelector(selectIsDark);
@@ -49,6 +50,13 @@ const EmblaCarousel = ({ options }: { options: any }) => {
     }
   }
 
+  function backgroundColor(id: string) {
+    if (isDark) {
+      return id === coinOne || id === coinTwo ? "darkGlowBackground" : "";
+    } else {
+      return id === coinOne || id === coinTwo ? "lightGlowBackground" : "";
+    }
+  }
   return (
     <div className="relative">
       <div className="overflow-hidden" ref={emblaRef}>
@@ -56,95 +64,50 @@ const EmblaCarousel = ({ options }: { options: any }) => {
           {error !== undefined || isLoading ? (
             <CoinCarouselLoading />
           ) : (
-            data?.map(
-              (coin: any) =>
-                coin.name.length < 10 && (
-                  <div
-                    key={coin?.id}
-                    className={`w-[20%] h-full shrink-0 grow-0 min-w-0 ml-[5px] mr-[5px]  relative rounded-[6px] flex items-center cursor-pointer  gap-[16px] p-[16px] ${
-                      isDark ? "bg-[#191925]" : "bg-[white]"
-                    } 
-                    ${
-                      (isDark && coin.id === coinOne) ||
-                      (isDark && coin.id === coinTwo)
-                        ? "darkGlowBackground"
-                        : ""
-                    }
-                    ${
-                      (isDark === false && coin.id === coinOne) ||
-                      (isDark === false && coin.id === coinTwo)
-                        ? "lightGlowBackground"
-                        : ""
-                    }
-                    `}
-                    onClick={() => handleClick(coin.id)}
+            data?.map((coin: any) => (
+              <div
+                key={coin?.id}
+                className={`w-[20%] h-full shrink-0 grow-0 min-w-0 ml-[5px] mr-[5px]  relative rounded-[6px] flex items-center cursor-pointer  gap-[16px] p-[16px] ${
+                  isDark ? "bg-[#191925]" : "bg-[white]"
+                }  ${backgroundColor(coin.id)}`}
+                onClick={() => handleClick(coin.id)}
+              >
+                <Image src={coin.image} alt={coin.id} height={32} width={32} />
+                <div className="">
+                  <p
+                    className={`text-[16px] font-[500]  overflow-hidden  w-[160px] h-[24px] ${
+                      isDark ? "text-[#ffff]" : "text-[#181825]"
+                    }`}
                   >
-                    <Image
-                      src={coin.image}
-                      alt={coin.id}
-                      height={32}
-                      width={32}
-                    />
-                    <div className="">
-                      <p
-                        className={`text-[16px] font-[500] ${
-                          isDark ? "text-[#ffff]" : "text-[#181825]"
-                        }`}
-                      >
-                        {coin.name} ({coin.symbol.toUpperCase()})
-                      </p>
-                      <div className="flex items-center gap-[8px]">
-                        <span
-                          className={`text-[14px] font-[400] ${
-                            isDark ? "text-[#D1D1D1]" : "text-[#424286]"
-                          }`}
-                        >
-                          {numberWithCommas(coin.current_price.toFixed(2))}{" "}
-                          {currency.name}
-                        </span>
-                        <span className="">
-                          <svg
-                            transform={
-                              greaterThanZero(coin.price_change_percentage_24h)
-                                ? "rotate(0)"
-                                : "rotate(180)"
-                            }
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M8.00065 6.33301L4.66732 9.66634H11.334L8.00065 6.33301Z"
-                              fill={
-                                greaterThanZero(
-                                  coin.price_change_percentage_24h
-                                )
-                                  ? "#00B1A7"
-                                  : "#FE2264"
-                              }
-                              fillOpacity={1}
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          className={`${
-                            greaterThanZero(coin.price_change_percentage_24h)
-                              ? "text-[#00B1A7]"
-                              : "text-[#FE2264]"
-                          }`}
-                        >
-                          {Math.abs(
-                            coin.price_change_percentage_24h.toFixed(2)
-                          )}
-                          %
-                        </span>
-                      </div>
-                    </div>
+                    {coin.name} ({coin.symbol.toUpperCase()})
+                  </p>
+                  <div className="flex items-center gap-[8px]">
+                    <span
+                      className={`text-[14px] font-[400] ${
+                        isDark ? "text-[#D1D1D1]" : "text-[#424286]"
+                      }`}
+                    >
+                      {numberWithCommas(coin.current_price.toFixed(2))}{" "}
+                      {currency.name}
+                    </span>
+                    <span className="">
+                      <UpDownArrow
+                        priceChangePercentage={coin.price_change_percentage_24h}
+                      />
+                    </span>
+                    <span
+                      className={`${
+                        greaterThanZero(coin.price_change_percentage_24h)
+                          ? "text-[#00B1A7]"
+                          : "text-[#FE2264]"
+                      }`}
+                    >
+                      {Math.abs(coin.price_change_percentage_24h.toFixed(2))}%
+                    </span>
                   </div>
-                )
-            )
+                </div>
+              </div>
+            ))
           )}
         </div>
       </div>

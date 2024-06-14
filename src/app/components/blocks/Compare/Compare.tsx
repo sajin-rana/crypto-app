@@ -33,7 +33,7 @@ const Compare = () => {
         className={` py-[12px] px-[24px]  rounded-[6px] gap-[10px]  flex items-center justify-center text-[14px] font-[400] ${
           isDark ? "bg-[#232337]" : "bg-[white]"
         }`}
-        onClick={(e) => handleClick(e)}
+        onClick={handleClick}
       >
         {isCompare ? (
           <svg

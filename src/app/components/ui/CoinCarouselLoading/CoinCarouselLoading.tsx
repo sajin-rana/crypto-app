@@ -4,12 +4,14 @@ import { selectIsDark } from "@/lib/features/cryptoSlice";
 
 const CoinCarouselLoading = () => {
   const isDark = useSelector(selectIsDark);
-  const array = new Array(5).fill(crypto.randomUUID());
+  const array = new Array(5)
+    .fill(crypto.randomUUID())
+    .map(() => crypto.randomUUID());
   return (
     <div className="flex">
-      {array.map(() => (
+      {array.map((id) => (
         <div
-          key={crypto.randomUUID()}
+          key={id}
           className={`w-[252.8px] h-full shrink-0 grow-0 min-w-0 ml-[5px] mr-[5px]  relative rounded-[6px] flex items-center cursor-pointer  gap-[16px] p-[16px] ${
             isDark ? "bg-[#191925]" : "bg-[white]"
           } 
