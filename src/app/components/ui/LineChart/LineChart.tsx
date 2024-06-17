@@ -22,6 +22,8 @@ import {
   selectedCoinTwo,
 } from "@/lib/features/cryptoSlice";
 import {
+  chartData,
+  chartOptions,
   firstLetterCapitalize,
   getChartLabels,
   numberWithCommas,
@@ -43,46 +45,6 @@ ChartJS.register(
   Legend,
   CrosshairPlugin
 );
-
-const options: any = {
-  responsive: true,
-  maintainAspectRatio: false,
-  radius: 5,
-  hitRadius: 30,
-  hoverRadius: 12,
-  scales: {
-    y: {
-      display: false,
-      grid: {
-        display: false,
-        drawBorder: false,
-      },
-    },
-    x: {
-      display: true,
-      ticks: {
-        maxTicksLimit: 8,
-        align: "inner",
-      },
-      beforeFit(axis: any) {
-        const labels = axis.chart.config._config.data.labels;
-        const length = labels.length - 1;
-        axis.ticks.push({
-          value: length,
-          label: labels[length],
-        });
-      },
-      grid: {
-        display: false,
-      },
-    },
-  },
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-};
 
 const LineChart = ({
   chartDataOne,
@@ -116,38 +78,6 @@ const LineChart = ({
     getChartLabels(days, item[0])
   );
 
-  const data = {
-    labels: chartLabels,
-    datasets: [
-      {
-        label: coinOne,
-        data: priceDataOne,
-        borderColor: "#7878FF",
-        backgroundColor: (context: any) => {
-          const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 400);
-          gradient.addColorStop(0, "#7878FA");
-          gradient.addColorStop(0.5, "rgba(120, 120, 250, 0)");
-          return gradient;
-        },
-        pointRadius: 0,
-        fill: true,
-      },
-      {
-        label: coinTwo,
-        data: priceDataTwo,
-        borderColor: "#E771FF",
-        backgroundColor: (context: any) => {
-          const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 400);
-          gradient.addColorStop(0, "#D878FA");
-          gradient.addColorStop(0.55, "rgba(216, 120, 250, 0)");
-          return gradient;
-        },
-        pointRadius: 0,
-        fill: true,
-      },
-    ],
-  };
-
   return (
     <div
       className={`w-[632px] h-[404px] rounded-[12px] p-[24px]  flex flex-col justify-between ${
@@ -166,7 +96,16 @@ const LineChart = ({
             isVolume={false}
           />
           <div className="h-[193px] w-[584px]">
-            <Line options={options} data={data} />
+            <Line
+              options={chartOptions}
+              data={chartData(
+                chartLabels,
+                coinOne,
+                coinTwo,
+                priceDataOne,
+                priceDataTwo
+              )}
+            />
           </div>
           {isCompare && (
             <ChartFooter

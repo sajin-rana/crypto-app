@@ -1,5 +1,9 @@
 import React from "react";
 
+function LoadingBox() {
+  return <div className="h-[20px] w-[60px] skeleton rounded-[5px]"></div>;
+}
+
 const ChartLoading = ({ chartLoadingClass }: { chartLoadingClass: string }) => {
   return (
     <div className="flex flex-col h-[100%] justify-between ">
@@ -12,12 +16,11 @@ const ChartLoading = ({ chartLoadingClass }: { chartLoadingClass: string }) => {
         <div className={chartLoadingClass} />
       </div>
       <div className="flex items-center justify-between">
-        <div className="h-[20px] w-[60px] skeleton rounded-[5px]"></div>
-        <div className="h-[20px] w-[60px] skeleton rounded-[5px]"></div>
-        <div className="h-[20px] w-[60px] skeleton rounded-[5px]"></div>
-        <div className="h-[20px] w-[60px] skeleton rounded-[5px]"></div>
-        <div className="h-[20px] w-[60px] skeleton rounded-[5px]"></div>
-        <div className="h-[20px] w-[60px] skeleton rounded-[5px]"></div>
+        <LoadingBox />
+        <LoadingBox />
+        <LoadingBox />
+        <LoadingBox />
+        <LoadingBox />
       </div>
     </div>
   );
