@@ -9,6 +9,8 @@ const cryptoSlice = createSlice({
     isCompare: false,
     coinOne: "bitcoin",
     coinTwo: "",
+    coinOneSymbol: "btc",
+    coinTwoSymbol: "",
   },
   reducers: {
     setCurrency: (state, action) => {
@@ -26,6 +28,12 @@ const cryptoSlice = createSlice({
     setCoinTwo: (state, action) => {
       state.coinTwo = action.payload;
     },
+    setCoinOneSymbol: (state, action) => {
+      state.coinOneSymbol = action.payload;
+    },
+    setCoinTwoSymbol: (state, action) => {
+      state.coinTwoSymbol = action.payload;
+    },
   },
 });
 
@@ -34,7 +42,18 @@ export const selectIsDark = (state: any) => state.cryptoSlice.isDark;
 export const selectIsCompare = (state: any) => state.cryptoSlice.isCompare;
 export const selectedCoinOne = (state: any) => state.cryptoSlice.coinOne;
 export const selectedCoinTwo = (state: any) => state.cryptoSlice.coinTwo;
-export const { setCurrency, setIsDark, setIsCompare, setCoinOne, setCoinTwo } =
-  cryptoSlice.actions;
+export const selectedCoinOneSymbol = (state: any) =>
+  state.cryptoSlice.coinOneSymbol;
+export const selectedCoinTwoSymbol = (state: any) =>
+  state.cryptoSlice.coinTwoSymbol;
+export const {
+  setCurrency,
+  setIsDark,
+  setIsCompare,
+  setCoinOne,
+  setCoinTwo,
+  setCoinOneSymbol,
+  setCoinTwoSymbol,
+} = cryptoSlice.actions;
 
 export default cryptoSlice.reducer;

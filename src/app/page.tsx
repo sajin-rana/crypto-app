@@ -1,8 +1,8 @@
 "use client";
-
 import CoinCarousel from "./components/blocks/CoinCarousel/CoinCarousel";
 import CoinConvertorButton from "./components/blocks/CoinConvertorButton/CoinConvertorButton";
 import Compare from "./components/blocks/Compare/Compare";
+import Chart from "./components/blocks/Chart/Chart";
 
 export default function Home() {
   return (
@@ -10,6 +10,7 @@ export default function Home() {
       <CoinConvertorButton />
       <Compare />
       <CoinCarousel />
+      <Chart />
     </div>
   );
 }
