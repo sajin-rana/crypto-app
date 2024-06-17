@@ -81,3 +81,49 @@
     background-color: hsla(204, 20%, 95%, 0.753);
   }
 }
+
+.chart-loading-line {
+  height: 27px;
+  aspect-ratio: 5;
+  --c: hsla(201, 20%, 80%, 0.792) 90deg, #0000 0;
+  background: conic-gradient(from 135deg at top, var(--c)),
+    conic-gradient(from -45deg at bottom, var(--c)) 12.5% 100%;
+  background-size: 20% 50%;
+  background-repeat: repeat-x;
+  clip-path: inset(0 100% 0 0);
+  animation: l2 1s infinite linear;
+}
+@keyframes l2 {
+  90%,
+  to {
+    clip-path: inset(0);
+  }
+}
+
+.chart-loading-bar {
+  width: 45px;
+  aspect-ratio: 1;
+  --c: no-repeat linear-gradient(hsla(201, 20%, 80%, 0.792) 0 0);
+  background: var(--c) 0% 100%, var(--c) 50% 100%, var(--c) 100% 100%;
+  animation: bar 1s infinite linear;
+}
+@keyframes bar {
+  0% {
+    background-size: 20% 100%, 20% 100%, 20% 100%;
+  }
+  20% {
+    background-size: 20% 60%, 20% 100%, 20% 100%;
+  }
+  40% {
+    background-size: 20% 80%, 20% 60%, 20% 100%;
+  }
+  60% {
+    background-size: 20% 100%, 20% 80%, 20% 60%;
+  }
+  80% {
+    background-size: 20% 100%, 20% 100%, 20% 80%;
+  }
+  100% {
+    background-size: 20% 100%, 20% 100%, 20% 100%;
+  }
+}

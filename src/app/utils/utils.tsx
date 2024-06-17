@@ -31,7 +31,7 @@ export function getLocalStorage(key: string) {
 }
 
 export function numberWithCommas(x: any) {
-  x = x.toString();
+  x = x?.toString();
   const pattern = /(-?\d+)(\d{3})/;
   while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
   return x;
@@ -39,6 +39,42 @@ export function numberWithCommas(x: any) {
 
 export function greaterThanZero(number: number) {
   return number > 0 ? true : false;
+}
+
+export function firstLetterCapitalize(string: string) {
+  return string.slice(0, 1).toUpperCase() + string.slice(1).toLowerCase();
+}
+
+export const month = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+export function getChartLabels(days: number, milliseconds: number) {
+  if (days === 1) {
+    let minutes: string | number = (milliseconds / (1000 * 60)) % 60;
+    let hours: string | number = (milliseconds / (1000 * 60 * 60)) % 24;
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    return (
+      Math.floor(+hours) + ":" + String(Math.floor(+minutes)).padStart(2, "0")
+    );
+  } else {
+    const d = new Date(milliseconds);
+    const currentMonth = month[d.getMonth()];
+    const currentDate = d.getDate();
+    return `${currentMonth.slice(0, 3)} ${currentDate}`;
+  }
 }
 
 export const currencyLists = [

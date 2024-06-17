@@ -8,8 +8,11 @@ import {
   selectIsDark,
   selectedCoinOne,
   selectedCoinTwo,
+  selectedCoinTwoSymbol,
   setCoinOne,
+  setCoinOneSymbol,
   setCoinTwo,
+  setCoinTwoSymbol,
 } from "@/lib/features/cryptoSlice";
 import {
   NextButton,
@@ -26,6 +29,7 @@ const EmblaCarousel = ({ options }: { options: any }) => {
   const currency = useSelector(selectCurrency);
   const coinOne = useSelector(selectedCoinOne);
   const coinTwo = useSelector(selectedCoinTwo);
+  const coinTwoSymbol = useSelector(selectedCoinTwoSymbol);
   const isCompare = useSelector(selectIsCompare);
   const dispatch = useDispatch();
 
@@ -36,17 +40,22 @@ const EmblaCarousel = ({ options }: { options: any }) => {
     currency.name.toLowerCase()
   );
 
-  function handleClick(id: string) {
+  function handleClick(id: string, symbol: string) {
     if (isCompare) {
       if (!coinTwo) {
         dispatch(setCoinTwo(id));
+        dispatch(setCoinTwoSymbol(symbol));
       } else if (coinOne !== id && coinTwo !== id) {
         dispatch(setCoinOne(coinTwo));
+        dispatch(setCoinOneSymbol(coinTwoSymbol));
         dispatch(setCoinTwo(id));
+        dispatch(setCoinTwoSymbol(symbol));
       }
     } else {
       dispatch(setCoinOne(id));
+      dispatch(setCoinOneSymbol(symbol));
       dispatch(setCoinTwo(""));
+      dispatch(setCoinTwoSymbol(""));
     }
   }
 
@@ -70,7 +79,7 @@ const EmblaCarousel = ({ options }: { options: any }) => {
                 className={`w-[20%] h-full shrink-0 grow-0 min-w-0 ml-[5px] mr-[5px]  relative rounded-[6px] flex items-center cursor-pointer  gap-[16px] p-[16px] ${
                   isDark ? "bg-[#191925]" : "bg-[white]"
                 }  ${backgroundColor(coin.id)}`}
-                onClick={() => handleClick(coin.id)}
+                onClick={() => handleClick(coin.id, coin.symbol)}
               >
                 <Image src={coin.image} alt={coin.id} height={32} width={32} />
                 <div className="">

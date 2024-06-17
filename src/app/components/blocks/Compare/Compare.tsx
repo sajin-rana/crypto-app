@@ -1,12 +1,14 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectIsCompare,
   selectIsDark,
   setCoinOne,
+  setCoinOneSymbol,
   setCoinTwo,
+  setCoinTwoSymbol,
   setIsCompare,
 } from "@/lib/features/cryptoSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 const Compare = () => {
   const isDark = useSelector(selectIsDark);
@@ -18,7 +20,9 @@ const Compare = () => {
     e.preventDefault();
     if (isCompare) {
       dispatch(setCoinOne("bitcoin"));
+      dispatch(setCoinOneSymbol("btc"));
       dispatch(setCoinTwo(""));
+      dispatch(setCoinTwoSymbol(""));
       dispatch(setIsCompare(false));
     } else {
       dispatch(setIsCompare(true));
