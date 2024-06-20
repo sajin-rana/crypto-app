@@ -21,7 +21,7 @@ const ChartButton = ({ days, setDays }: { days: number; setDays: any }) => {
 
   return (
     <div
-      className={` flex mt-[40px] mb-[100px] items-center  justify-around p-[4px] gap-[8px] rounded-[6px] w-[463px] h-[42px] ${
+      className={` flex mt-[40px]  items-center  justify-around p-[4px] gap-[8px] rounded-[6px] w-[463px] h-[42px] ${
         isDark ? "bg-[#232336]" : "bg-[#E2E5FB]  "
       } `}
     >
