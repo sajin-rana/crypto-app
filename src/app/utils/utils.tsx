@@ -20,6 +20,10 @@ export function getPercentage(value: number, totalValue: number) {
   return Math.floor((value / totalValue) * 100);
 }
 
+export function getNumberUsingPercentage(percentage: number, total: number) {
+  return Math.abs(+((total / 100) * percentage).toFixed(2));
+}
+
 export function setLocalStorage(key: string, value: any) {
   return window.localStorage.setItem(key, JSON.stringify(value));
 }

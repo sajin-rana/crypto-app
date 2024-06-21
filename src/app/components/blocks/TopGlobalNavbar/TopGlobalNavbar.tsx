@@ -32,8 +32,10 @@ const TopGlobalNavbar = () => {
 
   return (
     <nav
-      className={`h-56px py-[16px] px-[72px]  flex justify-center gap-[32px] border-b-[1px] border-[#FFFFFF1A] ${
-        isDark ? "bg-[#1E1932]  " : "bg-[#353570]"
+      className={`h-56px py-[16px] px-[72px]  flex justify-center gap-[32px] border-b-[1px]  ${
+        isDark
+          ? "bg-[#1E1932]  border-[#FFFFFF1A] "
+          : "bg-[#353570] border-[#494982]"
       }`}
     >
       <NavBarCoin coin={cryptoData.coin} isLoading={isLoading} />
