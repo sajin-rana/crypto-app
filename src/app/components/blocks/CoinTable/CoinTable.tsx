@@ -35,7 +35,7 @@ const CoinTable = () => {
         });
       }
     },
-    [page, data]
+    [page, data, coinList]
   );
 
   function fetchData() {
