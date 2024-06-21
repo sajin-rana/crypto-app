@@ -142,3 +142,33 @@
     opacity: 0;
   }
 }
+
+.success {
+  padding: 18px 22px 18px 16px;
+  border-radius: 6px;
+
+  background: #00b1a780;
+  border: 1px solid #00b4a8;
+  border-image-source: linear-gradient(
+      180deg,
+      #00b4a8 0%,
+      rgba(0, 180, 168, 0) 100%
+    )
+    linear-gradient(
+      180deg,
+      color(display-p3 0 0.694 0.655) 0%,
+      color(display-p3 0 0.694 0.655 / 0) 100%
+    );
+  animation: fadeInAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
