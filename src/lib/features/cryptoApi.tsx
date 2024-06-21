@@ -21,7 +21,9 @@ export const cryptoApi = createApi({
     getChartCoinData: builder.query({
       query: (query) => `coins/${query}&${apiKey}`,
     }),
-
+    getTableCoinList: builder.query({
+      query: ({ currency, order, page }) =>
+        `coins/markets?vs_currency=${currency}&order=${order}_desc&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`,
     }),
     getOneCoinDetail: builder.query({
       query: (query) =>
@@ -37,4 +39,6 @@ export const {
   useGetSearchQueryDataQuery,
   useGetCoinListQuery,
   useGetChartCoinDataQuery,
+  useGetTableCoinListQuery,
+  useGetOneCoinDetailQuery,
 } = cryptoApi;
