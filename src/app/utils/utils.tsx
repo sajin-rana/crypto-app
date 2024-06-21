@@ -12,7 +12,7 @@ export function formatNumber(marketCap: number) {
   } else if (marketCap >= million) {
     return (marketCap / million).toFixed(2) + " M";
   } else {
-    return marketCap;
+    return numberWithCommas(marketCap?.toFixed(2));
   }
 }
 
@@ -64,6 +64,26 @@ export const month = [
   "December",
 ];
 
+export const colors = [
+  "#C27721",
+  "#6374C3",
+  "#30E0A1",
+  "#F5AC37",
+  "#F3EB2F",
+  "#638FFE",
+  "#4DEEE5",
+  "#F06142",
+  "#5082CF",
+  "#00B1A7",
+  "#FE2264",
+  "#FFA500",
+  "#6374C3",
+  "#FFA500",
+  "#FFD700",
+  "#FF6347",
+  "#FF0000",
+];
+
 export function getChartLabels(days: number, milliseconds: number) {
   if (days === 1) {
     let minutes: string | number = (milliseconds / (1000 * 60)) % 60;
@@ -79,6 +99,15 @@ export function getChartLabels(days: number, milliseconds: number) {
     const currentDate = d.getDate();
     return `${currentMonth.slice(0, 3)} ${currentDate}`;
   }
+}
+
+export function formatMonthAndTime(milliseconds: number) {
+  const d = new Date();
+  const time = new Date(d.getTime() - milliseconds);
+  const currentMonth = month[time.getMonth()];
+  const currentDate = time.getDate();
+  const hour = String(time.getHours()).padStart(2, "0");
+  return `${currentMonth.slice(0, 3)} ${currentDate},${hour}:00 `;
 }
 
 export const chartOptions: any = {
@@ -140,7 +169,7 @@ export function chartData(
         label: labelOne,
         data: dataOne,
         borderColor: "#7878FA",
-        borderWidth: 0,
+        borderWidth: 3,
         borderRadius: 3,
         categoryPercentage: 0.75,
         backgroundColor: (context: any) => {
@@ -156,7 +185,7 @@ export function chartData(
         label: labelTwo,
         data: dataTwo,
         borderColor: "#D878FA",
-        borderWidth: 0,
+        borderWidth: 3,
         borderRadius: 3,
         categoryPercentage: 0.75,
         backgroundColor: (context: any) => {

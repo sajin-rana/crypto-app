@@ -21,9 +21,7 @@ export const cryptoApi = createApi({
     getChartCoinData: builder.query({
       query: (query) => `coins/${query}&${apiKey}`,
     }),
-    getOneCoinDetail: builder.query({
-      query: (query) =>
-        `coins/${query}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false&${apiKey}`,
+
     }),
   }),
 });
@@ -35,5 +33,4 @@ export const {
   useGetSearchQueryDataQuery,
   useGetCoinListQuery,
   useGetChartCoinDataQuery,
-  useGetOneCoinDetailQuery,
-} = cryptoApi;
+
