@@ -28,7 +28,11 @@ const CoinTable = () => {
       if (page === 1) {
         setCoinList(data);
       } else if (page > 1) {
-        setCoinList((coin) => [...coin, ...data]);
+        data.forEach((coin: any) => {
+          if (!coinList.some((c: any) => c.id === coin.id)) {
+            setCoinList((coins) => [...coins, coin]);
+          }
+        });
       }
     },
     [page, data]

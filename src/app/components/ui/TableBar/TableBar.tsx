@@ -16,17 +16,18 @@ const TableBar = ({
 }) => {
   const isDark = useSelector(selectIsDark);
   const currencySign = useAppSelector(selectCurrency);
+  const currentColor = colors[index % 17];
   return (
     <div className="">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-[4px]">
           <span
             className="h-[6px] w-[6px] rounded-full"
-            style={{ background: colors[index % 17] }}
+            style={{ background: currentColor }}
           />
           <span
             className="text-[12px] font-[400]"
-            style={{ color: colors[index % 17] }}
+            style={{ color: currentColor }}
           >
             {" "}
             {currencySign.sign}
@@ -36,7 +37,7 @@ const TableBar = ({
         <div className="flex items-center gap-[4px]">
           <span
             className="h-[6px] w-[6px] rounded-full"
-            style={{ background: colors[index % 17], opacity: 0.5 }}
+            style={{ background: currentColor, opacity: 0.5 }}
           />
           <span
             className={`text-[12px] font-[400] ${
@@ -51,7 +52,7 @@ const TableBar = ({
       </div>
       <TableProgressBar
         percentage={getPercentage(totalMarket, currentMarket)}
-        color={colors[index % 17]}
+        color={currentColor}
       />
     </div>
   );

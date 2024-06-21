@@ -70,7 +70,7 @@ const TableHeading = ({
     >
       {tableHead.map((item) => (
         <div
-          key={crypto.randomUUID()}
+          key={item.headerText}
           onClick={() => handleHeadingClick(item.name)}
           className={`cursor-pointer text-[14px] font-[400] flex items-center  ${headingStyle(
             order,
