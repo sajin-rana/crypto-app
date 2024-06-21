@@ -25,6 +25,10 @@ export const cryptoApi = createApi({
       query: ({ currency, order, page }) =>
         `coins/markets?vs_currency=${currency}&order=${order}_desc&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`,
     }),
+    getOneCoinDetail: builder.query({
+      query: (query) =>
+        `coins/${query}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false&${apiKey}`,
+    }),
   }),
 });
 
@@ -36,4 +40,5 @@ export const {
   useGetCoinListQuery,
   useGetChartCoinDataQuery,
   useGetTableCoinListQuery,
+  useGetOneCoinDetailQuery,
 } = cryptoApi;
