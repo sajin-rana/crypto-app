@@ -65,7 +65,7 @@ const ConvertorBoxs = () => {
         coinConverter(coinQuantityOne, coinPriceOne, coinPriceTwo)
       );
     },
-    [coinPriceOne, coinPriceTwo]
+    [coinQuantityOne, coinPriceOne, coinPriceTwo]
   );
   return (
     <div className="flex justify-between items-center relative">
