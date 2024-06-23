@@ -5,7 +5,7 @@ const cryptoSlice = createSlice({
   name: "cryptoSlice",
   initialState: {
     currency: getLocalStorage("currency") || currencyLists[0],
-    isDark: getLocalStorage("isDark"),
+    isDark: getLocalStorage("isDark") || true,
     isCompare: false,
     coinOne: "bitcoin",
     coinTwo: "",

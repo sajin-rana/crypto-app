@@ -4,25 +4,20 @@ import Link from "next/link";
 import { Inter } from "next/font/google";
 import { useGetSearchQueryDataQuery } from "@/lib/features/cryptoApi";
 import DropDownLoading from "../DropDownLoading/DropDownLoading";
-
+import { dropDownColor } from "@/app/utils/utils";
 const inter = Inter({ weight: "400", subsets: ["latin"] });
 
 const DropDown = ({
   isDark,
   input,
   setInput,
-  isDarkColor,
-  textColor,
-  hoverColor,
 }: {
   isDark: boolean;
   input: string;
   setInput: any;
-  isDarkColor: string;
-  textColor: string;
-  hoverColor: string;
 }) => {
   const { data, isLoading } = useGetSearchQueryDataQuery(input);
+  const { hoverColor, isDarkColor, textColor } = dropDownColor(isDark);
 
   return (
     <ul
