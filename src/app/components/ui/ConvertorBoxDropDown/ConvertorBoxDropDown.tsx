@@ -62,42 +62,38 @@ const ConvertorBoxDropDown = ({
             No results
           </li>
         )}
-        {coinList?.length > 0 && (
-          <>
-            {" "}
-            {coinList?.map((coin: any) => (
-              <li
-                key={coin?.id}
-                className={`cursor-pointer ${inter.className}  text-[14px]   py-[8px] px-[16px] ${hoverColor} flex justify-between`}
-                onClick={() => handleCoinClick(coin?.id, coin?.symbol)}
-              >
-                <div className="flex items-center gap-[5px]">
-                  <Image
-                    src={coin?.image}
-                    alt={coin?.name}
-                    height={20}
-                    width={20}
-                  />
-                  <p>{coin?.name}</p>
-                </div>
-                <div className="flex items-center gap-[5px]">
-                  <UpDownArrow
-                    priceChangePercentage={coin?.price_change_percentage_24h}
-                  />
-                  <p
-                    className={`${
-                      greaterThanZero(coin?.price_change_percentage_24h)
-                        ? "text-[#00B1A7]"
-                        : "text-[#FE2264]"
-                    }`}
-                  >
-                    {Math.abs(coin?.price_change_percentage_24h?.toFixed(2))}%
-                  </p>
-                </div>
-              </li>
-            ))}
-          </>
-        )}
+        {coinList?.length > 0 &&
+          coinList.map((coin: any) => (
+            <li
+              key={coin.id}
+              className={`cursor-pointer ${inter.className}  text-[14px]   py-[8px] px-[16px] ${hoverColor} flex justify-between`}
+              onClick={() => handleCoinClick(coin?.id, coin?.symbol)}
+            >
+              <div className="flex items-center gap-[5px]">
+                <Image
+                  src={coin.image}
+                  alt={coin.name}
+                  height={20}
+                  width={20}
+                />
+                <p>{coin?.name}</p>
+              </div>
+              <div className="flex items-center gap-[5px]">
+                <UpDownArrow
+                  priceChangePercentage={coin.price_change_percentage_24h}
+                />
+                <p
+                  className={`${
+                    greaterThanZero(coin.price_change_percentage_24h)
+                      ? "text-[#00B1A7]"
+                      : "text-[#FE2264]"
+                  }`}
+                >
+                  {Math.abs(coin.price_change_percentage_24h.toFixed(2))}%
+                </p>
+              </div>
+            </li>
+          ))}
       </ul>
     </div>
   );
