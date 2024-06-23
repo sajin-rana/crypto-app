@@ -4,7 +4,7 @@ import { selectIsDark } from "@/lib/features/cryptoSlice";
 
 function selectedButtonStyle(isDark: boolean) {
   if (isDark) {
-    return "text-[##E4E4F0] darkGlowBackground bg-[#42428A] ";
+    return "text-[#E4E4F0] darkGlowBackground bg-[#42428A] ";
   } else {
     return "text-[#181825] lightGlowBackground bg-[#42428A]";
   }

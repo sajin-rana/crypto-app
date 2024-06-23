@@ -112,6 +112,29 @@ export function formatMonthAndTime(milliseconds: number) {
   return `${currentMonth.slice(0, 3)} ${currentDate},${hour}:00 `;
 }
 
+export function coinConverter(
+  inputNumber: number,
+  priceOne: number,
+  priceTwo: number
+) {
+  const price = (inputNumber * priceOne) / priceTwo;
+  return price % 1 === 0 ? +price : +price?.toFixed(3);
+}
+
+export function dropDownColor(isDark: boolean) {
+  const isDarkColor = isDark ? "bg-[#191925]" : "bg-[#EBEBFC]";
+  const textColor = isDark ? "text-[#D1D1D3]" : "text-[#6464A2]";
+  const hoverColor = isDark ? "hover:bg-[rgb(5,5,15)]" : "hover:bg-[white]";
+  return { isDarkColor, textColor, hoverColor };
+}
+
+export function handleKeyDown(e: any, stateSetter: any) {
+  if (e.key === "Escape") {
+    e.currentTarget.blur();
+    stateSetter(false);
+  }
+}
+
 export const chartOptions: any = {
   responsive: true,
   maintainAspectRatio: false,

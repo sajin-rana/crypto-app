@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { setLocalStorage } from "@/app/utils/utils";
+import { dropDownColor, setLocalStorage } from "@/app/utils/utils";
 import { useHandleClickOutside } from "@/app/customHook/CustomHook";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrency, setCurrency } from "@/lib/features/cryptoSlice";
@@ -9,19 +9,14 @@ import CurrencyDropLists from "../CurrencyDropLists/CurrencyDropLists";
 function CurrencyDropDown({
   isDark,
   svgIsDarkColor,
-  isDarkColor,
-  textColor,
-  hoverColor,
 }: {
   isDark: boolean;
   svgIsDarkColor: string;
-  isDarkColor: string;
-  textColor: string;
-  hoverColor: string;
 }) {
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const dispatch = useDispatch();
   const currency = useSelector(selectCurrency);
+  const { isDarkColor, textColor } = dropDownColor(isDark);
 
   function handleClick(item: any) {
     dispatch(setCurrency(item));
@@ -63,9 +58,6 @@ function CurrencyDropDown({
           isDark={isDark}
           handleClick={handleClick}
           currency={currency}
-          hoverColor={hoverColor}
-          isDarkColor={isDarkColor}
-          textColor={textColor}
         />
       )}
     </div>
