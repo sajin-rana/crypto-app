@@ -12,7 +12,7 @@ export function formatNumber(marketCap: number) {
   } else if (marketCap >= million) {
     return (marketCap / million).toFixed(2) + " M";
   } else {
-    return numberWithCommas(marketCap?.toFixed(2));
+    return numberWithCommas(Number(marketCap)?.toFixed(2));
   }
 }
 
@@ -48,7 +48,7 @@ export function greaterThanZero(number: number) {
 }
 
 export function firstLetterCapitalize(string: string) {
-  return string.slice(0, 1).toUpperCase() + string.slice(1).toLowerCase();
+  return string?.slice(0, 1).toUpperCase() + string?.slice(1).toLowerCase();
 }
 
 export const month = [
@@ -131,8 +131,17 @@ export function dropDownColor(isDark: boolean) {
 export function handleKeyDown(e: any, stateSetter: any) {
   if (e.key === "Escape") {
     e.currentTarget.blur();
-    stateSetter(false);
+    if (stateSetter) {
+      stateSetter(false);
+    }
   }
+}
+
+export function formatPortfolioDateAndTime(date: any) {
+  const currentDate = date.toISOString().substring(0, 10);
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  return `${currentDate} ${hours}:${minutes}`;
 }
 
 export const chartOptions: any = {
@@ -225,6 +234,118 @@ export function chartData(
     ],
   };
   return data;
+}
+
+export function convertToUnixTimestamp(dateStr: string) {
+  const date = new Date(dateStr);
+  const unixTimestamp = Math.floor(date.getTime() / 1000).toString();
+  return unixTimestamp;
+}
+
+export function getPriceAndDateForEachInvterval(
+  historyData: any,
+  quantity: any,
+  startDateAndTime: string,
+  endDateAndTime: string
+) {
+  const intervalQuantity = CalculateIntervals(
+    String(quantity.contributionInterval),
+    startDateAndTime,
+    endDateAndTime
+  );
+  const timePeriod: number = CalculateInvestmentTimePeriod(
+    startDateAndTime,
+    endDateAndTime
+  );
+  const arrayOfPriceAndDateforEachInterval = [];
+  for (let i = 0; i <= intervalQuantity; i++) {
+    if (timePeriod / (24 * 60 * 60 * 1000) > 90) {
+      const data =
+        historyData?.prices[
+          parseInt(String(quantity.contributionInterval)) * i
+        ];
+      arrayOfPriceAndDateforEachInterval.push(data);
+    } else {
+      const data =
+        historyData?.prices[
+          parseInt(String(quantity.contributionInterval)) * i * 24
+        ];
+      arrayOfPriceAndDateforEachInterval.push(data);
+    }
+  }
+  return arrayOfPriceAndDateforEachInterval;
+}
+
+export function CalculateIntervals(
+  interval: string,
+  startDateAndTime: string,
+  endDateAndTime: string
+) {
+  const timePeriod: number = CalculateInvestmentTimePeriod(
+    startDateAndTime,
+    endDateAndTime
+  );
+  const intervalToMs: number = parseInt(interval) * 24 * 60 * 60 * 1000;
+  const intervalQuantity: number = Math.floor(timePeriod / intervalToMs);
+  return intervalQuantity;
+}
+
+export function CalculateInvestmentTimePeriod(
+  startDateStr: string,
+  endDateStr: string
+) {
+  const startDate: Date = new Date(startDateStr);
+  const endDate: Date = new Date(endDateStr);
+  const timePeriod: number = endDate.getTime() - startDate.getTime();
+  return timePeriod;
+}
+
+export function calculateVCA(
+  initialInvestment: number,
+  growthRate: number,
+  actualPrices: any
+) {
+  let netInvestment = initialInvestment;
+  let targetValue, investmentNeeded, actualValue;
+  let adjustedInitialInvestment = initialInvestment;
+  for (let i = 1; i < actualPrices.length; i++) {
+    targetValue = initialInvestment * Math.pow(1 + growthRate / 100, i);
+    const actualGrowthRate =
+      (actualPrices[i] - actualPrices[i - 1]) / actualPrices[i - 1];
+    actualValue = adjustedInitialInvestment * (1 + actualGrowthRate);
+    investmentNeeded = targetValue - actualValue;
+    netInvestment += investmentNeeded;
+    adjustedInitialInvestment = targetValue;
+  }
+  return {
+    netInvestment: netInvestment,
+    coinsValue: adjustedInitialInvestment,
+  };
+}
+
+export function calculateDCA(
+  initialInvestment: number,
+  investmentAdded: number,
+  actualPrices: any
+) {
+  let netInvestment = initialInvestment;
+  let actualValue;
+  for (let i = 1; i < actualPrices.length; i++) {
+    const growthRate =
+      (actualPrices[i] - actualPrices[i - 1]) / actualPrices[i - 1];
+    actualValue = netInvestment * (growthRate + 1);
+    netInvestment = actualValue + investmentAdded;
+  }
+  const totalNetInvestment =
+    initialInvestment + investmentAdded * (actualPrices.length - 1);
+  return { netInvestment: totalNetInvestment, coinsValue: netInvestment };
+}
+
+export function handleCalendarClick(dateRef: any) {
+  if (dateRef.current) {
+    (dateRef.current as any).showPicker();
+    (dateRef.current as any).focus();
+  }
 }
 
 export const currencyLists = [

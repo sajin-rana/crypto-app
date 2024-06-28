@@ -1,10 +1,12 @@
-import { greaterThanZero } from "@/app/utils/utils";
 import React from "react";
+import { greaterThanZero } from "@/app/utils/utils";
 
 const UpDownArrow = ({
   priceChangePercentage,
+  upArrowColor = "#00B1A7",
 }: {
   priceChangePercentage: number;
+  upArrowColor?: string;
 }) => {
   return (
     <svg
@@ -19,7 +21,7 @@ const UpDownArrow = ({
     >
       <path
         d="M8.00065 6.33301L4.66732 9.66634H11.334L8.00065 6.33301Z"
-        fill={greaterThanZero(priceChangePercentage) ? "#00B1A7" : "#FE2264"}
+        fill={greaterThanZero(priceChangePercentage) ? upArrowColor : "#FE2264"}
         fillOpacity={1}
       />
     </svg>
