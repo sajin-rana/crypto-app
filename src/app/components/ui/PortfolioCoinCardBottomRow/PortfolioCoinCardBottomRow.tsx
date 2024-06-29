@@ -70,7 +70,7 @@ const PortfolioCoinCardBottomRow = ({
           <p>Amount value:</p>
           <p className="text-[16px]  font-[500] text-[#01F1E3]">
             {currencySign}
-            {numberWithCommas(amountValue)}
+            {numberWithCommas(amountValue?.toFixed(2))}
           </p>
         </div>
         <div className=" flex flex-col justify-center items-center  w-[152px]">

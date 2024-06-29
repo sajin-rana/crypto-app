@@ -5,12 +5,12 @@ import { useHandleClickOutside } from "@/app/customHook/CustomHook";
 import PortfolioImageContainer from "../PortfolioImageContainer/PortfolioImageContainer";
 
 const PortfolioDeleteModal = ({
-  data,
   setIsDeleteOpen,
+  historyDateCoinData,
   handleDeleteButtonClick,
 }: {
-  data: any;
   setIsDeleteOpen: any;
+  historyDateCoinData: any;
   handleDeleteButtonClick: any;
 }) => {
   const isDark = useSelector(selectIsDark);
@@ -31,17 +31,14 @@ const PortfolioDeleteModal = ({
             Are you sure you want to delete?
           </h4>
           <PortfolioImageContainer
-            data={data}
             isLightBackground="bg-[#EBEBFC]"
             isLightImageBackground="bg-[white]"
+            data={historyDateCoinData}
             style="w-[297px] rounded-[8px] h-[241px] mt-[32px] "
           />
         </div>
         <div className="flex items-center  mt-[32px] text-[#ffffff] justify-between">
-          <button
-            onClick={() => setIsDeleteOpen(false)}
-            className={`w-[230px] h-[45px] rounded-[6px] ${isDarkColor}`}
-          >
+          <button className={`w-[230px] h-[45px] rounded-[6px] ${isDarkColor}`}>
             No
           </button>
           <button

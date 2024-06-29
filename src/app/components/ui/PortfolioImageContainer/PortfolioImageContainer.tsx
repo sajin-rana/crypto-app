@@ -32,7 +32,7 @@ const PortfolioImageContainer = ({
           width={32}
           height={32}
           alt={data?.coin}
-          src={data?.image.large}
+          src={data?.image.small}
         />
       </div>
       <h4 className="text-[28px] font-[700]">

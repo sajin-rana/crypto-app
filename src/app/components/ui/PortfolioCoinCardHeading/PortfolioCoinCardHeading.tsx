@@ -3,16 +3,16 @@ import PortfolioDeleteIcon from "../PortfolioDeleteIcon/PortfolioDeleteIcon";
 import PortfolioDeleteModal from "../PortfolioDeleteModal/PortfolioDeleteModal";
 
 const PortfolioCoinCardHeading = ({
-  data,
   isDark,
   isDeleteOpen,
   setIsDeleteOpen,
+  historyDateCoinData,
   handleDeleteButtonClick,
 }: {
-  data: any;
   isDark: boolean;
   setIsDeleteOpen: any;
   isDeleteOpen: boolean;
+  historyDateCoinData: any;
   handleDeleteButtonClick: any;
 }) => {
   return (
@@ -27,8 +27,8 @@ const PortfolioCoinCardHeading = ({
         <PortfolioDeleteIcon />
         {isDeleteOpen && (
           <PortfolioDeleteModal
-            data={data}
             setIsDeleteOpen={setIsDeleteOpen}
+            historyDateCoinData={historyDateCoinData}
             handleDeleteButtonClick={handleDeleteButtonClick}
           />
         )}
