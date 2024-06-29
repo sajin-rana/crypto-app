@@ -172,3 +172,7 @@
     opacity: 1;
   }
 }
+
+.portfolio-date-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  display: none;
+}

@@ -1,7 +1,7 @@
 // Need to use the React-specific entry point to allow generating React hooks
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const apiKey = process.env.COIN_API;
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 // Define a service using a base URL and expected endpoints
 export const cryptoApi = createApi({
@@ -29,6 +29,9 @@ export const cryptoApi = createApi({
       query: (query) =>
         `coins/${query}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false&${apiKey}`,
     }),
+    getHistoryDateCoinDetail: builder.query({
+      query: (query) => `coins/${query}&${apiKey}`,
+    }),
   }),
 });
 
@@ -41,4 +44,5 @@ export const {
   useGetChartCoinDataQuery,
   useGetTableCoinListQuery,
   useGetOneCoinDetailQuery,
+  useGetHistoryDateCoinDetailQuery,
 } = cryptoApi;

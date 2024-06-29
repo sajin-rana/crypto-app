@@ -9,6 +9,9 @@ export function useHandleClickOutside(ref: any, setterFunction: any) {
         }
       }
       document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
     },
     [ref, setterFunction]
   );
