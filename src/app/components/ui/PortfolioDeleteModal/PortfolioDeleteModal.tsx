@@ -38,7 +38,10 @@ const PortfolioDeleteModal = ({
           />
         </div>
         <div className="flex items-center  mt-[32px] text-[#ffffff] justify-between">
-          <button className={`w-[230px] h-[45px] rounded-[6px] ${isDarkColor}`}>
+          <button
+            className={`w-[230px] h-[45px] rounded-[6px] ${isDarkColor}`}
+            onClick={() => setIsDeleteOpen(false)}
+          >
             No
           </button>
           <button

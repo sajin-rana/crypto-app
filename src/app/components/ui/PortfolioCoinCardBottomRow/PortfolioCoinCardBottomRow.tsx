@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import UpDownArrow from "../UpDownArrow/UpDownArrow";
 import { greaterThanZero, numberWithCommas } from "@/app/utils/utils";
 import PortfolioAddAsset from "../PortfolioAddAsset/PortfolioAddAsset";
@@ -7,11 +7,9 @@ import PortfolioEditIcon from "../PortfolioEditIcon/PortfolioEditIcon";
 const PortfolioCoinCardBottomRow = ({
   coin,
   isDark,
-  isEditOpen,
   amountValue,
   currencySign,
   isGainOrLoss,
-  setIsEditOpen,
   gainOrLossAmount,
   purchasedCoinList,
   setPurchasedCoinList,
@@ -19,14 +17,13 @@ const PortfolioCoinCardBottomRow = ({
   coin: any;
   isDark: boolean;
   amountValue: any;
-  setIsEditOpen: any;
-  isEditOpen: boolean;
   currencySign: string;
   isGainOrLoss: number;
   purchasedCoinList: any;
   gainOrLossAmount: number;
   setPurchasedCoinList: any;
 }) => {
+  const [isEditOpen, setIsEditOpen] = useState(false);
   return (
     <div
       className={`flex flex-col gap-[16px] mt-[20px]  ${
@@ -48,15 +45,6 @@ const PortfolioCoinCardBottomRow = ({
           onClick={() => setIsEditOpen(true)}
         >
           <PortfolioEditIcon />
-          {isEditOpen && (
-            <PortfolioAddAsset
-              isEdited={true}
-              coinForEdit={coin}
-              setIsAddAssetOpen={setIsEditOpen}
-              purchasedCoinList={purchasedCoinList}
-              setPurchasedCoinList={setPurchasedCoinList}
-            />
-          )}
         </div>
       </div>
       <div className="flex item-center justify-between  text-[14px] font-[400]">
@@ -104,6 +92,15 @@ const PortfolioCoinCardBottomRow = ({
           </p>
         </div>
       </div>
+      {isEditOpen && (
+        <PortfolioAddAsset
+          isEdited={true}
+          coinForEdit={coin}
+          setIsAddAssetOpen={setIsEditOpen}
+          purchasedCoinList={purchasedCoinList}
+          setPurchasedCoinList={setPurchasedCoinList}
+        />
+      )}
     </div>
   );
 };

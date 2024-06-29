@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { getPercentage, setLocalStorage } from "@/app/utils/utils";
 import ConvertorBoxLine from "../ConvertorBoxLine/ConvertorBoxLine";
@@ -21,8 +21,6 @@ const PortfolioCoinCard = ({
   nonDuplicateCoinList: any;
   setPurchasedCoinList: any;
 }) => {
-  const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const isDark = useSelector(selectIsDark);
   const getCurrency = useSelector(selectCurrency);
   const currency = getCurrency.name.toLowerCase();
@@ -76,8 +74,6 @@ const PortfolioCoinCard = ({
         >
           <PortfolioCoinCardHeading
             isDark={isDark}
-            isDeleteOpen={isDeleteOpen}
-            setIsDeleteOpen={setIsDeleteOpen}
             historyDateCoinData={historyDateCoinData}
             handleDeleteButtonClick={handleDeleteButtonClick}
           />
@@ -95,11 +91,9 @@ const PortfolioCoinCard = ({
         <PortfolioCoinCardBottomRow
           coin={coin}
           isDark={isDark}
-          isEditOpen={isEditOpen}
           amountValue={amountValue}
           currencySign={currencySign}
           isGainOrLoss={isGainOrLoss}
-          setIsEditOpen={setIsEditOpen}
           gainOrLossAmount={gainOrLossAmount}
           purchasedCoinList={purchasedCoinList}
           setPurchasedCoinList={setPurchasedCoinList}
