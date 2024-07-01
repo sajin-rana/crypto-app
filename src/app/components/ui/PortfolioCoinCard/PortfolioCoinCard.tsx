@@ -10,15 +10,28 @@ import PortfolioCoinCardTopRow from "../PortfolioCoinCardTopRow/PortfolioCoinCar
 import PortfolioCoinCardHeading from "../PortfolioCoinCardHeading/PortfolioCoinCardHeading";
 import PortfolioCoinCardBottomRow from "../PortfolioCoinCardBottomRow/PortfolioCoinCardBottomRow";
 
+function hasErrorStyle(isDark: boolean, hasError: boolean) {
+  if (hasError) {
+    if (isDark) {
+      return "w-full flex items-center justify-center bg-[#191934] text-[white]";
+    } else {
+      return "w-full flex items-center justify-center bg-[#EBEBFC] text-[#191925]";
+    }
+  }
+}
 const PortfolioCoinCard = ({
   coin,
+  hasError,
+  isLoading,
   purchasedCoinList,
-  nonDuplicateCoinList,
+  uniqueCoinDataList,
   setPurchasedCoinList,
 }: {
   coin: any;
+  hasError: boolean;
+  isLoading: boolean;
   purchasedCoinList: any;
-  nonDuplicateCoinList: any;
+  uniqueCoinDataList: any;
   setPurchasedCoinList: any;
 }) => {
   const isDark = useSelector(selectIsDark);
@@ -31,19 +44,19 @@ const PortfolioCoinCard = ({
   const { data: historyDateCoinData } = useGetHistoryDateCoinDetailQuery(query);
 
   const marketVsVolume = getPercentage(
-    nonDuplicateCoinList?.[coinName].totalVolume,
-    nonDuplicateCoinList?.[coinName].marketCap
+    uniqueCoinDataList?.[coinName].totalVolume,
+    uniqueCoinDataList?.[coinName].marketCap
   );
 
   const circVsMaxSupply = (
-    nonDuplicateCoinList?.[coinName].circulatingSupply /
-    nonDuplicateCoinList?.[coinName].maxSupply
+    uniqueCoinDataList?.[coinName].circulatingSupply /
+    uniqueCoinDataList?.[coinName].maxSupply
   ).toFixed(2);
 
   const amountValue =
-    coin?.amount * nonDuplicateCoinList?.[coinName].currentPrice;
+    coin?.amount * uniqueCoinDataList?.[coinName].currentPrice;
 
-  const currentPrice = nonDuplicateCoinList?.[coinName].currentPrice;
+  const currentPrice = uniqueCoinDataList?.[coinName].currentPrice;
   const purchasePrice =
     historyDateCoinData?.market_data.current_price[currency];
 
@@ -60,45 +73,61 @@ const PortfolioCoinCard = ({
   }
 
   return (
-    <div className="h-[292px] flex mt-[24px] cursor-pointer">
-      <PortfolioImageContainer style="w-[258px]" data={historyDateCoinData} />
-      <div
-        className={`w-[calc(100%-258px)] h-full p-[24px] ${
-          isDark ? "bg-[#191934]" : "bg-[#EBEBFC]"
-        }`}
-      >
-        <div
-          className={`flex flex-col gap-[16px] ${
-            isDark ? "text-[white]" : "text-[#191925]"
-          }`}
-        >
-          <PortfolioCoinCardHeading
-            isDark={isDark}
-            historyDateCoinData={historyDateCoinData}
-            handleDeleteButtonClick={handleDeleteButtonClick}
+    <div
+      className={`h-[292px] flex mt-[24px] cursor-pointer ${hasErrorStyle(
+        isDark,
+        hasError
+      )}`}
+    >
+      {hasError && <h4 className="text-[24px]">Opps! something went wrong</h4>}
+      {!hasError && (
+        <>
+          <PortfolioImageContainer
+            style="w-[258px]"
+            isLoading={isLoading}
+            data={historyDateCoinData}
           />
-          <PortfolioCoinCardTopRow
-            currencySign={currencySign}
-            currentPrice={currentPrice}
-            marketVsVolume={marketVsVolume}
-            circVsMaxSupply={circVsMaxSupply}
-            priceChange24hInCurrency={
-              nonDuplicateCoinList?.[coinName].priceChange24hInCurrency
-            }
-          />
-        </div>
-        <ConvertorBoxLine isDark={isDark} />
-        <PortfolioCoinCardBottomRow
-          coin={coin}
-          isDark={isDark}
-          amountValue={amountValue}
-          currencySign={currencySign}
-          isGainOrLoss={isGainOrLoss}
-          gainOrLossAmount={gainOrLossAmount}
-          purchasedCoinList={purchasedCoinList}
-          setPurchasedCoinList={setPurchasedCoinList}
-        />
-      </div>
+          <div
+            className={`w-[calc(100%-258px)] h-full p-[24px] ${
+              isDark ? "bg-[#191934]" : "bg-[#EBEBFC]"
+            }`}
+          >
+            <div
+              className={`flex flex-col gap-[16px] ${
+                isDark ? "text-[white]" : "text-[#191925]"
+              }`}
+            >
+              <PortfolioCoinCardHeading
+                isDark={isDark}
+                historyDateCoinData={historyDateCoinData}
+                handleDeleteButtonClick={handleDeleteButtonClick}
+              />
+              <PortfolioCoinCardTopRow
+                isLoading={isLoading}
+                currencySign={currencySign}
+                currentPrice={currentPrice}
+                marketVsVolume={marketVsVolume}
+                circVsMaxSupply={circVsMaxSupply}
+                priceChange24hInCurrency={
+                  uniqueCoinDataList?.[coinName].priceChange24hInCurrency
+                }
+              />
+            </div>
+            <ConvertorBoxLine isDark={isDark} />
+            <PortfolioCoinCardBottomRow
+              coin={coin}
+              isDark={isDark}
+              isLoading={isLoading}
+              amountValue={amountValue}
+              currencySign={currencySign}
+              isGainOrLoss={isGainOrLoss}
+              gainOrLossAmount={gainOrLossAmount}
+              purchasedCoinList={purchasedCoinList}
+              setPurchasedCoinList={setPurchasedCoinList}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
