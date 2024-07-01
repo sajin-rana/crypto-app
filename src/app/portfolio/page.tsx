@@ -1,14 +1,17 @@
 "use client";
-const _ = require("lodash");
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getLocalStorage } from "../utils/utils";
-import { selectCurrency } from "@/lib/features/cryptoSlice";
+import {
+  selectCurrency,
+  selectPurchasedCoinList,
+} from "@/lib/features/cryptoSlice";
 import PortfolioHeader from "../components/ui/PortfolioHeader/PortfolioHeader";
 import PortfolioCoinCard from "../components/ui/PortfolioCoinCard/PortfolioCoinCard";
+import Head from "next/head";
+const _ = require("lodash");
 
 function Portfolio() {
-  const coins = getLocalStorage("purchasedCoinList");
+  const coins = useSelector(selectPurchasedCoinList);
   const [purchasedCoinList, setPurchasedCoinList] = useState(coins);
   const getCurrency = useSelector(selectCurrency);
   const currency = getCurrency.name.toLowerCase();
@@ -69,6 +72,11 @@ function Portfolio() {
 
   return (
     <div className="mt-[40px] min-h-[80vh]">
+      <Head>
+        <title>Crypto App</title>
+        <meta name="description" content="Crypto App" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <PortfolioHeader
         purchasedCoinList={purchasedCoinList}
         setPurchasedCoinList={setPurchasedCoinList}

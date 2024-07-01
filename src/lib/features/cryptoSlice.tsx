@@ -11,6 +11,7 @@ const cryptoSlice = createSlice({
     coinTwo: "",
     coinOneSymbol: "btc",
     coinTwoSymbol: "",
+    purchasedCoinList: getLocalStorage("purchasedCoinList") || [],
   },
   reducers: {
     setCurrency: (state, action) => {
@@ -34,6 +35,9 @@ const cryptoSlice = createSlice({
     setCoinTwoSymbol: (state, action) => {
       state.coinTwoSymbol = action.payload;
     },
+    setPurchasedCoinList: (state, action) => {
+      state.coinTwoSymbol = action.payload;
+    },
   },
 });
 
@@ -46,6 +50,8 @@ export const selectedCoinOneSymbol = (state: any) =>
   state.cryptoSlice.coinOneSymbol;
 export const selectedCoinTwoSymbol = (state: any) =>
   state.cryptoSlice.coinTwoSymbol;
+export const selectPurchasedCoinList = (state: any) =>
+  state.cryptoSlice.purchasedCoinList;
 export const {
   setCurrency,
   setIsDark,
@@ -54,6 +60,7 @@ export const {
   setCoinTwo,
   setCoinOneSymbol,
   setCoinTwoSymbol,
+  setPurchasedCoinList,
 } = cryptoSlice.actions;
 
 export default cryptoSlice.reducer;
