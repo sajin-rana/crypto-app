@@ -36,21 +36,23 @@ function Portfolio() {
                 `https://api.coingecko.com/api/v3/coins/${coinName}`
               );
               const json = await data.json();
-              uniqueCoinData[coinName].currentPrice =
+              const currentUniqueCoin = uniqueCoinData[coinName];
+
+              currentUniqueCoin.currentPrice =
                 json?.market_data.current_price[currency];
 
-              uniqueCoinData[coinName].totalVolume =
+              currentUniqueCoin.totalVolume =
                 json?.market_data.total_volume[currency];
 
-              uniqueCoinData[coinName].marketCap =
+              currentUniqueCoin.marketCap =
                 json?.market_data.market_cap[currency];
 
-              uniqueCoinData[coinName].circulatingSupply =
-                json?.market_data.circulating_supply;
+              currentUniqueCoin.circulatingSupply =
+                currentUniqueCoin?.market_data.circulating_supply;
 
-              uniqueCoinData[coinName].maxSupply = json?.market_data.max_supply;
+              currentUniqueCoin.maxSupply = json?.market_data.max_supply;
 
-              uniqueCoinData[coinName].priceChange24hInCurrency =
+              currentUniqueCoin.priceChange24hInCurrency =
                 json?.market_data.price_change_24h_in_currency[currency];
             })
           );
