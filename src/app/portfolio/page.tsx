@@ -1,4 +1,5 @@
 "use client";
+const _ = require("lodash");
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getLocalStorage } from "../utils/utils";
@@ -23,13 +24,12 @@ function Portfolio() {
   );
   const [uniqueCoinDataList, setUniqueCoinDataList] =
     useState(nonDuplicateCoinList);
-
   useEffect(
     function () {
       async function getNonDuplicateCoinListData() {
         try {
           setIsLoading(true);
-          const uniqueCoinData: any = uniqueCoinDataList;
+          const uniqueCoinData: any = _.cloneDeep(uniqueCoinDataList);
           await Promise.all(
             Object.keys(uniqueCoinDataList).map(async (coinName) => {
               const data = await fetch(
@@ -48,7 +48,7 @@ function Portfolio() {
                 json?.market_data.market_cap[currency];
 
               currentUniqueCoin.circulatingSupply =
-                currentUniqueCoin?.market_data.circulating_supply;
+                json?.market_data.circulating_supply;
 
               currentUniqueCoin.maxSupply = json?.market_data.max_supply;
 
@@ -64,7 +64,7 @@ function Portfolio() {
       }
       getNonDuplicateCoinListData();
     },
-    [currency, uniqueCoinDataList]
+    [currency]
   );
 
   return (
