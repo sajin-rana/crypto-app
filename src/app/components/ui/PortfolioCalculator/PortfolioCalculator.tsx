@@ -60,16 +60,18 @@ const PortfolioCalculator = ({
   const ref: any = useRef();
   useHandleClickOutside(ref, setIsCalculatorOpen);
 
-  function handleCalculation(isValueSelected: boolean) {
+  function handleCalculation() {
     const priceAndDateForEachInterval = getPriceAndDateForEachInvterval(
       historyData,
       quantity,
       startDateAndTime,
       endDateAndTime
     );
-    const actualPricesArray = priceAndDateForEachInterval?.map(
-      (item) => item[1]
-    );
+    const actualPricesArray = priceAndDateForEachInterval?.map((item) => {
+      if (item) {
+        return item[1];
+      }
+    });
     if (isValueSelected) {
       const returnFromVACalculation = calculateVCA(
         quantity.initialInvestment,
@@ -81,7 +83,7 @@ const PortfolioCalculator = ({
         totalAmount: returnFromVACalculation.netInvestment,
         coinsValue: returnFromVACalculation.coinsValue,
       });
-    } else {
+    } else if (isDollarSelected) {
       const returnFromDACalculation = calculateDCA(
         quantity.initialInvestment,
         quantity.investmentAdded,
@@ -111,7 +113,6 @@ const PortfolioCalculator = ({
         <PortfolioValueAndDollarButton
           isValueSelected={isValueSelected}
           isDollarSelected={isDollarSelected}
-          handleCalculation={handleCalculation}
           setIsValueSelected={setIsValueSelected}
           setIsDollarSelected={setIsDollarSelected}
         />

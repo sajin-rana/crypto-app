@@ -5,11 +5,9 @@ import { selectIsDark } from "@/lib/features/cryptoSlice";
 const PortfolioValueAndDollarButton = ({
   isValueSelected,
   isDollarSelected,
-  handleCalculation,
   setIsValueSelected,
   setIsDollarSelected,
 }: {
-  handleCalculation: any;
   setIsValueSelected: any;
   isValueSelected: boolean;
   setIsDollarSelected: any;
@@ -36,11 +34,9 @@ const PortfolioValueAndDollarButton = ({
     if (buttonName === "value") {
       setIsValueSelected((isSelected: boolean) => !isSelected);
       setIsDollarSelected((isSelected: boolean) => !isSelected);
-      handleCalculation(true);
     } else if (buttonName === "dollar") {
       setIsValueSelected((isSelected: boolean) => !isSelected);
       setIsDollarSelected((isSelected: boolean) => !isSelected);
-      handleCalculation(false);
     }
   }
   return (
