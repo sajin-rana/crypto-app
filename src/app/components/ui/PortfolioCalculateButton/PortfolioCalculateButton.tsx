@@ -15,7 +15,7 @@ const PortfolioCalculateButton = ({
       className={`w-full h-[45px] text-[16px] font-[500] text-[#ffffff] flex items-center justify-center rounded-[6px] mt-[16px] ${
         isDark ? "darkGlowBackground" : "lightGlowBackground"
       }`}
-      onClick={() => handleCalculation(isValueSelected)}
+      onClick={handleCalculation}
     >
       {`Calculate (${isValueSelected ? "VCA" : "DCA"})`}
     </button>
