@@ -1,20 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import PortfolioDeleteIcon from "../PortfolioDeleteIcon/PortfolioDeleteIcon";
 import PortfolioDeleteModal from "../PortfolioDeleteModal/PortfolioDeleteModal";
 
 const PortfolioCoinCardHeading = ({
-  data,
   isDark,
-  isDeleteOpen,
-  setIsDeleteOpen,
+  historyDateCoinData,
   handleDeleteButtonClick,
 }: {
-  data: any;
   isDark: boolean;
-  setIsDeleteOpen: any;
-  isDeleteOpen: boolean;
+  historyDateCoinData: any;
   handleDeleteButtonClick: any;
 }) => {
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
   return (
     <div className="flex items-center justify-between">
       <h4 className="text-[20px] font-[500]">Market Price</h4>
@@ -25,14 +23,14 @@ const PortfolioCoinCardHeading = ({
         onClick={() => setIsDeleteOpen(true)}
       >
         <PortfolioDeleteIcon />
-        {isDeleteOpen && (
-          <PortfolioDeleteModal
-            data={data}
-            setIsDeleteOpen={setIsDeleteOpen}
-            handleDeleteButtonClick={handleDeleteButtonClick}
-          />
-        )}
       </div>
+      {isDeleteOpen && (
+        <PortfolioDeleteModal
+          setIsDeleteOpen={setIsDeleteOpen}
+          historyDateCoinData={historyDateCoinData}
+          handleDeleteButtonClick={handleDeleteButtonClick}
+        />
+      )}
     </div>
   );
 };

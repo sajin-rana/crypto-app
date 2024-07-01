@@ -138,9 +138,10 @@ export function handleKeyDown(e: any, stateSetter: any) {
 }
 
 export function formatPortfolioDateAndTime(date: any) {
-  const currentDate = date.toISOString().substring(0, 10);
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
+  date.setDate(date.getDate() - 5);
+  const currentDate = date?.toISOString().substring(0, 10);
+  const hours = String(date?.getHours()).padStart(2, "0");
+  const minutes = String(date?.getMinutes()).padStart(2, "0");
   return `${currentDate} ${hours}:${minutes}`;
 }
 

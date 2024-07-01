@@ -4,19 +4,17 @@ import UpDownArrow from "../UpDownArrow/UpDownArrow";
 import { greaterThanZero, numberWithCommas } from "@/app/utils/utils";
 
 const PortfolioCoinCardTopRow = ({
-  data,
-  currency,
   currencySign,
   currentPrice,
   marketVsVolume,
   circVsMaxSupply,
+  priceChange24hInCurrency,
 }: {
-  data: any;
-  currency: string;
   currencySign: string;
   currentPrice: number;
   marketVsVolume: number;
   circVsMaxSupply: string;
+  priceChange24hInCurrency: any;
 }) => {
   return (
     <div className="flex item-center justify-between text-[14px] font-[400]">
@@ -31,23 +29,18 @@ const PortfolioCoinCardTopRow = ({
         <p>Price exchange 24h:</p>
         <div className="flex items-center gap-[4px]">
           <UpDownArrow
-            priceChangePercentage={
-              data?.market_data.price_change_24h_in_currency
-            }
+            upArrowColor="#01F1E3"
+            priceChangePercentage={priceChange24hInCurrency}
           />
           <p
             className={` text-[16px] font-[500] ${
-              greaterThanZero(data?.market_data.price_change_24h_in_currency)
-                ? "text-[#00B1A7]"
+              greaterThanZero(priceChange24hInCurrency)
+                ? "text-[#01F1E3]"
                 : "text-[#FE2264]"
             }`}
           >
             {currencySign}
-            {numberWithCommas(
-              Math.abs(
-                data?.market_data.price_change_24h_in_currency[currency]
-              ).toFixed(2)
-            )}
+            {numberWithCommas(Math.abs(priceChange24hInCurrency).toFixed(2))}
           </p>
         </div>
       </div>

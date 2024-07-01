@@ -83,7 +83,7 @@ const PortfolioAddAsset = ({
       >
         <PortfolioHeading
           text="Select coins"
-          setterFunction={setIsAddAssetOpen}
+          setterFunction={() => setIsAddAssetOpen(false)}
         />
         <div className=" h-[241px] mt-[32px] flex  gap-[32px]">
           <PortfolioImageContainer
