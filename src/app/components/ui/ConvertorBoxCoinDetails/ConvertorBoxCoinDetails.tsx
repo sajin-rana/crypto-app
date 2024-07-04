@@ -3,13 +3,13 @@ import Image from "next/image";
 import DownArrow from "../DownArrow/DownArrow";
 
 const ConvertorBoxCoinDetails = ({
-  setIsCoinDropDownOpen,
   data,
   coinSymbol,
+  setIsCoinDropDownOpen,
 }: {
-  setIsCoinDropDownOpen: any;
   data: any;
   coinSymbol: string;
+  setIsCoinDropDownOpen: any;
 }) => {
   return (
     <div
@@ -17,7 +17,7 @@ const ConvertorBoxCoinDetails = ({
       onClick={() => setIsCoinDropDownOpen(true)}
     >
       <Image src={data?.image?.large} height={24} width={24} alt={data?.id} />
-      <h4 className="text-[20px] font-[500]">
+      <h4 className="whitespace-nowrap  text-[16px] sm:text-[20px] font-[500]">
         {data?.name} ({coinSymbol})
       </h4>
       <DownArrow />

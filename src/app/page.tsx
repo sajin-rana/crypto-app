@@ -1,9 +1,9 @@
 "use client";
+import Chart from "./components/blocks/Chart/Chart";
+import Compare from "./components/blocks/Compare/Compare";
+import CoinTable from "./components/blocks/CoinTable/CoinTable";
 import CoinCarousel from "./components/blocks/CoinCarousel/CoinCarousel";
 import CoinConvertorButton from "./components/blocks/CoinConvertorButton/CoinConvertorButton";
-import Compare from "./components/blocks/Compare/Compare";
-import Chart from "./components/blocks/Chart/Chart";
-import CoinTable from "./components/blocks/CoinTable/CoinTable";
 
 export default function Home() {
   return (
