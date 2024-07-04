@@ -11,7 +11,7 @@ const ConvertorBoxQuantity = ({
   return (
     <h4
       onClick={() => setIsQuantityOpen(true)}
-      className="text-[24px]  h-[40px] font-[700] cursor-pointer"
+      className="text-[20px] sm:text-[24px] h-[30px] sm:h-[40px] font-[500] sm:font-[700] cursor-pointer"
     >
       {numberWithCommas(coinQuantity)}
     </h4>

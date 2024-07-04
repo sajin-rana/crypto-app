@@ -7,9 +7,9 @@ import UpDownArrow from "../UpDownArrow/UpDownArrow";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
 import { useHandleClickOutside } from "@/app/customHook/CustomHook";
 import {
+  handleKeyDown,
   dropDownColor,
   greaterThanZero,
-  handleKeyDown,
 } from "@/app/utils/utils";
 const inter = Inter({ weight: "400", subsets: ["latin"] });
 
@@ -27,33 +27,36 @@ const ConvertorBoxDropDown = ({
   handleCoinDropInputChange: any;
 }) => {
   const isDark = useSelector(selectIsDark);
-  const { isDarkColor, textColor, hoverColor } = dropDownColor(isDark);
   const coinDropdownRef: any = useRef();
   useHandleClickOutside(coinDropdownRef, setIsCoinDropDownOpen);
+  const { isDarkColor, textColor, hoverColor } = dropDownColor(isDark);
 
   return (
-    <div ref={coinDropdownRef} className="w-[200px] h-[40px]  ">
+    <div
+      ref={coinDropdownRef}
+      className="absolute w-[242px] sm:w-[262px] h-[300px]  max-h-[564px] z-10 border-t-1  left-[0px] top-[30px] sm:top-[50px] "
+    >
       <div
-        className={`flex items-center gap-[12px]  py-[8px] px-[16px] rounded-[6px] border border-[#FFFFFF0D] absolute left-[0px] top-[40px] ${
+        className={`flex items-center gap-[8px] sm:gap-[12px] py-[4px] sm:py-[8px] px-[8px] sm:px-[16px] rounded-[6px] border border-[#FFFFFF0D] ${
           isDark ? "bg-[#191925]" : "bg-[#EBEBFD]"
         }`}
       >
         <SearchIcon />
         <input
           type="text"
-          className={`border-0 focus:outline-none  placeholder:w-400 placeholder:text-[14px]  w-full h-full ${
+          value={coinDropDownInput}
+          placeholder="Search coin..."
+          onChange={handleCoinDropInputChange}
+          onKeyDown={(e) => handleKeyDown(e, setIsCoinDropDownOpen)}
+          className={`border-0 focus:outline-none  placeholder:w-400 placeholder:text-[12px]   sm:placeholder:text-[14px]  w-full h-full ${
             isDark
               ? "placeholder-[#D1D1D6] bg-[#191925]"
               : "placeholder-[#424286] bg-[#EBEBFD]"
           }  `}
-          placeholder="Search coin..."
-          value={coinDropDownInput}
-          onChange={handleCoinDropInputChange}
-          onKeyDown={(e) => handleKeyDown(e, setIsCoinDropDownOpen)}
         />
       </div>
       <ul
-        className={`absolute   rounded-bl-[6px] rounded-br-[6px] border border-[#FFFFFF0D] w-[262px] h-[300px]  max-h-[564px] overflow-auto z-10 border-t-1  left-[0px] top-[75px]   ${
+        className={`   rounded-bl-[6px] rounded-br-[6px] border border-[#FFFFFF0D]  overflow-auto  w-[242px] sm:w-[262px] h-[250px]  max-h-[564px]  ${
           isDark ? "border-t-[#FFFFFF0D] " : "border-t-[#B0B0EB] "
         } ${isDarkColor} ${textColor}`}
       >
@@ -66,15 +69,15 @@ const ConvertorBoxDropDown = ({
           coinList.map((coin: any) => (
             <li
               key={coin.id}
-              className={`cursor-pointer ${inter.className}  text-[14px]   py-[8px] px-[16px] ${hoverColor} flex justify-between`}
               onClick={() => handleCoinClick(coin?.id, coin?.symbol)}
+              className={`cursor-pointer ${inter.className}  text-[14px]   py-[8px] px-[16px] ${hoverColor} flex justify-between`}
             >
               <div className="flex items-center gap-[5px]">
                 <Image
-                  src={coin.image}
-                  alt={coin.name}
-                  height={20}
                   width={20}
+                  height={20}
+                  alt={coin.name}
+                  src={coin.image}
                 />
                 <p>{coin?.name}</p>
               </div>

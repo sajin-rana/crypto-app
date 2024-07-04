@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectCurrency,
-  selectedCoinOne,
-  selectedCoinOneSymbol,
-  selectedCoinTwo,
-  selectedCoinTwoSymbol,
-  setCoinOne,
-  setCoinOneSymbol,
-  setCoinTwo,
-  setCoinTwoSymbol,
-} from "@/lib/features/cryptoSlice";
 import { coinConverter } from "@/app/utils/utils";
 import ConvertorBox from "../../ui/ConvertorBox/ConvertorBox";
 import { useGetOneCoinDetailQuery } from "@/lib/features/cryptoApi";
 import ConverterReverseButton from "../../ui/ConverterReverseButton/ConverterReverseButton";
+import {
+  setCoinOne,
+  setCoinTwo,
+  selectCurrency,
+  selectedCoinOne,
+  selectedCoinTwo,
+  setCoinOneSymbol,
+  setCoinTwoSymbol,
+  selectedCoinOneSymbol,
+  selectedCoinTwoSymbol,
+} from "@/lib/features/cryptoSlice";
 
 const ConvertorBoxs = () => {
   const getCurrency = useSelector(selectCurrency);
@@ -68,7 +68,7 @@ const ConvertorBoxs = () => {
     [coinQuantityOne, coinPriceOne, coinPriceTwo]
   );
   return (
-    <div className="flex justify-between items-center relative">
+    <div className="block sm:flex justify-between items-center relative w-full">
       <ConvertorBox
         data={coinDataOne}
         currency={currency}
@@ -82,16 +82,18 @@ const ConvertorBoxs = () => {
       <ConverterReverseButton
         handleReverseButtonClick={handleReverseButtonClick}
       />
-      <ConvertorBox
-        data={coinDataTwo}
-        currency={currency}
-        bgColor="bg-[#1E1932]"
-        headingText="You buy"
-        coinPrice={coinPriceTwo}
-        currencySign={currencySign}
-        coinQuantity={coinQuantityTwo}
-        handleQuantityChange={handleQuantityChangeTwo}
-      />
+      <div className="mt-[20px] sm:mt-[0px]">
+        <ConvertorBox
+          data={coinDataTwo}
+          currency={currency}
+          bgColor="bg-[#1E1932]"
+          headingText="You buy"
+          coinPrice={coinPriceTwo}
+          currencySign={currencySign}
+          coinQuantity={coinQuantityTwo}
+          handleQuantityChange={handleQuantityChangeTwo}
+        />
+      </div>
     </div>
   );
 };

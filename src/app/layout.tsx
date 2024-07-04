@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
 import StoreProvider from "./StoreProvider";
+import { Space_Grotesk } from "next/font/google";
+import PageStyle from "./components/ui/PageStyle/PageStyle";
 import TopGlobalNavbar from "./components/blocks/TopGlobalNavbar/TopGlobalNavbar";
 import MainGlobalNavbar from "./components/blocks/MainGlobalNavbar/MainGlobalNavbar";
 import "./globals.css";
-import PageStyle from "./components/ui/PageStyle/PageStyle";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 

@@ -14,8 +14,8 @@ const NavBarInput = ({
 }: {
   isDark: boolean;
   isMobile: boolean;
-  mobileShowInput: boolean;
   setMobileShowInput: any;
+  mobileShowInput: boolean;
 }) => {
   const [input, setInput] = useState("");
   const [dropdownOpen, setDropDownOpen] = useState(false);
@@ -38,10 +38,10 @@ const NavBarInput = ({
   return (
     <div className="flex flex-col relative  " ref={ref}>
       <div
-        className={`flex items-center gap-[12px] ease-in duration-300 transition-[width]  sm:py-[8px] sm:px-[16px] sm:rounded-[6px] border border-[#FFFFFF0D] sm:w-[356px] sm:h-[48px]  ${
+        className={`flex items-center gap-[12px] ease-in duration-300 transition-[width]  sm:py-[8px] sm:px-[16px] sm:rounded-[6px] border border-[#FFFFFF0D] sm:w-[356px] h-[40px] sm:h-[48px]  ${
           mobileShowInput
-            ? "w-[190px] h-[36px] py-[8px] px-[16px] "
-            : "h-[36px] w-[36px] justify-center"
+            ? "w-[190px]  py-[8px] px-[16px] "
+            : " w-[36px] justify-center"
         } rounded-[12px]  ${isDarkColor}`}
         onClick={() => showSearchInMobile(isMobile)}
       >

@@ -4,8 +4,8 @@ import { firstLetterCapitalize } from "@/app/utils/utils";
 import {
   selectIsDark,
   selectedCoinOne,
-  selectedCoinOneSymbol,
   selectedCoinTwo,
+  selectedCoinOneSymbol,
   selectedCoinTwoSymbol,
 } from "@/lib/features/cryptoSlice";
 
@@ -17,7 +17,7 @@ const ConvertorChartHeading = () => {
   const coinTwoSymbol = useSelector(selectedCoinTwoSymbol) || "eth";
   return (
     <div
-      className={`text-[20px] font-[400] flex items-center gap-[16px] ${
+      className={`text-[16px] sm:text-[20px] font-[400] flex items-center gap-[8px] sm:gap-[16px] ${
         isDark ? "text-[#FFFFFF]" : "text-[#353570]"
       }`}
     >

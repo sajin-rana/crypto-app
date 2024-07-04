@@ -6,13 +6,13 @@ import ConvertorBoxHeading from "../ConvertorBoxHeading/ConvertorBoxHeading";
 import ConvertorBoxQuantity from "../ConvertorBoxQuantity/ConvertorBoxQuantity";
 import ConvertorBoxDropDown from "../ConvertorBoxDropDown/ConvertorBoxDropDown";
 import ConvertorBoxCoinPrice from "../ConvertorBoxCoinPrice/ConvertorBoxCoinPrice";
-import ConvertorBoxQuantityInput from "../ConvertorBoxQuantityInput/ConvertorBoxQuantityInput";
 import ConvertorBoxCoinDetails from "../ConvertorBoxCoinDetails/ConvertorBoxCoinDetails";
+import ConvertorBoxQuantityInput from "../ConvertorBoxQuantityInput/ConvertorBoxQuantityInput";
 import {
-  selectIsDark,
   setCoinOne,
-  setCoinOneSymbol,
   setCoinTwo,
+  selectIsDark,
+  setCoinOneSymbol,
   setCoinTwoSymbol,
 } from "@/lib/features/cryptoSlice";
 
@@ -62,6 +62,7 @@ const ConverterBox = ({
       dispatch(setCoinTwo(id));
       dispatch(setCoinTwoSymbol(symbol));
     }
+    setIsCoinDropDownOpen(false);
   }
 
   useEffect(
@@ -73,13 +74,13 @@ const ConverterBox = ({
 
   return (
     <div
-      className={`w-[636px] h-[200px] rounded-[16px] p-[24px]  ${
+      className={`w-full h-[158px] sm:w-[636px] sm:h-[200px] rounded-[16px] p-[16px] sm:p-[24px]  ${
         isDark ? bgColor : "bg-[white]"
       }`}
     >
       <ConvertorBoxHeading isDark={isDark} headingText={headingText} />
       <div
-        className={`flex items-center justify-between mt-[40px] relative  ${
+        className={`flex items-center justify-between mt-[20px] sm:mt-[40px] relative  ${
           isDark ? "text-[white]" : "text-[#353570]"
         }`}
       >
