@@ -176,3 +176,12 @@
 .portfolio-date-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   display: none;
 }
+
+.noScrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.inter {
+  font-family: "inter";
+}

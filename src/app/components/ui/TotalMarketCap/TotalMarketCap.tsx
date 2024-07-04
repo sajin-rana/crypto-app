@@ -4,24 +4,22 @@ import UpArrow from "../../../assets/UpArrow.svg";
 import NavbarLoading from "../NavbarLoading/NavbarLoading";
 
 const TotalMarketCap = ({
-  totalMarketCap,
   isLoading,
+  totalMarketCap,
 }: {
-  totalMarketCap: string | number;
   isLoading: boolean;
+  totalMarketCap: string | number;
 }) => {
   return (
-    <div className="flex">
-      <div className=" flex items-center gap-[4px] ">
-        <Image src={UpArrow} alt="up arrow image" />
-        {isLoading ? (
-          <NavbarLoading />
-        ) : (
-          <p className="text-[12px] font-[500] text-[#FFFFFF] ">
-            {totalMarketCap}
-          </p>
-        )}
-      </div>
+    <div className=" flex items-center gap-[4px] ">
+      <Image src={UpArrow} alt="up arrow image" />
+      {isLoading ? (
+        <NavbarLoading />
+      ) : (
+        <p className="text-[12px] font-[500] whitespace-nowrap text-[#FFFFFF] ">
+          {totalMarketCap}
+        </p>
+      )}
     </div>
   );
 };

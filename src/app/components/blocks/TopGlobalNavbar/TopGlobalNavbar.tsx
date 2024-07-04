@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
-import { useGetMarketDataQuery } from "@/lib/features/cryptoApi";
-import { formatNumber, getPercentage } from "@/app/utils/utils";
-import NavBarCoin from "../../ui/NavBarCoin/NavBarCoin";
+import { useSelector } from "react-redux";
 import Exchange from "../../ui/Exchange/Exchange";
-import TotalMarketCap from "../../ui/TotalMarketCap/TotalMarketCap";
+import NavBarCoin from "../../ui/NavBarCoin/NavBarCoin";
 import TotalVolume from "../../ui/TotalVolume/TotalVolume";
+import { formatNumber, getPercentage } from "@/app/utils/utils";
 import BtcPercentage from "../../ui/BtcPercentage/BtcPercentage";
 import EthPercentage from "../../ui/EthPercentage/EthPercentage";
-import { useSelector } from "react-redux";
+import { useGetMarketDataQuery } from "@/lib/features/cryptoApi";
+import TotalMarketCap from "../../ui/TotalMarketCap/TotalMarketCap";
 import { selectCurrency, selectIsDark } from "@/lib/features/cryptoSlice";
 
 const TopGlobalNavbar = () => {
@@ -32,7 +32,7 @@ const TopGlobalNavbar = () => {
 
   return (
     <nav
-      className={`h-56px py-[16px] px-[72px]  flex justify-center gap-[32px] border-b-[1px]  ${
+      className={`h-[56px]  flex sm:justify-center sm:gap-[32px] px-[16px] sm:px-[0px] border-b-[1px]  sm:items-center sm:min-w-[775px] overflow-scroll w-[100%]  gap-10 noScrollbar ${
         isDark
           ? "bg-[#1E1932]  border-[#FFFFFF1A] "
           : "bg-[#353570] border-[#494982]"
@@ -41,21 +41,21 @@ const TopGlobalNavbar = () => {
       <NavBarCoin coin={cryptoData.coin} isLoading={isLoading} />
       <Exchange exchange={cryptoData.exchange} isLoading={isLoading} />
       <TotalMarketCap
-        totalMarketCap={cryptoData.totalMarketCap}
         isLoading={isLoading}
+        totalMarketCap={cryptoData.totalMarketCap}
       />
       <TotalVolume
+        isLoading={isLoading}
         totalVolume={cryptoData.totalVolume}
         totalVolumePercentage={cryptoData.totalVolumePercentage}
-        isLoading={isLoading}
       />
       <BtcPercentage
-        btcPercentage={cryptoData.btcPercentage}
         isLoading={isLoading}
+        btcPercentage={cryptoData.btcPercentage}
       />
       <EthPercentage
-        ethPercentage={cryptoData.ethPercentage}
         isLoading={isLoading}
+        ethPercentage={cryptoData.ethPercentage}
       />
     </nav>
   );

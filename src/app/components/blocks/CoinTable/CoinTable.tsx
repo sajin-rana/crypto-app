@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { selectCurrency, selectIsDark } from "@/lib/features/cryptoSlice";
-import { useGetTableCoinListQuery } from "@/lib/features/cryptoApi";
 import TableHeading from "../../ui/TableHeading/TableHeading";
 import TableCoinList from "../../ui/TableCoinList/TableCoinList";
+import { useGetTableCoinListQuery } from "@/lib/features/cryptoApi";
+import { selectCurrency, selectIsDark } from "@/lib/features/cryptoSlice";
 
 const CoinTable = () => {
+  const [page, setPage] = useState(1);
+  const [order, setOrder] = useState("market_cap");
+  const [coinList, setCoinList] = useState<any[]>([]);
   const isDark = useSelector(selectIsDark);
   const getCurrency = useSelector(selectCurrency);
-  const [order, setOrder] = useState("market_cap");
-  const [page, setPage] = useState(1);
-  const [coinList, setCoinList] = useState<any[]>([]);
   const currency = getCurrency.name.toLowerCase();
   const { data } = useGetTableCoinListQuery({ currency, order, page });
 
@@ -44,7 +44,7 @@ const CoinTable = () => {
 
   return (
     <div>
-      <div className="mt-[72px] w-[100%]">
+      <div className="mt-[20px] sm:mt-[72px] w-[100%]">
         <TableHeading handleHeadingClick={handleHeadingClick} order={order} />
         <div>
           <InfiniteScroll
@@ -53,7 +53,7 @@ const CoinTable = () => {
             hasMore={true}
             loader={
               <p
-                className={`coin-table-loading w-full mb-[20px] ${
+                className={`coin-table-loading w-full mb-[10px] sm:mb-[20px] ${
                   isDark ? "text-[#FFFFFF]" : "text-[#232336]"
                 }`}
               ></p>

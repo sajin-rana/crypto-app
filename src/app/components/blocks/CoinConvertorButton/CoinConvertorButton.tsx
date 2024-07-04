@@ -1,8 +1,8 @@
 import React from "react";
-import { selectIsDark } from "@/lib/features/cryptoSlice";
-import { useSelector } from "react-redux";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 import { usePathname } from "next/navigation";
+import { selectIsDark } from "@/lib/features/cryptoSlice";
 
 const CoinConvertorButton = () => {
   const isDark = useSelector(selectIsDark);
@@ -38,9 +38,9 @@ const CoinConvertorButton = () => {
 
   return (
     <div
-      className={`w-[506px] h-[53px] flex justify-center items-center mt-[40px] ${
+      className={`sm:w-[506px] w-full  sm:h-[53px] h-[40px] flex justify-center items-center sm:mt-[40px] mt-[20px] ${
         isDark ? "bg-[#191925]" : "bg-[#ffff]"
-      } rounded-[6px] pt-[4px]  pb-[4px] pl-[4px] pr-[15px] text-[16px] font-[400]`}
+      } rounded-[6px] pt-[4px]  pb-[4px] pl-[4px] pr-[15px] sm:text-[16px] text-[14px] font-[500]`}
     >
       <Link
         href="/"

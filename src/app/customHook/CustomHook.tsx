@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function useHandleClickOutside(ref: any, setterFunction: any) {
   useEffect(
@@ -16,3 +16,20 @@ export function useHandleClickOutside(ref: any, setterFunction: any) {
     [ref, setterFunction]
   );
 }
+
+export const useWindowWidth = () => {
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1200
+  );
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  return windowWidth;
+};

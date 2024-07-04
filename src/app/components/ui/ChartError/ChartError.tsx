@@ -9,7 +9,7 @@ const ChartError = () => {
       <p
         className={`${
           isDark ? "text-[#ffffff]" : "text-[#181825]"
-        } font-[700] text-[28px] `}
+        } font-[500] sm:font-[700] text-[18px] sm:text-[28px] `}
       >
         Oops! Something went wrong
       </p>

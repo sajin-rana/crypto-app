@@ -37,6 +37,7 @@ export function getLocalStorage(key: string) {
 }
 
 export function numberWithCommas(x: any) {
+  x = Number(x) % 1 === 0 ? x : Number(x).toFixed(2);
   x = x?.toString();
   const pattern = /(-?\d+)(\d{3})/;
   while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
@@ -145,50 +146,53 @@ export function formatPortfolioDateAndTime(date: any) {
   return `${currentDate} ${hours}:${minutes}`;
 }
 
-export const chartOptions: any = {
-  responsive: true,
-  maintainAspectRatio: false,
-  radius: 5,
-  hitRadius: 30,
-  hoverRadius: 12,
-  scales: {
-    y: {
-      display: false,
-      stacked: true,
-      ticks: {
+export function chartOptions(isMobile: boolean) {
+  const data = {
+    responsive: true,
+    maintainAspectRatio: false,
+    radius: 5,
+    hitRadius: 30,
+    hoverRadius: 12,
+    scales: {
+      y: {
         display: false,
+        stacked: true,
+        ticks: {
+          display: false,
+        },
+        grid: {
+          display: false,
+          drawBorder: false,
+        },
       },
-      grid: {
-        display: false,
-        drawBorder: false,
+      x: {
+        display: true,
+        stacked: true,
+        ticks: {
+          maxTicksLimit: isMobile ? 6 : 7,
+          align: "inner",
+        },
+        beforeFit(axis: any) {
+          const labels = axis.chart.config._config.data.labels;
+          const length = labels.length - 1;
+          axis.ticks.push({
+            value: length,
+            label: labels[length],
+          });
+        },
+        grid: {
+          display: false,
+        },
       },
     },
-    x: {
-      display: true,
-      stacked: true,
-      ticks: {
-        maxTicksLimit: 8,
-        align: "inner",
-      },
-      beforeFit(axis: any) {
-        const labels = axis.chart.config._config.data.labels;
-        const length = labels.length - 1;
-        axis.ticks.push({
-          value: length,
-          label: labels[length],
-        });
-      },
-      grid: {
+    plugins: {
+      legend: {
         display: false,
       },
     },
-  },
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-};
+  };
+  return data;
+}
 
 export function chartData(
   chartLabels: any[],

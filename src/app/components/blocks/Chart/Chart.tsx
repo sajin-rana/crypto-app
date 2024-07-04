@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import BarChart from "../../ui/BarChart/BarChart";
+import LineChart from "../../ui/LineChart/LineChart";
+import ChartButton from "../../ui/ChartButton/ChartButton";
 import { useGetChartCoinDataQuery } from "@/lib/features/cryptoApi";
 import {
   selectCurrency,
   selectedCoinOne,
   selectedCoinTwo,
 } from "@/lib/features/cryptoSlice";
-import LineChart from "../../ui/LineChart/LineChart";
-import BarChart from "../../ui/BarChart/BarChart";
-import ChartButton from "../../ui/ChartButton/ChartButton";
 
 const Chart = () => {
   const [days, setDays] = useState(1);
@@ -30,21 +30,21 @@ const Chart = () => {
   );
 
   return (
-    <div className="mt-[40px]">
-      <div className=" flex items-center justify-between">
+    <div className="mt-[20px]  sm:mt-[40px]">
+      <div className="flex flex-col gap-[10px] sm:gap-[0px] sm:flex-row items-center sm:justify-between">
         <LineChart
+          days={days}
+          isError={isError}
+          isLoading={isLoading}
           chartDataOne={chartDataOne}
           chartDataTwo={chartDataTwo}
-          days={days}
-          isLoading={isLoading}
-          isError={isError}
         />
         <BarChart
+          days={days}
+          isError={isError}
+          isLoading={isLoading}
           chartDataOne={chartDataOne}
           chartDataTwo={chartDataTwo}
-          days={days}
-          isLoading={isLoading}
-          isError={isError}
         />
       </div>
       <ChartButton days={days} setDays={setDays} />

@@ -1,19 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectIsCompare,
-  selectIsDark,
   setCoinOne,
-  setCoinOneSymbol,
   setCoinTwo,
-  setCoinTwoSymbol,
+  selectIsDark,
   setIsCompare,
+  selectIsCompare,
+  setCoinOneSymbol,
+  setCoinTwoSymbol,
 } from "@/lib/features/cryptoSlice";
 
 const Compare = () => {
+  const dispatch = useDispatch();
   const isDark = useSelector(selectIsDark);
   const isCompare = useSelector(selectIsCompare);
-  const dispatch = useDispatch();
   const textColor = isDark ? "text-[#D1D1D1]" : "text-[#424286]";
 
   function handleClick(e: any) {
@@ -29,12 +29,14 @@ const Compare = () => {
     }
   }
   return (
-    <div className={`mt-[40px] flex items-end justify-between ${textColor}`}>
+    <div
+      className={`mt-[20px] sm:mt-[40px] flex sm:items-end justify-between ${textColor}`}
+    >
       <p className="text-[14px] font-[400] ">
         Select the currency to view statistics
       </p>
       <button
-        className={` py-[12px] px-[24px]  rounded-[6px] gap-[10px]  flex items-center justify-center text-[14px] font-[400] ${
+        className={` py-[6px] px-[8px] sm:py-[12px] sm:px-[24px]  rounded-[6px] gap-[6px]  sm:h-[48px] sm:gap-[10px]  flex items-center justify-center text-[14px] font-[400] ${
           isDark ? "bg-[#232337]" : "bg-[white]"
         }`}
         onClick={handleClick}
@@ -69,7 +71,9 @@ const Compare = () => {
             />
           </svg>
         )}
-        {isCompare ? "Exit comparison" : "Compare"}
+        <span className="whitespace-nowrap">
+          {isCompare ? "Exit comparison" : "Compare"}
+        </span>
       </button>
     </div>
   );

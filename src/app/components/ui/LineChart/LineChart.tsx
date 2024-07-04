@@ -1,64 +1,68 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Filler,
-  Legend,
-} from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+import { useSelector } from "react-redux";
+import ChartError from "../ChartError/ChartError";
+import ChartHeader from "../ChartHeader/ChartHeader";
+import ChartFooter from "../ChartFooter/ChartFooter";
 import CrosshairPlugin from "chartjs-plugin-crosshair";
+import ChartLoading from "../ChartLoading/ChartLoading";
+import { useWindowWidth } from "@/app/customHook/CustomHook";
 import {
-  selectIsCompare,
   selectIsDark,
   selectedCoinOne,
-  selectedCoinOneSymbol,
   selectedCoinTwo,
+  selectIsCompare,
+  selectedCoinOneSymbol,
 } from "@/lib/features/cryptoSlice";
 import {
   chartData,
   chartOptions,
-  firstLetterCapitalize,
   getChartLabels,
   numberWithCommas,
+  firstLetterCapitalize,
 } from "@/app/utils/utils";
-import ChartHeader from "../ChartHeader/ChartHeader";
-import ChartFooter from "../ChartFooter/ChartFooter";
-import ChartLoading from "../ChartLoading/ChartLoading";
-import ChartError from "../ChartError/ChartError";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
+import {
   Title,
-  Tooltip,
   Filler,
   Legend,
+  Tooltip,
+  BarElement,
+  LinearScale,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  Chart as ChartJS,
+} from "chart.js/auto";
+
+ChartJS.register(
+  Title,
+  Filler,
+  Legend,
+  Tooltip,
+  BarElement,
+  LineElement,
+  LinearScale,
+  PointElement,
+  CategoryScale,
   CrosshairPlugin
 );
 
 const LineChart = ({
+  days,
+  isError,
+  isLoading,
   chartDataOne,
   chartDataTwo,
-  days,
-  isLoading,
-  isError,
 }: {
+  days: number;
+  isError: any;
   chartDataOne: any;
   chartDataTwo: any;
-  days: number;
   isLoading: boolean;
-  isError: any;
 }) => {
+  const width = useWindowWidth();
+  const isMobile = width < 1107;
+  const options: any = chartOptions(isMobile);
   const isDark = useSelector(selectIsDark);
   const isCompare = useSelector(selectIsCompare);
   const coinOne = useSelector(selectedCoinOne);
@@ -80,7 +84,7 @@ const LineChart = ({
 
   return (
     <div
-      className={`w-[632px] h-[404px] rounded-[12px] p-[24px]  flex flex-col justify-between ${
+      className={`w-[100%] h-[199px] sm:w-[632px] sm:h-[404px] rounded-[12px] p-[16px] sm:p-[24px]  flex flex-col justify-between ${
         isDark ? "bg-[#191932]" : "bg-[#ffff]"
       }`}
     >
@@ -89,15 +93,15 @@ const LineChart = ({
       {!isLoading && !isError && (
         <>
           <ChartHeader
+            isVolume={false}
+            amounts={coinPriceOne}
             name={`${firstLetterCapitalize(
               coinOne
             )} (${coinOneSymbol.toUpperCase()})`}
-            amounts={coinPriceOne}
-            isVolume={false}
           />
-          <div className="h-[193px] w-[584px]">
+          <div className="w-full h-[80px] sm:h-[193px] sm:w-[584px]">
             <Line
-              options={chartOptions}
+              options={options}
               data={chartData(
                 chartLabels,
                 coinOne,
@@ -109,10 +113,10 @@ const LineChart = ({
           </div>
           {isCompare && (
             <ChartFooter
-              coinOne={firstLetterCapitalize(coinOne)}
-              coinTwo={firstLetterCapitalize(coinTwo)}
               amountsOne={coinPriceOne}
               amountsTwo={coinPriceTwo}
+              coinOne={firstLetterCapitalize(coinOne)}
+              coinTwo={firstLetterCapitalize(coinTwo)}
             />
           )}
         </>
