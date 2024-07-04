@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { dropDownColor, setLocalStorage } from "@/app/utils/utils";
 import { useHandleClickOutside } from "@/app/customHook/CustomHook";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCurrency, setCurrency } from "@/lib/features/cryptoSlice";
 import CurrencyDropLists from "../CurrencyDropLists/CurrencyDropLists";
+import { selectCurrency, setCurrency } from "@/lib/features/cryptoSlice";
 
 function CurrencyDropDown({
   isDark,
@@ -29,11 +29,11 @@ function CurrencyDropDown({
   return (
     <div className="relative" ref={ref}>
       <button
-        className={`flex items-center gap-[8px] py-[12px] px-[16px] rounded-[6px]  border border-[#FFFFFF0D] ${isDarkColor}`}
+        className={`flex items-center gap-[0px] sm:gap-[8px] sm:w-[104px] sm:h-[48px] h-[36px] w-[60px] rounded-[6px] justify-center  border border-[#FFFFFF0D] ${isDarkColor}`}
         onClick={() => setDropDownOpen((isOpen) => !isOpen)}
       >
         <p
-          className={`flex items-center justify-center h-[20px] w-[20px] rounded-full  p-3 ${
+          className={`sm:flex items-center justify-center h-[20px] w-[20px] rounded-full text-[14px] sm:text-[16px] p-3 hidden  ${
             isDark ? "text-[black] bg-[white]" : "text-[#EBEBFE] bg-[#353570]"
           }`}
         >
@@ -56,8 +56,8 @@ function CurrencyDropDown({
       {dropDownOpen && (
         <CurrencyDropLists
           isDark={isDark}
-          handleClick={handleClick}
           currency={currency}
+          handleClick={handleClick}
         />
       )}
     </div>

@@ -21,14 +21,14 @@ const ChartButton = ({ days, setDays }: { days: number; setDays: any }) => {
 
   return (
     <div
-      className={` flex mt-[40px]  items-center  justify-around p-[4px] gap-[8px] rounded-[6px] w-[463px] h-[42px] ${
+      className={` flex mt-[10px] sm:mt-[40px]  items-center  justify-around  p-[4px] gap-[8px] rounded-[6px] w-[343px] sm:w-[463px] h-[42px] ${
         isDark ? "bg-[#232336]" : "bg-[#E2E5FB]  "
       } `}
     >
       {buttonOptions.map((item, index) => (
         <p
           key={item}
-          className={`cursor-pointer w-[56px] h-[34px] rounded-[6px] py[8px] px-[20px] flex items-center justify-center  ${
+          className={`cursor-pointer w-[40px] sm:w-[56px]  text-[12px] font-[500] sm:text-[14px] sm:font-[400]  h-[34px] rounded-[6px] sm:py[8px] sm:px-[20px] py[84x] px-[12px] flex items-center justify-center  ${
             days === daysNumber[index]
               ? selectedButtonStyle(isDark)
               : unSelectedButtonStyle(isDark)

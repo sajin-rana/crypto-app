@@ -1,16 +1,16 @@
-import { currencyLists, getLocalStorage } from "@/app/utils/utils";
 import { createSlice } from "@reduxjs/toolkit";
+import { currencyLists, getLocalStorage } from "@/app/utils/utils";
 
 const cryptoSlice = createSlice({
   name: "cryptoSlice",
   initialState: {
-    currency: getLocalStorage("currency") || currencyLists[0],
-    isDark: getLocalStorage("isDark") || true,
-    isCompare: false,
-    coinOne: "bitcoin",
     coinTwo: "",
-    coinOneSymbol: "btc",
+    isCompare: false,
     coinTwoSymbol: "",
+    coinOne: "bitcoin",
+    coinOneSymbol: "btc",
+    isDark: getLocalStorage("isDark"),
+    currency: getLocalStorage("currency") || currencyLists[0],
   },
   reducers: {
     setCurrency: (state, action) => {
@@ -37,11 +37,11 @@ const cryptoSlice = createSlice({
   },
 });
 
-export const selectCurrency = (state: any) => state.cryptoSlice.currency;
 export const selectIsDark = (state: any) => state.cryptoSlice.isDark;
-export const selectIsCompare = (state: any) => state.cryptoSlice.isCompare;
-export const selectedCoinOne = (state: any) => state.cryptoSlice.coinOne;
 export const selectedCoinTwo = (state: any) => state.cryptoSlice.coinTwo;
+export const selectedCoinOne = (state: any) => state.cryptoSlice.coinOne;
+export const selectCurrency = (state: any) => state.cryptoSlice.currency;
+export const selectIsCompare = (state: any) => state.cryptoSlice.isCompare;
 export const selectedCoinOneSymbol = (state: any) =>
   state.cryptoSlice.coinOneSymbol;
 export const selectedCoinTwoSymbol = (state: any) =>

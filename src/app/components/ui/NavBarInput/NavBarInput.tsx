@@ -1,45 +1,73 @@
 "use client";
-import React, { useState } from "react";
 import { useRef } from "react";
+import React, { useState } from "react";
 import DropDown from "../DropDown/DropDown";
 import SearchIcon from "../SearchIcon/SearchIcon";
-import { useHandleClickOutside } from "@/app/customHook/CustomHook";
 import { dropDownColor, handleKeyDown } from "@/app/utils/utils";
+import { useHandleClickOutside } from "@/app/customHook/CustomHook";
 
-const NavBarInput = ({ isDark }: { isDark: boolean }) => {
+const NavBarInput = ({
+  isDark,
+  isMobile,
+  mobileShowInput,
+  setMobileShowInput,
+}: {
+  isDark: boolean;
+  isMobile: boolean;
+  mobileShowInput: boolean;
+  setMobileShowInput: any;
+}) => {
   const [input, setInput] = useState("");
   const [dropdownOpen, setDropDownOpen] = useState(false);
   const { isDarkColor, textColor } = dropDownColor(isDark);
+  const ref: any = useRef();
+  useHandleClickOutside(ref, setDropDownOpen);
+  useHandleClickOutside(ref, setMobileShowInput);
 
   function handleChange(e: any) {
     setInput(e.target.value);
     setDropDownOpen(true);
   }
 
-  const ref: any = useRef();
-  useHandleClickOutside(ref, setDropDownOpen);
+  function showSearchInMobile(isMobile: boolean) {
+    if (isMobile) {
+      setMobileShowInput(true);
+    }
+  }
 
   return (
-    <div className="flex flex-col relative" ref={ref}>
+    <div className="flex flex-col relative  " ref={ref}>
       <div
-        className={`flex items-center gap-[12px]  py-[8px] px-[16px] rounded-[6px] border border-[#FFFFFF0D] w-[356px] h-[48px] ${isDarkColor}`}
+        className={`flex items-center gap-[12px] ease-in duration-300 transition-[width]  sm:py-[8px] sm:px-[16px] sm:rounded-[6px] border border-[#FFFFFF0D] sm:w-[356px] sm:h-[48px]  ${
+          mobileShowInput
+            ? "w-[190px] h-[36px] py-[8px] px-[16px] "
+            : "h-[36px] w-[36px] justify-center"
+        } rounded-[12px]  ${isDarkColor}`}
+        onClick={() => showSearchInMobile(isMobile)}
       >
         <SearchIcon />
         <input
           type="text"
-          className={`border-0 focus:outline-none  placeholder:w-400 placeholder:text-[14px]  w-full h-full ${
+          className={`border-0 focus:outline-none  ease-in duration-300 transition-[width] placeholder:w-400 placeholder:text-[14px]  w-full h-full  sm:block ${
+            mobileShowInput ? "block " : "hidden"
+          }  ${
             isDark
               ? "placeholder-[#D1D1D6] bg-[#191925]"
               : "placeholder-[#424286] bg-[#EBEBFD]"
           } ${textColor} `}
-          placeholder="Search..."
           value={input}
+          placeholder="Search..."
           onChange={handleChange}
           onKeyDown={(e) => handleKeyDown(e, setDropDownOpen)}
         />
       </div>
       {input && dropdownOpen && (
-        <DropDown isDark={isDark} input={input} setInput={setInput} />
+        <DropDown
+          input={input}
+          isDark={isDark}
+          setInput={setInput}
+          setMobileShowInput={setMobileShowInput}
+        />
       )}
     </div>
   );

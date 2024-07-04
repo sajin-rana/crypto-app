@@ -17,12 +17,12 @@ const ChartFooter = ({
   const currencySign = useSelector(selectCurrency);
   return (
     <div
-      className={`flex items-center  gap-[24px] font-[400] text-[20px] ${
+      className={`flex items-center gap-[8px]  sm:gap-[24px] font-[400] text-[12px] sm:text-[20px] ${
         isDark ? "text-[#D1D1D1]" : "text-[#424286]"
       }`}
     >
-      <div className="flex items-center justify-center gap-[8px]">
-        <div className="h-[24px] w-[24px] rounded-[2px] bg-[#7878FA]" />
+      <div className="flex items-center justify-center gap-[4px] sm:gap-[8px]">
+        <div className="h-[15px] w-[15px] sm:h-[24px] sm:w-[24px] rounded-[2px] bg-[#7878FA]" />
         <p>{coinOne}</p>
         <p>
           {currencySign.sign}
@@ -30,8 +30,8 @@ const ChartFooter = ({
         </p>
       </div>
       {coinTwo && (
-        <div className="flex items-center justify-center gap-[8px]">
-          <div className="h-[24px] w-[24px] rounded-[2px] bg-[#D878FA]" />
+        <div className="flex items-center justify-center gap-[4px] sm:gap-[8px]">
+          <div className="h-[15px] w-[15px] sm:h-[24px] sm:w-[24px] rounded-[2px] bg-[#D878FA]" />
           <p>{coinTwo}</p>
           <p>
             {currencySign.sign}

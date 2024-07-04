@@ -5,14 +5,14 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import NavbarLoading from "../NavbarLoading/NavbarLoading";
 
 const EthPercentage = ({
-  ethPercentage,
   isLoading,
+  ethPercentage,
 }: {
-  ethPercentage: number;
   isLoading: boolean;
+  ethPercentage: number;
 }) => {
   return (
-    <div className=" flex items-center gap-[5px] ">
+    <div className=" flex items-center gap-[5px]">
       <Image src={Ethereum} alt="bit-coin image" />
       {isLoading ? (
         <NavbarLoading />

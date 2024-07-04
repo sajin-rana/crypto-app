@@ -31,6 +31,7 @@ import {
   firstLetterCapitalize,
   getChartLabels,
 } from "@/app/utils/utils";
+import { useWindowWidth } from "@/app/customHook/CustomHook";
 
 ChartJS.register(
   CategoryScale,
@@ -46,6 +47,9 @@ ChartJS.register(
 );
 
 const ConvertorChart = () => {
+  const width = useWindowWidth();
+  const isMobile = width < 1107;
+  const options: any = chartOptions(isMobile);
   const [days, setDays] = useState(1);
   const coinOne = useSelector(selectedCoinOne);
   const coinTwo = useSelector(selectedCoinTwo) || "ethereum";
@@ -88,7 +92,7 @@ const ConvertorChart = () => {
           <div className="flex flex-col h-full  justify-between">
             <ConvertorChartHeading />
             <div className="">
-              <Line options={chartOptions} data={data} />
+              <Line options={options} data={data} />
             </div>
           </div>
         )}

@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
-import { selectIsDark } from "@/lib/features/cryptoSlice";
 import { useSelector } from "react-redux";
+import { selectIsDark } from "@/lib/features/cryptoSlice";
 
 const PageStyle = ({ children }: { children: any }) => {
   const isDark = useSelector(selectIsDark);
   return (
     <div
-      className={`w-full  flex justify-center flex-col items-center ${
+      className={` w-full  flex justify-center flex-col items-center ${
         isDark ? "bg-[#13121B]" : "bg-[#F2F5F9]"
       }`}
     >
-      <div className="w-[1296px] ">{children}</div>
+      <div className="sm:w-[1296px] w-[343px] ">{children}</div>
     </div>
   );
 };
