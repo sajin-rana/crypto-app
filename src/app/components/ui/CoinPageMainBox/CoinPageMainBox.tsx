@@ -1,16 +1,16 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import Line from "../Line/Line";
+import CopyIcon from "../CopyIcon/CopyIcon";
+import UpDownArrow from "../UpDownArrow/UpDownArrow";
+import AllTimeHighAndLow from "../AllTimeHighAndLow/AllTimeHighAndLow";
 import {
-  getNumberUsingPercentage,
   greaterThanZero,
   numberWithCommas,
+  getNumberUsingPercentage,
 } from "@/app/utils/utils";
-import UpDownArrow from "../UpDownArrow/UpDownArrow";
-import CopyIcon from "../CopyIcon/CopyIcon";
-import Line from "../Line/Line";
-import AllTimeHighAndLow from "../AllTimeHighAndLow/AllTimeHighAndLow";
 
 function profitLossColor(priceChangePercentage: number) {
   return greaterThanZero(priceChangePercentage)
@@ -19,19 +19,19 @@ function profitLossColor(priceChangePercentage: number) {
 }
 
 const CoinPageMainBox = ({
-  isDark,
   data,
+  isDark,
+  currency,
   handleIsCopy,
   currencySign,
   currentPrice,
-  currency,
 }: {
-  isDark: boolean;
   data: any;
+  isDark: boolean;
+  currency: string;
   handleIsCopy: any;
   currencySign: string;
   currentPrice: number;
-  currency: string;
 }) => {
   const allTimeHighDate = data?.market_data.ath_date?.[currency];
   const allTimeHighMoney = data?.market_data.ath?.[currency];
@@ -41,22 +41,22 @@ const CoinPageMainBox = ({
     data?.market_data.price_change_percentage_24h_in_currency?.[currency];
   return (
     <div
-      className={`w-[564px] rounded-[12px] py-[40px] px-[32px] ${
+      className={`w-full sm:w-[564px] rounded-[12px] py-[20px] px-[15px] sm:py-[40px] sm:px-[32px] ${
         isDark ? "bg-[#1E1932]" : "bg-[#ffffff] "
       }`}
     >
-      <div className="flex items-center gap-[24px]">
+      <div className="flex items-center h-[32px] w-[32px] sm:h-[48px] sm:w-[48px] gap-[16px] sm:gap-[24px]">
         <Image
-          src={data?.image?.large}
-          alt={data?.name}
-          height={48}
           width={48}
+          height={48}
+          alt={data?.name}
+          src={data?.image?.large}
         />
         <div>
-          <h4 className="text-[24px] font-[700]">
+          <h4 className=" text-[20px] font-[500] sm:text-[24px] sm:font-[700]">
             {data?.name} ({data?.symbol.toUpperCase()})
           </h4>
-          <div className="flex items-center gap-[8px] cursor-pointer hover:underline underline-offset-[2px] ">
+          <div className="flex items-center gap-[8px] text-[14px] sm:text-[16px] font-[500] cursor-pointer hover:underline underline-offset-[2px] ">
             <Link href={data?.links?.homepage[0] || ""} target="_blank">
               {data?.links.homepage[0]}
             </Link>
@@ -71,8 +71,8 @@ const CoinPageMainBox = ({
           </div>
         </div>
       </div>
-      <div className="flex items-center gap-[16px] mt-[40px]">
-        <h4 className="text-[36px] font-[700]">
+      <div className="flex items-center gap-[8px] sm:gap-[16px] mt-[20px] sm:mt-[40px]">
+        <h4 className="text-[26px] font-[500] sm:text-[36px] sm:font-[700]">
           {currencySign}
           {numberWithCommas(currentPrice)}
         </h4>
@@ -81,42 +81,44 @@ const CoinPageMainBox = ({
             <UpDownArrow priceChangePercentage={priceChangePercentage} />
           </span>
           <span
-            className={`text-[20px] font-[500]
+            className={`text-[16px] sm:text-[20px] font-[500]
           ${profitLossColor(priceChangePercentage)}`}
           >
             {Math.abs(priceChangePercentage).toFixed(2)}%
           </span>
         </div>
       </div>
-      <div className="mt-[20px] flex items-center gap-[16px]">
-        <p className="text-[20px] font-[400]">
+      <div className="mt-[10px] sm:mt-[20px] flex items-center gap-[8px] sm:gap-[16px]">
+        <p className="text-[16px] sm:text-[20px] font-[400]">
           {greaterThanZero(priceChangePercentage) ? "Profit:" : "Loss:"}
         </p>
         <p
-          className={`text-[24px] font-[500] ${profitLossColor(
+          className={`text-[20px] sm:text-[24px] font-[500] ${profitLossColor(
             priceChangePercentage
           )}`}
         >
           {currencySign}
-          {getNumberUsingPercentage(priceChangePercentage, currentPrice)}
+          {numberWithCommas(
+            getNumberUsingPercentage(priceChangePercentage, currentPrice)
+          )}
         </p>
       </div>
       <Line />
       <AllTimeHighAndLow
+        isUpArrow={true}
+        text="All time high:"
         currencySign={currencySign}
         allTimeDate={allTimeHighDate}
         allTimeMoney={allTimeHighMoney}
-        text="All time high:"
-        isUpArrow={true}
       />
 
-      <div className="mt-[20px]">
+      <div className="mt-[10px] sm:mt-[20px]">
         <AllTimeHighAndLow
+          isUpArrow={false}
+          text="All time low:"
           currencySign={currencySign}
           allTimeDate={allTimeLowDate}
           allTimeMoney={allTimeLowMoney}
-          text="All time low:"
-          isUpArrow={false}
         />
       </div>
     </div>

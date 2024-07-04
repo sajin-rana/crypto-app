@@ -3,7 +3,7 @@ import React from "react";
 const Success = ({ className, text }: { className: string; text: string }) => {
   return (
     <div
-      className={`absolute flex items-center gap-[8px]  success ${className} `}
+      className={`fixed flex items-center gap-[8px] py-[12px] px-[16px] sm:py-[18px] sm:px-[22px]  success ${className} `}
     >
       <span>
         <svg
@@ -19,7 +19,9 @@ const Success = ({ className, text }: { className: string; text: string }) => {
           />
         </svg>
       </span>
-      <p className="text-[16px] font-[500] text-[white]">{text}</p>
+      <p className="text-[14px] sm:text-[16px] font-[500] text-[white]">
+        {text}
+      </p>
     </div>
   );
 };

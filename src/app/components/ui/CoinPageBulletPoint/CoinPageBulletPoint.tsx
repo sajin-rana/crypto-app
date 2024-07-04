@@ -12,17 +12,17 @@ const CoinPageBulletPoint = ({
   const isDark = useSelector(selectIsDark);
   return (
     <div className="flex items-center justify-between">
-      <div className="flex gap-[12px]">
+      <div className="flex gap-[8px] sm:gap-[12px]">
         <span
-          className={` h-[24px] w-[24px] rounded-full flex items-center justify-center ${
+          className={`h-[20px] w-[20px] sm:h-[24px] sm:w-[24px] rounded-full flex items-center justify-center ${
             isDark ? "darkGlowBackground " : "lightGlowBackground text-[white]"
           }`}
         >
           +
         </span>
-        <p className="text-[16px] font-[400]">{text}</p>
+        <p className="text-[14px] sm:text-[16px] font-[400]">{text}</p>
       </div>
-      <p className="text-[20px] font-[500]">{amount}</p>
+      <p className="text-[16px] sm:text-[20px] font-[500]">{amount}</p>
     </div>
   );
 };

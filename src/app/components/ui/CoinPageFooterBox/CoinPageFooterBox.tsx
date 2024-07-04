@@ -1,21 +1,21 @@
 import React from "react";
 import { CoinPageBox } from "../CoinPageBox/CoinPageBox";
-import CoinPageBulletPoint from "../CoinPageBulletPoint/CoinPageBulletPoint";
 import { getPercentage, numberWithCommas } from "@/app/utils/utils";
+import CoinPageBulletPoint from "../CoinPageBulletPoint/CoinPageBulletPoint";
 import CoinPageProgressBar from "../CoinPageProgressBar/CoinPageProgressBar";
 
 const CoinPageFooterBox = ({
   data,
-  currencySign,
   currency,
+  currencySign,
 }: {
   data: any;
-  currencySign: string;
   currency: string;
+  currencySign: string;
 }) => {
   return (
     <>
-      <div className="flex  justify-between ">
+      <div className="block sm:flex  justify-between ">
         <CoinPageBox>
           <CoinPageBulletPoint
             text="Total Volume"
@@ -39,28 +39,30 @@ const CoinPageFooterBox = ({
             ).toFixed(5)}
           />
         </CoinPageBox>
-        <CoinPageBox>
-          <CoinPageBulletPoint
-            text="Max Supply"
-            amount={`${numberWithCommas(
-              data?.market_data.max_supply
-            )} ${data?.symbol?.toLocaleUpperCase()}`}
-          />
-          <CoinPageBulletPoint
-            text="Circulating Supply"
-            amount={`${numberWithCommas(
-              data?.market_data.circulating_supply
-            )} ${data?.symbol?.toLocaleUpperCase()}`}
-          />
-          <CoinPageProgressBar
-            data={getPercentage(
-              data?.market_data?.circulating_supply,
-              data?.market_data?.max_supply
-            )}
-          />
-        </CoinPageBox>
+        <div className="mt-[20px] sm:mt-[0px]">
+          <CoinPageBox>
+            <CoinPageBulletPoint
+              text="Max Supply"
+              amount={`${numberWithCommas(
+                data?.market_data.max_supply
+              )} ${data?.symbol?.toLocaleUpperCase()}`}
+            />
+            <CoinPageBulletPoint
+              text="Circulating Supply"
+              amount={`${numberWithCommas(
+                data?.market_data.circulating_supply
+              )} ${data?.symbol?.toLocaleUpperCase()}`}
+            />
+            <CoinPageProgressBar
+              data={getPercentage(
+                data?.market_data?.circulating_supply,
+                data?.market_data?.max_supply
+              )}
+            />
+          </CoinPageBox>
+        </div>
       </div>
-      <div className="mt-[18px] mb-[50px]">
+      <div className="mt-[20px] sm:mt-[18px] mb-[50px]">
         <CoinPageBox>
           <CoinPageBulletPoint
             text="Market Cap"

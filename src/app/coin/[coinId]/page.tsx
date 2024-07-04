@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectCurrency, selectIsDark } from "@/lib/features/cryptoSlice";
-import { useGetOneCoinDetailQuery } from "@/lib/features/cryptoApi";
 import Line from "@/app/components/ui/Line/Line";
 import Success from "@/app/components/ui/Success/Success";
+import { useGetOneCoinDetailQuery } from "@/lib/features/cryptoApi";
+import { selectCurrency, selectIsDark } from "@/lib/features/cryptoSlice";
 import CoinPageMainBox from "@/app/components/ui/CoinPageMainBox/CoinPageMainBox";
 import CoinPageParagraph from "@/app/components/ui/CoinPageParagraph/CoinPageParagraph";
 import CoinPageFooterBox from "@/app/components/ui/CoinPageFooterBox/CoinPageFooterBox";
@@ -31,35 +31,35 @@ function Coin({ params }: { params: { coinId: string } }) {
     <div className={`relative ${isDark ? "text-[#ffffff]" : "text-[black]"}`}>
       {isCopy && (
         <Success
-          className="top-[-170px] right-[0px] "
+          className="top-[10px] sm:top-[10px] right-[20px] sm:right-[100px] "
           text="Link copied successfully"
         />
       )}
       <h4
-        className={`my-[40px] text-[20px] font-[500] ${
+        className={`my-[20px] sm:my-[40px] text-[16px] text-center sm:text-left sm:text-[20px] font-[400] sm:font-[500] ${
           isDark ? "text-[#ffffff]" : "text-[#424286]"
         }`}
       >
         Coin Details / Your {data?.name} summary
       </h4>
-      <div className="flex h-[461px] justify-between">
+      <div className=" sm:flex h-full sm:h-[461px] justify-between">
         <CoinPageMainBox
-          isDark={isDark}
           data={data}
+          isDark={isDark}
+          currency={currency}
           handleIsCopy={handleIsCopy}
           currencySign={currencySign}
           currentPrice={currentPrice}
-          currency={currency}
         />
         <CoinPageParagraph data={data} handleIsCopy={handleIsCopy} />
       </div>
-      <div className="mt-[30px] mb-[30px]">
+      <div className="mt-[20px] sm:mt-[30px] mb-[20px] sm:mb-[30px]">
         <Line />
       </div>
       <CoinPageFooterBox
         data={data}
-        currencySign={currencySign}
         currency={currency}
+        currencySign={currencySign}
       />
     </div>
   );
