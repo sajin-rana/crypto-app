@@ -10,8 +10,8 @@ const CoinPageParagraph = ({
 }) => {
   const blockchainSite = data?.links.blockchain_site;
   return (
-    <div className="w-[700px]  ">
-      <p className="text-[14px] leading-[21px] font-[400] max-h-[320px] overflow-scroll ">
+    <div className="mt-[20px] sm:mt-[0px] w-full sm:w-[700px]  ">
+      <p className="text-[12px] sm:text-[14px] leading-[21px] font-[400] max-h-[320px] overflow-scroll noScrollbar ">
         {data?.description?.en.replace(/(<a[^>]+?>|<a>|<\/a>)/gim, "")}
       </p>
       <div className="flex items-center gap-[8px] mt-[20px] flex-wrap">

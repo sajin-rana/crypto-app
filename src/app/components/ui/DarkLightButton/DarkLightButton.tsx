@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import SunSvg from "../../../assets/SunSvg.svg";
-import MoonSvg from "../../../assets/Moonsvg.svg";
+import SunIcon from "../SunIcon/SunIcon";
+import MoonIcon from "../MoonIcon/MoonIcon";
 import { setLocalStorage } from "@/app/utils/utils";
 import { selectIsDark, setIsDark } from "@/lib/features/cryptoSlice";
 
@@ -23,7 +22,7 @@ function DarkLightButton() {
         } `}
         onClick={handleClick}
       >
-        <Image src={isDark ? SunSvg : MoonSvg} alt="sun image" />
+        {isDark ? <SunIcon /> : <MoonIcon />}
       </div>
     </div>
   );
