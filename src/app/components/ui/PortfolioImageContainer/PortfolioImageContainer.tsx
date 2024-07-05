@@ -19,7 +19,7 @@ const PortfolioImageContainer = ({
   const isDark = useSelector(selectIsDark);
   return (
     <div
-      className={`${style} flex items-center justify-center sm:h-full flex-col gap-[6px] sm:gap-[24px] ${
+      className={`${style} flex items-center justify-center  flex-col gap-[6px] sm:gap-[24px] ${
         isDark
           ? "bg-[#1E1931] text-[white]"
           : `${isLightBackground} text-[#191925]`

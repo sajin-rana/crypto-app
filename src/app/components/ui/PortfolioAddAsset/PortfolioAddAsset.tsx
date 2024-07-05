@@ -90,7 +90,7 @@ const PortfolioAddAsset = ({
             data={data}
             isLightBackground="bg-[#EBEBFC]"
             isLightImageBackground="bg-[white]"
-            style="w-full sm:w-[297px] rounded-[8px] h-[120px] "
+            style="w-full sm:w-[297px] rounded-[8px] h-[120px] sm:h-full "
           />
           <div className="w-full mt-[10px] sm:mt-[0px] sm:w-[461px] h-[241px]">
             <PortfolioSearchCoinInput width="w-full" />

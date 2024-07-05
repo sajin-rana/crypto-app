@@ -15,7 +15,7 @@ function Coin({ params }: { params: { coinId: string } }) {
   const getCurrency = useSelector(selectCurrency);
   const currency = getCurrency.name.toLowerCase();
   const currencySign = getCurrency.sign;
-  const { data } = useGetOneCoinDetailQuery(params.coinId);
+  const { data, isError, isLoading } = useGetOneCoinDetailQuery(params.coinId);
   const currentPrice = data?.market_data?.current_price?.[currency];
 
   function handleIsCopy() {
@@ -46,19 +46,28 @@ function Coin({ params }: { params: { coinId: string } }) {
         <CoinPageMainBox
           data={data}
           isDark={isDark}
+          isError={isError}
           currency={currency}
+          isLoading={isLoading}
           handleIsCopy={handleIsCopy}
           currencySign={currencySign}
           currentPrice={currentPrice}
         />
-        <CoinPageParagraph data={data} handleIsCopy={handleIsCopy} />
+        <CoinPageParagraph
+          data={data}
+          isError={isError}
+          isLoading={isLoading}
+          handleIsCopy={handleIsCopy}
+        />
       </div>
       <div className="mt-[20px] sm:mt-[30px] mb-[20px] sm:mb-[30px]">
         <Line />
       </div>
       <CoinPageFooterBox
         data={data}
+        isError={isError}
         currency={currency}
+        isLoading={isLoading}
         currencySign={currencySign}
       />
     </div>
