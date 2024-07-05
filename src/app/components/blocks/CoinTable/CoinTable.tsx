@@ -19,7 +19,7 @@ const CoinTable = () => {
     if (name === "market_cap" || name === "id") {
       setOrder(name);
     } else {
-      setCoinList((coin) => [...coin].sort((a, b) => b[name] - a[name]));
+      setCoinList([...coinList].sort((a, b) => b[name] - a[name]));
     }
   }
 
