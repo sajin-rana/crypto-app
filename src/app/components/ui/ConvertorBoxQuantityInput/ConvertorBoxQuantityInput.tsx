@@ -1,6 +1,9 @@
 import React, { useRef } from "react";
 import { handleKeyDown } from "@/app/utils/utils";
-import { useHandleClickOutside } from "@/app/customHook/CustomHook";
+import {
+  useInputFocus,
+  useHandleClickOutside,
+} from "@/app/customHook/CustomHook";
 
 const ConvertorBoxQuantityInput = ({
   isDark,
@@ -15,6 +18,7 @@ const ConvertorBoxQuantityInput = ({
 }) => {
   const quantityRef: any = useRef();
   useHandleClickOutside(quantityRef, setIsQuantityOpen);
+  useInputFocus(quantityRef);
   return (
     <input
       type="text"

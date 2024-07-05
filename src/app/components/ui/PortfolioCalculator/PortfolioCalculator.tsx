@@ -98,9 +98,9 @@ const PortfolioCalculator = ({
   }
 
   return (
-    <div className=" top-0 left-0 z-10 bg-[#26243752] bg-opacity-65 backdrop-blur-[2px] absolute h-full w-full">
+    <div className=" top-0 left-0 z-10 fixed bg-[#26243752] bg-opacity-65 backdrop-blur-[2px]  h-full w-full">
       <div
-        className={`absolute w-[886px] h-[810px] top-[30px] left-[calc(50%-443px)] rounded-[20px] p-[48px]   ${
+        className={`absolute w-[343px] sm:w-[886px] h-[750px] sm:h-[810px] sm:top-[calc(50%-405px)] left-[calc(50%-171.5px)] top-[calc(50%-375px)] sm:left-[calc(50%-443px)] rounded-[20px] p-[16px] sm:p-[48px]   ${
           isDark ? "bg-[#13121A] text-[#ffffff]" : "bg-[#FFFFFF] text-[#424286]"
         } `}
         ref={ref}

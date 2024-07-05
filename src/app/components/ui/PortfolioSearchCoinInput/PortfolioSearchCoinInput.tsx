@@ -7,7 +7,7 @@ import PortfolioDropDown from "../PortfolioDropDown/PortfolioDropDown";
 import PortfolioCalculatorAndAssetInput from "../PortfolioCalculatorAndAssetInput/PortfolioCalculatorAndAssetInput";
 
 const PortfolioSearchCoinInput = ({
-  width = "w-[550px]",
+  width = "w-[141px] sm:w-[550px]",
 }: {
   width?: string;
 }) => {

@@ -74,9 +74,9 @@ const PortfolioAddAsset = ({
   }
 
   return (
-    <div className="top-0 left-0 z-10 bg-[#26243752] bg-opacity-65 backdrop-blur-[2px] absolute h-full w-full">
+    <div className="top-0 left-0 z-10 bg-[#26243752] bg-opacity-65 backdrop-blur-[2px] fixed h-full w-full">
       <div
-        className={`absolute w-[886px] h-[393px] top-[calc(50%-191px)] left-[calc(50%-443px)] rounded-[20px] px-[48px] py-[38px]  ${
+        className={`absolute w-[343px] sm:w-[886px] h-[410px] top-[calc(50%-205px)] left-[calc(50%-171.5px)]  sm:left-[calc(50%-443px)] rounded-[20px] p-[16px] sm:px-[48px] sm:py-[38px]  ${
           isDark ? "bg-[#13121A] text-[#ffffff]" : "bg-[#FFFFFF] text-[#424286]"
         } `}
         ref={ref}
@@ -85,29 +85,29 @@ const PortfolioAddAsset = ({
           text="Select coins"
           setterFunction={() => setIsAddAssetOpen(false)}
         />
-        <div className=" h-[241px] mt-[32px] flex  gap-[32px]">
+        <div className="sm:h-[241px] mt-[10px] sm:mt-[32px] block sm:flex  gap-[32px]">
           <PortfolioImageContainer
             data={data}
-            style="w-[297px] rounded-[8px] h-full "
             isLightBackground="bg-[#EBEBFC]"
             isLightImageBackground="bg-[white]"
+            style="w-full sm:w-[297px] rounded-[8px] h-[120px] "
           />
-          <div className="w-[461px] h-[241px]">
+          <div className="w-full mt-[10px] sm:mt-[0px] sm:w-[461px] h-[241px]">
             <PortfolioSearchCoinInput width="w-full" />
             <PortfolioCalculatorAndAssetInput
-              style="w-full mt-[16px]"
               value={purchaseAmount}
-              handleChange={handlePurchaseAmountChange}
               placeholder="Purchased amount"
+              style="w-full mt-[10px] sm:mt-[16px]"
+              handleChange={handlePurchaseAmountChange}
             />
             <PortfolioAddAssetCalendar
               purchaseDate={purchaseDate}
               setPurchaseDate={setPurchaseDate}
             />
             <PortfolioSaveAndCancelButton
+              handleSubmit={handleSubmit}
               purchaseAmount={purchaseAmount}
               setIsAddAssetOpen={setIsAddAssetOpen}
-              handleSubmit={handleSubmit}
             />
           </div>
         </div>

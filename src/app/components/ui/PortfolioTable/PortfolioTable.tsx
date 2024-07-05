@@ -16,7 +16,7 @@ const PortfolioTable = ({
   const isDark = useSelector(selectIsDark);
   return (
     <div
-      className={`w-full h-[308px] rounded-[12px] py-[40px] px-[32px] mt-[16px] flex flex-col gap-[4px] ${
+      className={`w-full h-[308px] rounded-[12px] py-[20px] sm:py-[40px] px-[16px] sm:px-[32px] mt-[10px] sm:mt-[16px] flex flex-col gap-[4px] ${
         isDark ? "bg-[#1E1932]" : "bg-[#F3F5F9]"
       }`}
     >

@@ -28,7 +28,7 @@ const PortfolioDropDown = ({
 
   return (
     <ul
-      className={`absolute   rounded-bl-[6px] rounded-br-[6px] border border-[#FFFFFF0D] w-full max-h-[370px] top-[43px] overflow-auto z-10 border-t-1 ${
+      className={`absolute rounded-bl-[6px] rounded-br-[6px] border border-[#FFFFFF0D] w-full max-h-[370px] top-[43px] overflow-auto z-10 border-t-1 ${
         isDark ? "border-t-[#FFFFFF0D] " : "border-t-[#B0B0EB] "
       } ${isDarkColor}`}
     >
@@ -39,10 +39,12 @@ const PortfolioDropDown = ({
         <li
           key={item.id}
           onClick={() => handleClick(item.id)}
-          className={`cursor-pointer ${inter.className} text-[14px]   py-[8px] px-[16px] flex gap-[20px] ${hoverColor} ${textColor}`}
+          className={`cursor-pointer ${inter.className} text-[12px] sm:text-[14px]  py-[6px] px-[12px] sm:py-[8px] sm:px-[16px] flex gap-[10px] sm:gap-[20px] ${hoverColor} ${textColor}`}
         >
-          <Image src={item.large} alt={item.name} height={24} width={24} />
-          <p>{item.name}</p>
+          <div className="h-[24px] w-[24px]">
+            <Image src={item.large} alt={item.name} height={24} width={24} />
+          </div>
+          <p className="w-[141px] sm:w-[550px] overflow-hidden">{item.name}</p>
         </li>
       ))}
     </ul>

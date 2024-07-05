@@ -19,32 +19,38 @@ const PortfolioImageContainer = ({
   const isDark = useSelector(selectIsDark);
   return (
     <div
-      className={`${style} flex items-center justify-center flex-col gap-[24px] ${
+      className={`${style} flex items-center justify-center sm:h-full flex-col gap-[6px] sm:gap-[24px] ${
         isDark
           ? "bg-[#1E1931] text-[white]"
           : `${isLightBackground} text-[#191925]`
       }`}
     >
       <div
-        className={`h-[64px] w-[64px] flex items-center justify-center rounded-[8px] ${
+        className={`w-[48px] h-[48px] sm:h-[64px] sm:w-[64px] flex items-center justify-center rounded-[8px] ${
           isDark ? "bg-[#2C2C4A]" : isLightImageBackground
         }`}
       >
         {isLoading ? (
-          <div className="skeleton w-[32px] h-[32px] rounded-full" />
+          <div className="skeleton w-[24px] h-[24px] sm:w-[32px] sm:h-[32px] rounded-full" />
         ) : (
-          <Image
-            width={32}
-            height={32}
-            alt={data?.coin}
-            src={data?.image.small}
-          />
+          <div className="h-[24px] w-[24px] sm:h-[32px] sm:w-[32px]">
+            <Image
+              width={32}
+              height={32}
+              alt={data?.coin}
+              src={data?.image.small}
+            />
+          </div>
         )}
       </div>
       {isLoading ? (
-        <div className="skeleton w-[177px] h-[42px] rounded-[8px]" />
+        <div className="skeleton w-[150px] h-[22px] sm:w-[177px] sm:h-[42px] rounded-[8px]" />
       ) : (
-        <h4 className={`text-[28px] font-[700] ${isLoading ? "skeleton" : ""}`}>
+        <h4
+          className={`text-[20px] font-[500] sm:text-[28px] sm:font-[700] ${
+            isLoading ? "skeleton" : ""
+          }`}
+        >
           {data?.name} ({data?.symbol?.toUpperCase()})
         </h4>
       )}

@@ -12,7 +12,7 @@ const PortfolioCalculateButton = ({
   const isDark = useSelector(selectIsDark);
   return (
     <button
-      className={`w-full h-[45px] text-[16px] font-[500] text-[#ffffff] flex items-center justify-center rounded-[6px] mt-[16px] ${
+      className={`w-full h-[45px] text-[14px] sm:text-[16px] font-[500] text-[#ffffff] flex items-center justify-center rounded-[6px] mt-[10px] sm:mt-[16px] ${
         isDark ? "darkGlowBackground" : "lightGlowBackground"
       }`}
       onClick={handleCalculation}

@@ -9,7 +9,7 @@ const cryptoSlice = createSlice({
     coinTwoSymbol: "",
     coinOne: "bitcoin",
     coinOneSymbol: "btc",
-    isDark: getLocalStorage("isDark"),
+    isDark: getLocalStorage("isDark") || true,
     currency: getLocalStorage("currency") || currencyLists[0],
   },
   reducers: {

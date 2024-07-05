@@ -21,10 +21,10 @@ const PortfolioDateAndQuantity = ({
   const endDateRef = useRef(null);
 
   return (
-    <div className="flex items-center justify-between mt-[16px]">
-      <div className="flex items-center gap-[16px]">
+    <div className="flex items-center w-full justify-between mt-[10px] sm:mt-[16px]">
+      <div className="block sm:flex w-full items-center gap-[16px]">
         <div
-          className={`h-[36px] w-[260px] rounded-[8px] p-[8px] flex items-center justify-between  gap-[8px] ${
+          className={`h-[36px] w-full sm:w-[260px] rounded-[8px] p-[16px] flex items-center justify-between  gap-[8px] ${
             isDark ? "bg-[#191932]" : "bg-[#F3F5F9]"
           }`}
         >
@@ -42,7 +42,7 @@ const PortfolioDateAndQuantity = ({
             value={startDateAndTime}
             placeholder="Start date and time"
             onChange={(e) => setStartDateAndTime(e.target.value)}
-            className={`outline-none portfolio-date-input text-[16px] font-[500] ${
+            className={`outline-none portfolio-date-input text-[14px] sm:text-[16px] font-[500] overflow-scroll ${
               isDark
                 ? "bg-[#191932] text-[#01F1E3]"
                 : "bg-[#F3F5F9] text-[#00B1A7]"
@@ -54,7 +54,7 @@ const PortfolioDateAndQuantity = ({
           />
         </div>
         <div
-          className={`h-[36px] w-[260px] rounded-[8px] p-[8px] flex items-center justify-between  gap-[8px] ${
+          className={`h-[36px] mt-[10px] sm:mt-[0px] w-full sm:w-[260px]  rounded-[8px] p-[16px] flex items-center justify-between  gap-[8px] ${
             isDark ? "bg-[#191932]" : "bg-[#F3F5F9]"
           }`}
         >
@@ -72,7 +72,7 @@ const PortfolioDateAndQuantity = ({
             value={endDateAndTime}
             placeholder="End date and time"
             onChange={(e) => setEndDateAndTime(e.target.value)}
-            className={`outline-none portfolio-date-input text-[16px] font-[500] ${
+            className={`outline-none portfolio-date-input text-[14px] sm:text-[16px] font-[500] overflow-scroll ${
               isDark
                 ? "bg-[#191932] text-[#01F1E3]"
                 : "bg-[#F3F5F9] text-[#00B1A7]"
@@ -85,7 +85,7 @@ const PortfolioDateAndQuantity = ({
         </div>
       </div>
       <div
-        className={`flex items-center justify-center w-[83px] h-[36px] rounded-[8px] ${
+        className={` items-center justify-center w-[83px] h-[36px] rounded-[8px] hidden sm:flex ${
           isDark ? "bg-[#191932]" : "bg-[#F3F5F9]"
         }`}
       >

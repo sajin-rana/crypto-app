@@ -9,7 +9,7 @@ function PortfolioPage() {
   const [purchasedCoinList, setPurchasedCoinList] = useState(coins);
 
   return (
-    <>
+    <div>
       <PortfolioHeader
         purchasedCoinList={purchasedCoinList}
         setPurchasedCoinList={setPurchasedCoinList}
@@ -23,7 +23,7 @@ function PortfolioPage() {
             setPurchasedCoinList={setPurchasedCoinList}
           />
         ))}
-    </>
+    </div>
   );
 }
 

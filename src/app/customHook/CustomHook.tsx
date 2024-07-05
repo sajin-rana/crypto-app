@@ -33,3 +33,9 @@ export const useWindowWidth = () => {
   }, []);
   return windowWidth;
 };
+
+export function useInputFocus(inputRef: any) {
+  useEffect(function () {
+    inputRef.current.focus();
+  }, [inputRef]);
+}

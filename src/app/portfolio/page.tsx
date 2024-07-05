@@ -8,7 +8,7 @@ const PortfolioPage = dynamic(
 
 function Portfolio() {
   return (
-    <div className="mt-[40px] min-h-[80vh]">
+    <div className="my-[20px] sm:my-[40px] min-h-[90vh] sm:min-h-[80vh]">
       <Head>
         <title>Crypto App</title>
         <meta name="description" content="Crypto App" />
@@ -18,5 +18,4 @@ function Portfolio() {
     </div>
   );
 }
-
 export default Portfolio;
