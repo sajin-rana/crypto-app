@@ -5,8 +5,12 @@ import { selectIsDark } from "@/lib/features/cryptoSlice";
 const CoinPageBulletPoint = ({
   text,
   amount,
+  isError,
+  isLoading,
 }: {
   text: string;
+  isError: any;
+  isLoading: boolean;
   amount: string | number;
 }) => {
   const isDark = useSelector(selectIsDark);
@@ -22,7 +26,11 @@ const CoinPageBulletPoint = ({
         </span>
         <p className="text-[14px] sm:text-[16px] font-[400]">{text}</p>
       </div>
-      <p className="text-[16px] sm:text-[20px] font-[500]">{amount}</p>
+      {isError || isLoading ? (
+        <div className="skeleton w-[50px] h-[22px] sm:w-[100px] sm:h-[32px] rounded-[8px] mt-[5px] sm:mt-[10px]" />
+      ) : (
+        <p className="text-[16px] sm:text-[20px] font-[500]">{amount}</p>
+      )}
     </div>
   );
 };

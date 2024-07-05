@@ -3,10 +3,14 @@ import CopyLink from "../CopyLink/CopyLink";
 
 const CoinPageParagraph = ({
   data,
+  isError,
+  isLoading,
   handleIsCopy,
 }: {
   data: any;
+  isError: any;
   handleIsCopy: any;
+  isLoading: boolean;
 }) => {
   const blockchainSite = data?.links.blockchain_site;
   return (
@@ -16,7 +20,13 @@ const CoinPageParagraph = ({
       </p>
       <div className="flex items-center gap-[8px] mt-[20px] flex-wrap">
         {blockchainSite?.slice(0, 3).map((item: string) => (
-          <CopyLink key={item} link={item} handleIsCopy={handleIsCopy} />
+          <CopyLink
+            key={item}
+            link={item}
+            isError={isError}
+            isLoading={isLoading}
+            handleIsCopy={handleIsCopy}
+          />
         ))}
       </div>
     </div>

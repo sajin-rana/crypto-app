@@ -24,7 +24,11 @@ const ConvertorBoxs = () => {
   const coinOneSymbol = useSelector(selectedCoinOneSymbol) || "btc";
   const coinTwo = useSelector(selectedCoinTwo) || "ethereum";
   const coinTwoSymbol = useSelector(selectedCoinTwoSymbol) || "eth";
-  const { data: coinDataOne } = useGetOneCoinDetailQuery(coinOne);
+  const {
+    isError,
+    isLoading,
+    data: coinDataOne,
+  } = useGetOneCoinDetailQuery(coinOne);
   const { data: coinDataTwo } = useGetOneCoinDetailQuery(coinTwo);
   const coinPriceOne =
     coinDataOne?.market_data?.current_price[currency.toLowerCase()];
@@ -67,11 +71,14 @@ const ConvertorBoxs = () => {
     },
     [coinQuantityOne, coinPriceOne, coinPriceTwo]
   );
+
   return (
     <div className="block sm:flex justify-between items-center relative w-full">
       <ConvertorBox
+        isError={isError}
         data={coinDataOne}
         currency={currency}
+        isLoading={isLoading}
         bgColor="bg-[#191932]"
         headingText="You sell"
         coinPrice={coinPriceOne}
@@ -84,8 +91,10 @@ const ConvertorBoxs = () => {
       />
       <div className="mt-[20px] sm:mt-[0px]">
         <ConvertorBox
+          isError={isError}
           data={coinDataTwo}
           currency={currency}
+          isLoading={isLoading}
           bgColor="bg-[#1E1932]"
           headingText="You buy"
           coinPrice={coinPriceTwo}

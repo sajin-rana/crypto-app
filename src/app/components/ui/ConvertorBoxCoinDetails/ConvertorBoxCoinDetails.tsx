@@ -4,10 +4,14 @@ import DownArrow from "../DownArrow/DownArrow";
 
 const ConvertorBoxCoinDetails = ({
   data,
+  isError,
+  isLoading,
   coinSymbol,
   setIsCoinDropDownOpen,
 }: {
   data: any;
+  isError: any;
+  isLoading: boolean;
   coinSymbol: string;
   setIsCoinDropDownOpen: any;
 }) => {
@@ -16,11 +20,22 @@ const ConvertorBoxCoinDetails = ({
       className="flex items-center gap-[8px] cursor-pointer  "
       onClick={() => setIsCoinDropDownOpen(true)}
     >
-      <Image src={data?.image?.large} height={24} width={24} alt={data?.id} />
-      <h4 className="whitespace-nowrap  text-[16px] sm:text-[20px] font-[500]">
-        {data?.name} ({coinSymbol})
-      </h4>
-      <DownArrow />
+      {isError || isLoading ? (
+        <div className="skeleton w-[100px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px]" />
+      ) : (
+        <>
+          <Image
+            src={data?.image?.large}
+            height={24}
+            width={24}
+            alt={data?.id}
+          />
+          <h4 className="whitespace-nowrap  text-[16px] sm:text-[20px] font-[500]">
+            {data?.name} ({coinSymbol})
+          </h4>
+          <DownArrow />
+        </>
+      )}
     </div>
   );
 };

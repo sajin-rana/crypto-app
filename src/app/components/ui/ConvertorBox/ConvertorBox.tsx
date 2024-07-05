@@ -19,17 +19,21 @@ import {
 const ConverterBox = ({
   data,
   bgColor,
+  isError,
   currency,
   coinPrice,
+  isLoading,
   headingText,
   currencySign,
   coinQuantity,
   handleQuantityChange,
 }: {
   data: any;
+  isError: any;
   bgColor: string;
   currency: string;
   coinPrice: number;
+  isLoading: boolean;
   headingText: string;
   currencySign: string;
   coinQuantity: number;
@@ -86,6 +90,8 @@ const ConverterBox = ({
       >
         <ConvertorBoxCoinDetails
           data={data}
+          isError={isError}
+          isLoading={isLoading}
           coinSymbol={coinSymbol}
           setIsCoinDropDownOpen={setIsCoinDropDownOpen}
         />
@@ -107,6 +113,8 @@ const ConverterBox = ({
           />
         ) : (
           <ConvertorBoxQuantity
+            isError={isError}
+            isLoading={isLoading}
             coinQuantity={coinQuantity}
             setIsQuantityOpen={setIsQuantityOpen}
           />
@@ -115,6 +123,8 @@ const ConverterBox = ({
       <ConvertorBoxLine isDark={isDark} />
       <ConvertorBoxCoinPrice
         isDark={isDark}
+        isError={isError}
+        isLoading={isLoading}
         coinPrice={coinPrice}
         coinSymbol={coinSymbol}
         currencySign={currencySign}
