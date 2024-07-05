@@ -70,7 +70,7 @@ const PortfolioCoinCard = ({
   }
 
   return (
-    <div className="h-[500px] sm:h-[292px] block sm:flex mt-[20px] sm:mt-[24px] ">
+    <div className="h-[530px] sm:h-[292px] block sm:flex mt-[20px] sm:mt-[24px] ">
       <PortfolioImageContainer
         isLoading={isLoading}
         data={historyDateCoinData}
