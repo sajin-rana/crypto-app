@@ -40,16 +40,16 @@ const PortfolioValueAndDollarButton = ({
     }
   }
   return (
-    <div className="flex items-center text-[16px] font-[400] text-[#ffffff] mt-[32px]">
+    <div className="flex items-center text-[12px] sm:text-[16px] font-[500] sm:font-[400] text-[#ffffff] mt-[10px] sm:mt-[32px]">
       <button
         onClick={() => handleClick("value")}
-        className={`w-[50%] py-[12px] px-[32px] rounded-[6px] ${valueColor}`}
+        className={`w-[50%] py-[12px] px-[8px] sm:px-[32px] rounded-[6px] ${valueColor}`}
       >
         Value cost averaging
       </button>
       <button
         onClick={() => handleClick("dollar")}
-        className={`w-[50%] py-[12px] px-[32px] rounded-[6px] ${dollorColor}`}
+        className={`w-[50%] py-[12px] px-[8px] sm:px-[32px] rounded-[6px] ${dollorColor}`}
       >
         Dollar cost averaging
       </button>

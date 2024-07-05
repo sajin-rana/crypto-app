@@ -20,21 +20,21 @@ const PortfolioCalculatorAndAssetInput = ({
   const isDark = useSelector(selectIsDark);
   return (
     <div
-      className={`${style} h-[44px] rounded-[4px] p-[8px] flex items-center justify-between relative ${
+      className={`${style} h-[44px] rounded-[8px] sm:rounded-[4px] p-[8px] flex items-center justify-between relative ${
         isDark ? "bg-[#191925]" : "bg-[#EBEBFD]"
       }`}
     >
       <input
         type="text"
-        className={`h-full w-full border-0 focus:outline-none  placeholder:w-400 placeholder:text-[16px] ${
-          isDark
-            ? "bg-[#191925] placeholder-[#D1D1D6]"
-            : "bg-[#EBEBFD] placeholder-[#424286]"
-        }`}
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
         onKeyDown={(e) => handleKeyDown(e, setterFunction)}
+        className={`h-full w-full border-0 focus:outline-none  placeholder:w-400 placeholder:text-[14px] sm:placeholder:text-[16px] ${
+          isDark
+            ? "bg-[#191925] placeholder-[#D1D1D6]"
+            : "bg-[#EBEBFD] placeholder-[#424286]"
+        }`}
       />
       <DownArrow />
     </div>

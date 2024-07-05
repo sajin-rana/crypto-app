@@ -9,8 +9,8 @@ import PortfolioCoinCardTopRow from "../PortfolioCoinCardTopRow/PortfolioCoinCar
 import PortfolioCoinCardHeading from "../PortfolioCoinCardHeading/PortfolioCoinCardHeading";
 import PortfolioCoinCardBottomRow from "../PortfolioCoinCardBottomRow/PortfolioCoinCardBottomRow";
 import {
-  useGetHistoryDateCoinDetailQuery,
   useGetOneCoinDetailQuery,
+  useGetHistoryDateCoinDetailQuery,
 } from "@/lib/features/cryptoApi";
 
 function hasErrorStyle(isDark: boolean, isError: boolean) {
@@ -70,64 +70,64 @@ const PortfolioCoinCard = ({
   }
 
   return (
-    <div className="h-[292px] flex mt-[24px] cursor-pointer">
-      <>
-        <PortfolioImageContainer
-          style="w-[258px]"
-          isLoading={isLoading}
-          data={historyDateCoinData}
-        />
+    <div className="h-[500px] sm:h-[292px] block sm:flex mt-[20px] sm:mt-[24px] ">
+      <PortfolioImageContainer
+        isLoading={isLoading}
+        data={historyDateCoinData}
+        style="w-full sm:w-[258px] h-[40%]"
+      />
+      <div
+        className={`w-full sm:w-[calc(100%-258px)] h-[60%] sm:h-full p-[12px]  sm:p-[24px] ${
+          isDark ? "bg-[#191934]" : "bg-[#EBEBFC]"
+        }`}
+      >
         <div
-          className={`w-[calc(100%-258px)] h-full p-[24px] ${
-            isDark ? "bg-[#191934]" : "bg-[#EBEBFC]"
-          }`}
+          className={`flex flex-col gap-[8px] sm:gap-[16px] ${
+            isDark ? "text-[white]" : "text-[#191925]"
+          } `}
         >
-          <div
-            className={`flex flex-col gap-[16px] ${
-              isDark ? "text-[white]" : "text-[#191925]"
-            } `}
-          >
-            <PortfolioCoinCardHeading
-              isDark={isDark}
-              historyDateCoinData={historyDateCoinData}
-              handleDeleteButtonClick={handleDeleteButtonClick}
-            />
-            {isError && (
-              <div className={`${hasErrorStyle(isDark, isError)}`}>
-                <p className="text-[24px]">Opps! something went wrong</p>
-              </div>
-            )}
-            {!isError && (
-              <PortfolioCoinCardTopRow
-                isLoading={isLoading}
-                currencySign={currencySign}
-                currentPrice={currentPrice}
-                marketVsVolume={marketVsVolume}
-                circVsMaxSupply={circVsMaxSupply}
-                priceChange24hInCurrency={
-                  data?.market_data?.price_change_24h_in_currency?.[currency]
-                }
-              />
-            )}
-          </div>
+          <PortfolioCoinCardHeading
+            isDark={isDark}
+            historyDateCoinData={historyDateCoinData}
+            handleDeleteButtonClick={handleDeleteButtonClick}
+          />
+          {isError && (
+            <div className={`${hasErrorStyle(isDark, isError)}`}>
+              <p className="text-[16px] sm:text-[24px]">
+                Opps! something went wrong
+              </p>
+            </div>
+          )}
           {!isError && (
-            <>
-              <ConvertorBoxLine isDark={isDark} />
-              <PortfolioCoinCardBottomRow
-                coin={coin}
-                isDark={isDark}
-                isLoading={isLoading}
-                amountValue={amountValue}
-                currencySign={currencySign}
-                isGainOrLoss={isGainOrLoss}
-                gainOrLossAmount={gainOrLossAmount}
-                purchasedCoinList={purchasedCoinList}
-                setPurchasedCoinList={setPurchasedCoinList}
-              />
-            </>
+            <PortfolioCoinCardTopRow
+              isLoading={isLoading}
+              currencySign={currencySign}
+              currentPrice={currentPrice}
+              marketVsVolume={marketVsVolume}
+              circVsMaxSupply={circVsMaxSupply}
+              priceChange24hInCurrency={
+                data?.market_data?.price_change_24h_in_currency?.[currency]
+              }
+            />
           )}
         </div>
-      </>
+        {!isError && (
+          <>
+            <ConvertorBoxLine isDark={isDark} />
+            <PortfolioCoinCardBottomRow
+              coin={coin}
+              isDark={isDark}
+              isLoading={isLoading}
+              amountValue={amountValue}
+              currencySign={currencySign}
+              isGainOrLoss={isGainOrLoss}
+              gainOrLossAmount={gainOrLossAmount}
+              purchasedCoinList={purchasedCoinList}
+              setPurchasedCoinList={setPurchasedCoinList}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 };

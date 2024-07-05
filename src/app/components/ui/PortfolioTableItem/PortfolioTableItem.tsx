@@ -32,9 +32,9 @@ const PortfolioTableItem = ({
   }
 
   return (
-    <div className="flex items-center justify-between ">
-      <div className="flex items-center gap-[16px]">
-        <p className="text-[16px] font-[400]">{itemName}</p>
+    <div className="block sm:flex items-center  justify-between ">
+      <div className="flex items-center justify-between sm:justify-start sm:gap-[16px]">
+        <p className="text-[14px] sm:text-[16px] font-[400]">{itemName}</p>
         <PortfolioTooltip dataTooltipId={name} content={content} />
       </div>
       {showInput ? (

@@ -15,9 +15,9 @@ const PortfolioCoinCardHeading = ({
 
   return (
     <div className="flex items-center justify-between">
-      <h4 className="text-[20px] font-[500]">Market Price</h4>
+      <h4 className="text-[16px] sm:text-[20px] font-[500]">Market Price</h4>
       <div
-        className={`h-[40px] w-[40px] rounded-[4px] flex items-center justify-center cursor-pointer ${
+        className={`h-[30px] sm:h-[40px] w-[30px] sm:w-[40px] rounded-[4px] flex items-center justify-center cursor-pointer ${
           isDark ? "bg-[#3A3978]" : "bg-[#B0B0F0]"
         }`}
         onClick={() => setIsDeleteOpen(true)}

@@ -6,7 +6,7 @@ const PortfolioFooter = ({ isValueSelected }: { isValueSelected: boolean }) => {
   const isDark = useSelector(selectIsDark);
   return (
     <p
-      className={`mt-[16px] font-[400] text-[14px] ${
+      className={`mt-[10px] sm:mt-[16px] font-[400] text-[12px] sm:text-[14px] ${
         isDark ? "text-[#FFFFFF]" : "text-[#424286]"
       }`}
     >

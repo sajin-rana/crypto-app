@@ -17,17 +17,17 @@ const PortfolioHeader = ({
   const isDark = useSelector(selectIsDark);
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center  justify-between">
       <p
-        className={`text-[20px] font-[500] ${
+        className={`text-[20px] font-[500] hidden sm:block ${
           isDark ? "text-[#ffffff]" : "text-[#424286]"
         }`}
       >
         Your statistics
       </p>
-      <div className="flex items-center gap-4">
+      <div className="block sm:flex items-center w-full sm:w-[464px] sm:gap-4">
         <button
-          className={` text-[white] text-[16px] font-[500] py-[12px] px-[16px] rounded-[6px] ${
+          className={` text-[white] text-[14px] sm:text-[16px] font-[500] w-full sm:w-[224px] py-[6px] sm:py-[12px] px-[8px] sm:px-[16px] rounded-[6px] ${
             isDark ? "darkGlowBackground " : "lightGlowBackground"
           }`}
           onClick={() => setIsCalculatorOpen((isOpen) => !isOpen)}
@@ -35,7 +35,7 @@ const PortfolioHeader = ({
           Investments Calculator
         </button>
         <button
-          className={` text-[white] text-[16px] font-[500] py-[12px] px-[16px] rounded-[6px] ${
+          className={` text-[white] text-[14px] sm:text-[16px] mt-[10px] sm:mt-[0px] font-[500] w-full sm:w-[224px] py-[6px] sm:py-[12px] px-[8px] sm:px-[16px]  rounded-[6px] ${
             isDark ? "darkGlowBackground " : "lightGlowBackground"
           }`}
           onClick={() => setIsAddAssetOpen((isOpen) => !isOpen)}

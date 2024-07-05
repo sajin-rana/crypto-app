@@ -30,10 +30,10 @@ const PortfolioSaveAndCancelButton = ({
   const isDark = useSelector(selectIsDark);
 
   return (
-    <div className="mt-[32px] flex items-center gap-[10px] text-[#ffffff]">
+    <div className="mt-[10px] sm:mt-[32px] flex items-center text-[14px] sm:text-[16px] gap-[10px] text-[#ffffff]">
       <button
         onClick={() => setIsAddAssetOpen(false)}
-        className={`w-[222.5px] h-[45px] rounded-[6px] ${
+        className={`w-[222.5px] h-[44px] rounded-[6px] ${
           isDark ? "bg-[#232336]" : "bg-[#EBEBFC] text-[#232336]"
         }`}
       >
@@ -41,7 +41,7 @@ const PortfolioSaveAndCancelButton = ({
       </button>
       <button
         onClick={handleSubmit}
-        className={`w-[222.5px] h-[45px] rounded-[6px] ${saveAndContinueColor(
+        className={`w-[222.5px] h-[44px] rounded-[6px] ${saveAndContinueColor(
           purchaseAmount,
           isDark
         )}`}

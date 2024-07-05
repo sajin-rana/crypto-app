@@ -18,7 +18,7 @@ const PortfolioAddAssetCalendar = ({
 
   return (
     <div
-      className={`mt-[16px] w-full h-[44px] rounded-[4px] p-[8px] flex items-center justify-between  cursor-pointer ${
+      className={`mt-[10px] sm:mt-[16px] w-full h-[44px] rounded-[4px] p-[8px] flex items-center justify-between  cursor-pointer ${
         isDark ? "bg-[#191925]" : "bg-[#EBEBFD] "
       }`}
     >
@@ -33,29 +33,29 @@ const PortfolioAddAssetCalendar = ({
             <CalendarSvg />
           </div>
           <input
+            ref={dateRef}
+            value={purchaseDate}
             type="datetime-local"
-            className={`h-full w-full border-0 focus:outline-none  placeholder:w-400 placeholder:text-[16px] portfolio-date-input  ${
+            placeholder="Purchased date"
+            onChange={(e) => setPurchaseDate(e.target.value)}
+            className={`h-full w-full border-0 focus:outline-none  placeholder:w-400 placeholder:text-[14px] sm:placeholder:text-[16px] portfolio-date-input  ${
               isDark
                 ? "bg-[#191925] placeholder-[#D1D1D6]"
                 : "bg-[#EBEBFD] placeholder-[#424286]"
             }`}
-            placeholder="Purchased date"
-            ref={dateRef}
-            value={purchaseDate}
-            onChange={(e) => setPurchaseDate(e.target.value)}
           />
         </div>
       ) : (
         <input
+          value=""
           type="text"
-          className={`h-full w-full border-0 focus:outline-none  placeholder:w-400 placeholder:text-[16px] cursor-pointer   ${
+          placeholder="Purchased date"
+          onClick={() => setShowCalendar((calendar) => !calendar)}
+          className={`h-full w-full border-0 focus:outline-none  placeholder:w-400  placeholder:text-[14px] sm:placeholder:text-[16px] cursor-pointer   ${
             isDark
               ? "bg-[#191925] placeholder-[#D1D1D6]"
               : "bg-[#EBEBFD] placeholder-[#424286]"
           }`}
-          placeholder="Purchased date"
-          value=""
-          onClick={() => setShowCalendar((calendar) => !calendar)}
         />
       )}
       <div

@@ -14,8 +14,9 @@ const PortfolioQuantity = ({
 }) => {
   const getCurrency = useSelector(selectCurrency);
   const currencySign = getCurrency.sign;
+
   return (
-    <div className="text-[20px]  h-[40px] font-[500] ">
+    <div className="text-[16px] sm:text-[20px] h-[25px] sm:h-[40px] font-[500] ">
       {isEdited ? (
         <h4 onClick={() => setShowInput(true)} className="cursor-pointer">
           {numberWithCommas(quantity)}
