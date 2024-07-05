@@ -74,7 +74,7 @@ const PortfolioCoinCard = ({
       <PortfolioImageContainer
         isLoading={isLoading}
         data={historyDateCoinData}
-        style="w-full sm:w-[258px] h-[40%]"
+        style="w-full sm:w-[258px] h-[40%] sm:h-full"
       />
       <div
         className={`w-full sm:w-[calc(100%-258px)] h-[60%] sm:h-full p-[12px]  sm:p-[24px] ${
