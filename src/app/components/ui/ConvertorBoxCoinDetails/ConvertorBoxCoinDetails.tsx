@@ -24,12 +24,7 @@ const ConvertorBoxCoinDetails = ({
         <div className="skeleton w-[100px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px]" />
       ) : (
         <>
-          <Image
-            src={data?.image?.large}
-            height={24}
-            width={24}
-            alt={data?.id}
-          />
+          <Image src={data?.image} height={24} width={24} alt={data?.id} />
           <h4 className="whitespace-nowrap  text-[16px] sm:text-[20px] font-[500]">
             {data?.name} ({coinSymbol})
           </h4>

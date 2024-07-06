@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { coinConverter } from "@/app/utils/utils";
 import ConvertorBox from "../../ui/ConvertorBox/ConvertorBox";
-import { useGetOneCoinDetailQuery } from "@/lib/features/cryptoApi";
+import { useGetCoinListQuery } from "@/lib/features/cryptoApi";
 import ConverterReverseButton from "../../ui/ConverterReverseButton/ConverterReverseButton";
 import {
   setCoinOne,
@@ -27,13 +27,13 @@ const ConvertorBoxs = () => {
   const {
     isError,
     isLoading,
-    data: coinDataOne,
-  } = useGetOneCoinDetailQuery(coinOne);
-  const { data: coinDataTwo } = useGetOneCoinDetailQuery(coinTwo);
-  const coinPriceOne =
-    coinDataOne?.market_data?.current_price[currency.toLowerCase()];
-  const coinPriceTwo =
-    coinDataTwo?.market_data?.current_price[currency.toLowerCase()];
+    data: coinListData,
+  } = useGetCoinListQuery(currency.toLowerCase());
+  const coinDataOne: any = coinListData?.find((el: any) => el.id === coinOne);
+  const coinDataTwo: any = coinListData?.find((el: any) => el.id === coinTwo);
+  const coinPriceOne: number = coinDataOne?.current_price;
+  const coinPriceTwo: number = coinDataTwo?.current_price;
+
   const [coinQuantityOne, setCoinQuantityOne] = useState(1);
   const [coinQuantityTwo, setCoinQuantityTwo] = useState(
     coinConverter(coinQuantityOne, coinPriceOne, coinPriceTwo)
@@ -77,12 +77,12 @@ const ConvertorBoxs = () => {
       <ConvertorBox
         isError={isError}
         data={coinDataOne}
-        currency={currency}
         isLoading={isLoading}
         bgColor="bg-[#191932]"
         headingText="You sell"
         coinPrice={coinPriceOne}
         currencySign={currencySign}
+        coinListData={coinListData}
         coinQuantity={coinQuantityOne}
         handleQuantityChange={handleQuantityChangeOne}
       />
@@ -93,12 +93,12 @@ const ConvertorBoxs = () => {
         <ConvertorBox
           isError={isError}
           data={coinDataTwo}
-          currency={currency}
           isLoading={isLoading}
           bgColor="bg-[#1E1932]"
           headingText="You buy"
           coinPrice={coinPriceTwo}
           currencySign={currencySign}
+          coinListData={coinListData}
           coinQuantity={coinQuantityTwo}
           handleQuantityChange={handleQuantityChangeTwo}
         />

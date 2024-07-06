@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetCoinListQuery } from "@/lib/features/cryptoApi";
 import ConvertorBoxLine from "../ConvertorBoxLine/ConvertorBoxLine";
 import ConvertorBoxHeading from "../ConvertorBoxHeading/ConvertorBoxHeading";
 import ConvertorBoxQuantity from "../ConvertorBoxQuantity/ConvertorBoxQuantity";
@@ -20,18 +19,18 @@ const ConverterBox = ({
   data,
   bgColor,
   isError,
-  currency,
   coinPrice,
   isLoading,
   headingText,
   currencySign,
   coinQuantity,
+  coinListData,
   handleQuantityChange,
 }: {
   data: any;
   isError: any;
   bgColor: string;
-  currency: string;
+  coinListData: any;
   coinPrice: number;
   isLoading: boolean;
   headingText: string;
@@ -42,7 +41,6 @@ const ConverterBox = ({
   const [isQuantityOpen, setIsQuantityOpen] = useState(false);
   const [isCoinDropdownOpen, setIsCoinDropDownOpen] = useState(false);
   const [coinDropDownInput, setCoinDropDownInput] = useState("");
-  const { data: coinListData } = useGetCoinListQuery(currency);
   const [coinList, setCoinList] = useState(coinListData);
   const isDark = useSelector(selectIsDark);
   const coinSymbol = data?.symbol?.toUpperCase();
@@ -75,7 +73,6 @@ const ConverterBox = ({
     },
     [coinListData]
   );
-
   return (
     <div
       className={`w-full h-[158px] sm:w-[636px] sm:h-[200px] rounded-[16px] p-[16px] sm:p-[24px]  ${
