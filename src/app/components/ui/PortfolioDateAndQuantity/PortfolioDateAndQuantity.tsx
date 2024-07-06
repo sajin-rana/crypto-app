@@ -41,6 +41,7 @@ const PortfolioDateAndQuantity = ({
             type="datetime-local"
             value={startDateAndTime}
             placeholder="Start date and time"
+            onClick={() => handleCalendarClick(startDateRef)}
             onChange={(e) => setStartDateAndTime(e.target.value)}
             className={`outline-none portfolio-date-input text-[14px] sm:text-[16px] font-[500] overflow-scroll ${
               isDark
@@ -71,6 +72,7 @@ const PortfolioDateAndQuantity = ({
             type="datetime-local"
             value={endDateAndTime}
             placeholder="End date and time"
+            onClick={() => handleCalendarClick(endDateRef)}
             onChange={(e) => setEndDateAndTime(e.target.value)}
             className={`outline-none portfolio-date-input text-[14px] sm:text-[16px] font-[500] overflow-scroll ${
               isDark

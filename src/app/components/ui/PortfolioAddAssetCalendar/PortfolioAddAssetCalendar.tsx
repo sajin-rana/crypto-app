@@ -25,10 +25,10 @@ const PortfolioAddAssetCalendar = ({
       {showCalendar ? (
         <div className="flex items-center justify-between  gap-[8px]">
           <div
+            onClick={() => handleCalendarClick(dateRef)}
             className={`h-[20px] w-[20px] rounded-[4px] flex justify-center items-center cursor-pointer ${
               isDark ? "bg-[#2C2C4A]" : "bg-[#B0B0EB]"
             }`}
-            onClick={() => handleCalendarClick(dateRef)}
           >
             <CalendarSvg />
           </div>
@@ -37,6 +37,7 @@ const PortfolioAddAssetCalendar = ({
             value={purchaseDate}
             type="datetime-local"
             placeholder="Purchased date"
+            onClick={() => handleCalendarClick(dateRef)}
             onChange={(e) => setPurchaseDate(e.target.value)}
             className={`h-full w-full border-0 focus:outline-none  placeholder:w-400 placeholder:text-[14px] sm:placeholder:text-[16px] portfolio-date-input  ${
               isDark
