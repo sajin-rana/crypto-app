@@ -38,16 +38,20 @@ const NavBarInput = ({
   return (
     <div className="flex flex-col relative  " ref={ref}>
       <div
+        onClick={() => showSearchInMobile(isMobile)}
         className={`flex items-center gap-[12px] ease-in duration-300 transition-[width]  sm:py-[8px] sm:px-[16px] sm:rounded-[6px] border border-[#FFFFFF0D] sm:w-[356px] h-[40px] sm:h-[48px]  ${
           mobileShowInput
             ? "w-[190px]  py-[8px] px-[16px] "
             : " w-[36px] justify-center"
         } rounded-[12px]  ${isDarkColor}`}
-        onClick={() => showSearchInMobile(isMobile)}
       >
         <SearchIcon />
         <input
           type="text"
+          value={input}
+          placeholder="Search..."
+          onChange={handleChange}
+          onKeyDown={(e) => handleKeyDown(e, setDropDownOpen)}
           className={`border-0 focus:outline-none  ease-in duration-300 transition-[width] placeholder:w-400 placeholder:text-[14px]  w-full h-full  sm:block ${
             mobileShowInput ? "block " : "hidden"
           }  ${
@@ -55,10 +59,6 @@ const NavBarInput = ({
               ? "placeholder-[#D1D1D6] bg-[#191925]"
               : "placeholder-[#424286] bg-[#EBEBFD]"
           } ${textColor} `}
-          value={input}
-          placeholder="Search..."
-          onChange={handleChange}
-          onKeyDown={(e) => handleKeyDown(e, setDropDownOpen)}
         />
       </div>
       {input && dropdownOpen && (

@@ -1,10 +1,13 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { dropDownColor, setLocalStorage } from "@/app/utils/utils";
-import { useHandleClickOutside } from "@/app/customHook/CustomHook";
 import CurrencyDropLists from "../CurrencyDropLists/CurrencyDropLists";
 import { selectCurrency, setCurrency } from "@/lib/features/cryptoSlice";
+import { dropDownColor, setLocalStorage } from "@/app/utils/utils";
+import {
+  useHandleClickOutside,
+  useCloseOnEscapePressed,
+} from "@/app/customHook/CustomHook";
 
 function CurrencyDropDown({
   isDark,
@@ -25,6 +28,7 @@ function CurrencyDropDown({
   }
 
   const ref: any = useRef();
+  useCloseOnEscapePressed(setDropDownOpen);
   useHandleClickOutside(ref, setDropDownOpen);
   return (
     <div className="relative" ref={ref}>

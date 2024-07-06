@@ -5,12 +5,11 @@ import { useSelector } from "react-redux";
 import SearchIcon from "../SearchIcon/SearchIcon";
 import UpDownArrow from "../UpDownArrow/UpDownArrow";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
-import { useHandleClickOutside } from "@/app/customHook/CustomHook";
+import { dropDownColor, greaterThanZero } from "@/app/utils/utils";
 import {
-  handleKeyDown,
-  dropDownColor,
-  greaterThanZero,
-} from "@/app/utils/utils";
+  useHandleClickOutside,
+  useCloseOnEscapePressed,
+} from "@/app/customHook/CustomHook";
 const inter = Inter({ weight: "400", subsets: ["latin"] });
 
 const ConvertorBoxDropDown = ({
@@ -28,6 +27,7 @@ const ConvertorBoxDropDown = ({
 }) => {
   const isDark = useSelector(selectIsDark);
   const coinDropdownRef: any = useRef();
+  useCloseOnEscapePressed(setIsCoinDropDownOpen);
   useHandleClickOutside(coinDropdownRef, setIsCoinDropDownOpen);
   const { isDarkColor, textColor, hoverColor } = dropDownColor(isDark);
 
@@ -47,7 +47,6 @@ const ConvertorBoxDropDown = ({
           value={coinDropDownInput}
           placeholder="Search coin..."
           onChange={handleCoinDropInputChange}
-          onKeyDown={(e) => handleKeyDown(e, setIsCoinDropDownOpen)}
           className={`border-0 focus:outline-none  placeholder:w-400 placeholder:text-[12px]   sm:placeholder:text-[14px]  w-full h-full ${
             isDark
               ? "placeholder-[#D1D1D6] bg-[#191925]"

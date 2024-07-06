@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { uid } from "uid";
 import { useGetOneCoinDetailQuery } from "@/lib/features/cryptoApi";
-import { useHandleClickOutside } from "@/app/customHook/CustomHook";
 import PortfolioHeading from "../PortfolioHeading/PortfolioHeading";
 import { selectIsDark, selectedCoinOne } from "@/lib/features/cryptoSlice";
 import { formatPortfolioDateAndTime, setLocalStorage } from "@/app/utils/utils";
@@ -11,7 +10,10 @@ import PortfolioSearchCoinInput from "../PortfolioSearchCoinInput/PortfolioSearc
 import PortfolioAddAssetCalendar from "../PortfolioAddAssetCalendar/PortfolioAddAssetCalendar";
 import PortfolioSaveAndCancelButton from "../PortfolioSaveAndCancelButton/PortfolioSaveAndCancelButton";
 import PortfolioCalculatorAndAssetInput from "../PortfolioCalculatorAndAssetInput/PortfolioCalculatorAndAssetInput";
-
+import {
+  useHandleClickOutside,
+  useCloseOnEscapePressed,
+} from "@/app/customHook/CustomHook";
 const PortfolioAddAsset = ({
   coinForEdit,
   isEdited = false,
@@ -35,6 +37,7 @@ const PortfolioAddAsset = ({
   const coin = useSelector(selectedCoinOne);
   const { data } = useGetOneCoinDetailQuery(isEdited ? coinForEdit.coin : coin);
   const ref = useRef(null);
+  useCloseOnEscapePressed(setIsAddAssetOpen);
   useHandleClickOutside(ref, setIsAddAssetOpen);
 
   function handlePurchaseAmountChange(e: any) {
