@@ -57,3 +57,19 @@ export function useCloseOnEscapePressed(setterFunction: any) {
     [setterFunction]
   );
 }
+
+export function useKey(key: string, action: any) {
+  useEffect(
+    function () {
+      function callback(e: any) {
+        if (!e.code) return;
+        if (e.code.toLowerCase() === key.toLocaleLowerCase()) {
+          action();
+        }
+      }
+      window.addEventListener("keydown", callback);
+      return () => window.removeEventListener("keydown", callback);
+    },
+    [key, action]
+  );
+}

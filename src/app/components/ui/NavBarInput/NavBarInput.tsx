@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import DropDown from "../DropDown/DropDown";
 import SearchIcon from "../SearchIcon/SearchIcon";
 import { dropDownColor, handleKeyDown } from "@/app/utils/utils";
-import { useHandleClickOutside } from "@/app/customHook/CustomHook";
+import { useHandleClickOutside, useKey } from "@/app/customHook/CustomHook";
 
 const NavBarInput = ({
   isDark,
@@ -21,8 +21,16 @@ const NavBarInput = ({
   const [dropdownOpen, setDropDownOpen] = useState(false);
   const { isDarkColor, textColor } = dropDownColor(isDark);
   const ref: any = useRef();
+  const inputRef: any = useRef(null);
   useHandleClickOutside(ref, setDropDownOpen);
   useHandleClickOutside(ref, setMobileShowInput);
+
+  useKey("Enter", function () {
+    if (!dropdownOpen) {
+      if (document.activeElement === inputRef.current) return;
+      inputRef.current.focus();
+    }
+  });
 
   function handleChange(e: any) {
     setInput(e.target.value);
@@ -49,6 +57,7 @@ const NavBarInput = ({
         <input
           type="text"
           value={input}
+          ref={inputRef}
           placeholder="Search..."
           onChange={handleChange}
           onKeyDown={(e) => handleKeyDown(e, setDropDownOpen)}
