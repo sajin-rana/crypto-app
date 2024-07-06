@@ -40,7 +40,7 @@ const CoinConvertorButton = () => {
     <div
       className={`sm:w-[506px] w-full  sm:h-[53px] h-[40px] flex justify-center items-center sm:mt-[40px] mt-[20px] ${
         isDark ? "bg-[#191925]" : "bg-[#ffff]"
-      } rounded-[6px] pt-[4px]  pb-[4px] pl-[4px] pr-[15px] sm:text-[16px] text-[14px] font-[500]`}
+      } rounded-[6px] pt-[4px]  pb-[4px] pl-[4px] pr-[4px] sm:text-[16px] text-[14px] font-[500]`}
     >
       <Link
         href="/"
