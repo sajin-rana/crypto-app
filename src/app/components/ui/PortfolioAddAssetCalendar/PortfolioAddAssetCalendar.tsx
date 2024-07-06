@@ -4,6 +4,7 @@ import DownArrow from "../DownArrow/DownArrow";
 import CalendarSvg from "../CalendarSvg/CalendarSvg";
 import { handleCalendarClick } from "@/app/utils/utils";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
+import { useOpenCalendar } from "@/app/customHook/CustomHook";
 
 const PortfolioAddAssetCalendar = ({
   purchaseDate,
@@ -15,6 +16,7 @@ const PortfolioAddAssetCalendar = ({
   const [showCalendar, setShowCalendar] = useState(false);
   const isDark = useSelector(selectIsDark);
   const dateRef = useRef(null);
+  useOpenCalendar(setShowCalendar, dateRef);
 
   return (
     <div

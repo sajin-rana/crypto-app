@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { handleCalendarClick } from "../utils/utils";
 
 export function useHandleClickOutside(ref: any, setterFunction: any) {
   useEffect(
@@ -71,5 +72,21 @@ export function useKey(key: string, action: any) {
       return () => window.removeEventListener("keydown", callback);
     },
     [key, action]
+  );
+}
+
+export function useOpenCalendar(setterFunction: any, ref: any) {
+  useEffect(
+    function () {
+      function callback(e: any) {
+        if (e.key === "k" && e.metaKey) {
+          setterFunction(true);
+          handleCalendarClick(ref);
+        }
+      }
+      window.addEventListener("keydown", callback);
+      return () => window.removeEventListener("keydown", callback);
+    },
+    [setterFunction, ref]
   );
 }
