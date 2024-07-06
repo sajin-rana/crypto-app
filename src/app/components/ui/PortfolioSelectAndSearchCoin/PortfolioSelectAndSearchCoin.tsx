@@ -5,7 +5,15 @@ import { useSelector } from "react-redux";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
 import PortfolioSearchCoinInput from "../PortfolioSearchCoinInput/PortfolioSearchCoinInput";
 
-const PortfolioSelectAndSearchCoin = ({ data }: { data: any }) => {
+const PortfolioSelectAndSearchCoin = ({
+  data,
+  isError,
+  isLoading,
+}: {
+  data: any;
+  isError: any;
+  isLoading: boolean;
+}) => {
   const isDark = useSelector(selectIsDark);
 
   return (
@@ -15,21 +23,30 @@ const PortfolioSelectAndSearchCoin = ({ data }: { data: any }) => {
           isDark ? "bg-[#191932]" : "bg-[#EBEBFD]"
         }`}
       >
-        <div
-          className={`w-[24px] sm:w-[28px] h-[24px] sm:h-[28px] rounded-[8px] flex items-center justify-center ${
-            isDark ? "bg-[#2C2C4A]" : "bg-[#E3E5F9]"
-          }`}
-        >
-          <Image
-            width={28}
-            height={28}
-            alt={data?.name}
-            src={data?.image?.large}
-          />
-        </div>
-        <h4 className="text-[14px] sm:text-[16px] font-[700] h-[22px]  overflow-hidden ">
-          {data?.name} ({data?.symbol.toUpperCase()})
-        </h4>
+        {isLoading || isError ? (
+          <>
+            <div className="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px] rounded-full skeleton" />
+            <div className="skeleton w-[100px] h-[12px] sm:w-[177px] sm:h-[22px] rounded-[8px]" />
+          </>
+        ) : (
+          <>
+            <div
+              className={`w-[24px] sm:w-[28px] h-[24px] sm:h-[28px] rounded-[8px] flex items-center justify-center ${
+                isDark ? "bg-[#2C2C4A]" : "bg-[#E3E5F9]"
+              }`}
+            >
+              <Image
+                width={28}
+                height={28}
+                alt={data?.name}
+                src={data?.image?.large}
+              />
+            </div>
+            <h4 className="text-[14px] sm:text-[16px] font-[700] h-[22px]  overflow-hidden ">
+              {data?.name} ({data?.symbol.toUpperCase()})
+            </h4>
+          </>
+        )}
       </div>
       <PortfolioSearchCoinInput />
     </div>

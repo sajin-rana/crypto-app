@@ -22,6 +22,7 @@ function hasErrorStyle(isDark: boolean, isError: boolean) {
     }
   }
 }
+
 const PortfolioCoinCard = ({
   coin,
   purchasedCoinList,
@@ -55,7 +56,7 @@ const PortfolioCoinCard = ({
 
   const currentPrice = data?.market_data?.current_price?.[currency];
   const purchasePrice =
-    historyDateCoinData?.market_data.current_price[currency];
+    historyDateCoinData?.market_data?.current_price[currency];
 
   const priceChangeAmount = (currentPrice / purchasePrice) * 100;
   const isGainOrLoss = currentPrice - purchasePrice;
@@ -72,6 +73,7 @@ const PortfolioCoinCard = ({
   return (
     <div className="h-[530px] sm:h-[292px] block sm:flex mt-[20px] sm:mt-[24px] ">
       <PortfolioImageContainer
+        isError={isError}
         isLoading={isLoading}
         data={historyDateCoinData}
         style="w-full sm:w-[258px] h-[40%] sm:h-full"
