@@ -3,12 +3,16 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import PortfolioTable from "../PortfolioTable/PortfolioTable";
 import PortfolioFooter from "../PortfolioFooter/PortfolioFooter";
-import { useHandleClickOutside } from "@/app/customHook/CustomHook";
+
 import PortfolioHeading from "../PortfolioHeading/PortfolioHeading";
 import PortfolioDateAndQuantity from "../PortfolioDateAndQuantity/PortfolioDateAndQuantity";
 import PortfolioCalculateButton from "../PortfolioCalculateButton/PortfolioCalculateButton";
 import PortfolioSelectAndSearchCoin from "../PortfolioSelectAndSearchCoin/PortfolioSelectAndSearchCoin";
 import PortfolioValueAndDollarButton from "../PortfolioValueAndDollarButton/PortfolioValueAndDollarButton";
+import {
+  useHandleClickOutside,
+  useCloseOnEscapePressed,
+} from "@/app/customHook/CustomHook";
 import {
   useGetOneCoinDetailQuery,
   useGetHistoryDateCoinDetailQuery,
@@ -58,6 +62,7 @@ const PortfolioCalculator = ({
     `${coin}/market_chart/range?vs_currency=${currency}&from=${startDateInUnix}&to=${endDateInUnix}&precision=2`
   );
   const ref: any = useRef();
+  useCloseOnEscapePressed(setIsCalculatorOpen);
   useHandleClickOutside(ref, setIsCalculatorOpen);
 
   function handleCalculation() {

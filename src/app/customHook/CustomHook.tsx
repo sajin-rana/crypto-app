@@ -35,7 +35,25 @@ export const useWindowWidth = () => {
 };
 
 export function useInputFocus(inputRef: any) {
-  useEffect(function () {
-    inputRef.current.focus();
-  }, [inputRef]);
+  useEffect(
+    function () {
+      inputRef.current.focus();
+    },
+    [inputRef]
+  );
+}
+
+export function useCloseOnEscapePressed(setterFunction: any) {
+  useEffect(
+    function () {
+      function closeOnEscapePressed(e: KeyboardEvent) {
+        if (e.key === "Escape") {
+          setterFunction(false);
+        }
+      }
+      window.addEventListener("keydown", closeOnEscapePressed);
+      return () => window.removeEventListener("keydown", closeOnEscapePressed);
+    },
+    [setterFunction]
+  );
 }
