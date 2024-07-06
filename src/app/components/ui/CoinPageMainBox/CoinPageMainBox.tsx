@@ -14,7 +14,7 @@ import {
 
 function profitLossColor(priceChangePercentage: number) {
   return greaterThanZero(priceChangePercentage)
-    ? "text-[#00B1A7]"
+    ? "text-[#01F1E3]"
     : "text-[#FE2264]";
 }
 

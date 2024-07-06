@@ -90,3 +90,32 @@ export function useOpenCalendar(setterFunction: any, ref: any) {
     [setterFunction, ref]
   );
 }
+
+export function useDropDownUpDownKeypress(
+  index: any,
+  setIndex: any,
+  dataLength: number,
+  handleOnEnter: any
+) {
+  useEffect(
+    function () {
+      function dropDownUpDownKeypress(e: KeyboardEvent) {
+        if (e.code === "ArrowDown") {
+          const indexNumber =
+            index === null || index === dataLength - 1 ? 0 : index + 1;
+          setIndex(indexNumber);
+        } else if (e.code === "ArrowUp") {
+          const indexNumber =
+            index === null || index === 0 ? dataLength - 1 : index - 1;
+          setIndex(indexNumber);
+        } else if (e.code === "Enter") {
+          handleOnEnter();
+        }
+      }
+      window.addEventListener("keydown", dropDownUpDownKeypress);
+      return () =>
+        window.removeEventListener("keydown", dropDownUpDownKeypress);
+    },
+    [index, setIndex, dataLength, handleOnEnter]
+  );
+}

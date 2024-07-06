@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import { dropDownColor, greaterThanZero } from "@/app/utils/utils";
 import {
   useHandleClickOutside,
   useCloseOnEscapePressed,
+  useDropDownUpDownKeypress,
 } from "@/app/customHook/CustomHook";
 const inter = Inter({ weight: "400", subsets: ["latin"] });
 
@@ -25,11 +26,18 @@ const ConvertorBoxDropDown = ({
   setIsCoinDropDownOpen: any;
   handleCoinDropInputChange: any;
 }) => {
+  const [index, setIndex] = useState<any>(null);
   const isDark = useSelector(selectIsDark);
   const coinDropdownRef: any = useRef();
   useCloseOnEscapePressed(setIsCoinDropDownOpen);
   useHandleClickOutside(coinDropdownRef, setIsCoinDropDownOpen);
   const { isDarkColor, textColor, hoverColor } = dropDownColor(isDark);
+
+  useDropDownUpDownKeypress(index, setIndex, coinList?.length, function () {
+    const id = coinList[index]?.id;
+    const symbol = coinList[index]?.symbol;
+    handleCoinClick(id, symbol);
+  });
 
   return (
     <div
@@ -65,11 +73,13 @@ const ConvertorBoxDropDown = ({
           </li>
         )}
         {coinList?.length > 0 &&
-          coinList.map((coin: any) => (
+          coinList.map((coin: any, i: number) => (
             <li
               key={coin.id}
               onClick={() => handleCoinClick(coin?.id, coin?.symbol)}
-              className={`cursor-pointer ${inter.className}  text-[14px]   py-[8px] px-[16px] ${hoverColor} flex justify-between`}
+              className={`cursor-pointer ${inter.className}  text-[14px] ${
+                index === i ? hoverColor.slice(6) : ""
+              }  py-[8px] px-[16px] ${hoverColor} flex justify-between`}
             >
               <div className="flex items-center gap-[5px]">
                 <Image
