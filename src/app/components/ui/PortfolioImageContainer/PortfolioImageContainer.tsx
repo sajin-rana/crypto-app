@@ -6,12 +6,14 @@ import { selectIsDark } from "@/lib/features/cryptoSlice";
 const PortfolioImageContainer = ({
   data,
   style,
+  isError,
   isLoading,
   isLightBackground = "bg-[white]",
   isLightImageBackground = "bg-[#EBEBFC]",
 }: {
   data: any;
   style: string;
+  isError?: boolean;
   isLoading?: boolean;
   isLightBackground?: string;
   isLightImageBackground?: string;
@@ -30,7 +32,7 @@ const PortfolioImageContainer = ({
           isDark ? "bg-[#2C2C4A]" : isLightImageBackground
         }`}
       >
-        {isLoading ? (
+        {isLoading || isError ? (
           <div className="skeleton w-[24px] h-[24px] sm:w-[32px] sm:h-[32px] rounded-full" />
         ) : (
           <div className="h-[24px] w-[24px] sm:h-[32px] sm:w-[32px]">
@@ -43,7 +45,7 @@ const PortfolioImageContainer = ({
           </div>
         )}
       </div>
-      {isLoading ? (
+      {isLoading || isError ? (
         <div className="skeleton w-[150px] h-[22px] sm:w-[177px] sm:h-[42px] rounded-[8px]" />
       ) : (
         <h4

@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import PortfolioTable from "../PortfolioTable/PortfolioTable";
 import PortfolioFooter from "../PortfolioFooter/PortfolioFooter";
-
 import PortfolioHeading from "../PortfolioHeading/PortfolioHeading";
 import PortfolioDateAndQuantity from "../PortfolioDateAndQuantity/PortfolioDateAndQuantity";
 import PortfolioCalculateButton from "../PortfolioCalculateButton/PortfolioCalculateButton";
@@ -55,7 +54,7 @@ const PortfolioCalculator = ({
   const coin = useSelector(selectedCoinOne);
   const getCurrency = useSelector(selectCurrency);
   const currency = getCurrency.name;
-  const { data } = useGetOneCoinDetailQuery(coin);
+  const { data, isError, isLoading } = useGetOneCoinDetailQuery(coin);
   const startDateInUnix = convertToUnixTimestamp(startDateAndTime);
   const endDateInUnix = convertToUnixTimestamp(endDateAndTime);
   const { data: historyData } = useGetHistoryDateCoinDetailQuery(
@@ -114,7 +113,11 @@ const PortfolioCalculator = ({
           text="Investment Calculator"
           setterFunction={setIsCalculatorOpen}
         />
-        <PortfolioSelectAndSearchCoin data={data} />
+        <PortfolioSelectAndSearchCoin
+          data={data}
+          isError={isError}
+          isLoading={isLoading}
+        />
         <PortfolioValueAndDollarButton
           isValueSelected={isValueSelected}
           isDollarSelected={isDollarSelected}

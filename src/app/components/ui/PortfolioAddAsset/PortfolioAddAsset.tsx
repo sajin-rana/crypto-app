@@ -14,6 +14,7 @@ import {
   useHandleClickOutside,
   useCloseOnEscapePressed,
 } from "@/app/customHook/CustomHook";
+
 const PortfolioAddAsset = ({
   coinForEdit,
   isEdited = false,
@@ -35,7 +36,9 @@ const PortfolioAddAsset = ({
   );
   const isDark = useSelector(selectIsDark);
   const coin = useSelector(selectedCoinOne);
-  const { data } = useGetOneCoinDetailQuery(isEdited ? coinForEdit.coin : coin);
+  const { data, isError, isLoading } = useGetOneCoinDetailQuery(
+    isEdited ? coinForEdit.coin : coin
+  );
   const ref = useRef(null);
   useCloseOnEscapePressed(setIsAddAssetOpen);
   useHandleClickOutside(ref, setIsAddAssetOpen);
@@ -91,6 +94,8 @@ const PortfolioAddAsset = ({
         <div className="sm:h-[241px] mt-[10px] sm:mt-[32px] block sm:flex  gap-[32px]">
           <PortfolioImageContainer
             data={data}
+            isError={isError}
+            isLoading={isLoading}
             isLightBackground="bg-[#EBEBFC]"
             isLightImageBackground="bg-[white]"
             style="w-full sm:w-[297px] rounded-[8px] h-[120px] sm:h-full "
