@@ -60,14 +60,14 @@ const PortfolioAddAsset = ({
       };
 
       if (isEdited) {
-        const newEditedList = [
-          ...purchasedCoinList.filter(
-            (coin: any) => coin.id !== coinForEdit.id
-          ),
-          purchasedCoin,
-        ];
+        const newEditedList = purchasedCoinList.map((el: any) => {
+          if (el.id === purchasedCoin.id) {
+            return purchasedCoin;
+          }
+          return el;
+        });
         setPurchasedCoinList(newEditedList);
-        setLocalStorage("purchasedCoinList", [newEditedList]);
+        setLocalStorage("purchasedCoinList", newEditedList);
       } else {
         setPurchasedCoinList([...purchasedCoinList, purchasedCoin]);
         setLocalStorage("purchasedCoinList", [

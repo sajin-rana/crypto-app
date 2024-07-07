@@ -4,10 +4,14 @@ import PortfolioDeleteModal from "../PortfolioDeleteModal/PortfolioDeleteModal";
 
 const PortfolioCoinCardHeading = ({
   isDark,
+  isError,
+  isLoading,
   historyDateCoinData,
   handleDeleteButtonClick,
 }: {
   isDark: boolean;
+  isError?: boolean;
+  isLoading?: boolean;
   historyDateCoinData: any;
   handleDeleteButtonClick: any;
 }) => {
@@ -26,6 +30,8 @@ const PortfolioCoinCardHeading = ({
       </div>
       {isDeleteOpen && (
         <PortfolioDeleteModal
+          isError={isError}
+          isLoading={isLoading}
           setIsDeleteOpen={setIsDeleteOpen}
           historyDateCoinData={historyDateCoinData}
           handleDeleteButtonClick={handleDeleteButtonClick}
