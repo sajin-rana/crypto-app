@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import DownArrow from "../DownArrow/DownArrow";
 import CalendarSvg from "../CalendarSvg/CalendarSvg";
 import { handleCalendarClick } from "@/app/utils/utils";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
@@ -61,12 +60,6 @@ const PortfolioAddAssetCalendar = ({
           }`}
         />
       )}
-      <div
-        className="cursor-pointer"
-        onClick={() => setShowCalendar((calendar) => !calendar)}
-      >
-        <DownArrow />
-      </div>
     </div>
   );
 };

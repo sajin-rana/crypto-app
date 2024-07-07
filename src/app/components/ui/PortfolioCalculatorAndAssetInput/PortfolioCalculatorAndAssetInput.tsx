@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import DownArrow from "../DownArrow/DownArrow";
 import { handleKeyDown } from "@/app/utils/utils";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
 
@@ -20,7 +19,7 @@ const PortfolioCalculatorAndAssetInput = ({
   const isDark = useSelector(selectIsDark);
   return (
     <div
-      className={`${style} h-[44px] rounded-[8px] sm:rounded-[4px] p-[8px] flex items-center justify-between relative ${
+      className={`${style} h-[44px] rounded-[8px] sm:rounded-[4px] p-[8px]  relative ${
         isDark ? "bg-[#191925]" : "bg-[#EBEBFD]"
       }`}
     >
@@ -36,7 +35,6 @@ const PortfolioCalculatorAndAssetInput = ({
             : "bg-[#EBEBFD] placeholder-[#424286]"
         }`}
       />
-      <DownArrow />
     </div>
   );
 };
