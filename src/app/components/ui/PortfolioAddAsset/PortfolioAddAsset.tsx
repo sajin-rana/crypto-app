@@ -36,7 +36,7 @@ const PortfolioAddAsset = ({
   );
   const isDark = useSelector(selectIsDark);
   const coin = useSelector(selectedCoinOne);
-  const { data, isError, isLoading } = useGetOneCoinDetailQuery(
+  const { data, isError, isLoading }: any = useGetOneCoinDetailQuery(
     isEdited ? coinForEdit.coin : coin
   );
   const ref = useRef(null);
@@ -49,7 +49,7 @@ const PortfolioAddAsset = ({
   }
 
   function handleSubmit() {
-    if (purchaseAmount) {
+    if (purchaseAmount && !isError && !isLoading && data?.id) {
       const purchasedCoin = {
         coin: data?.id,
         symbol: data?.symbol,
@@ -114,8 +114,10 @@ const PortfolioAddAsset = ({
             />
             <PortfolioSaveAndCancelButton
               handleSubmit={handleSubmit}
-              purchaseAmount={purchaseAmount}
               setIsAddAssetOpen={setIsAddAssetOpen}
+              isReadyToSave={
+                purchaseAmount && !isError && !isLoading && data?.id
+              }
             />
           </div>
         </div>
