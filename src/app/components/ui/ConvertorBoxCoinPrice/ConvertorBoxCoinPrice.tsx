@@ -1,5 +1,6 @@
 import React from "react";
 import { numberWithCommas } from "@/app/utils/utils";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const ConvertorBoxCoinPrice = ({
   isDark,
@@ -19,7 +20,7 @@ const ConvertorBoxCoinPrice = ({
   return (
     <>
       {isError || isLoading ? (
-        <div className="skeleton w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px] mt-[10px]" />
+        <LoadingSkeleton style="w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px] mt-[10px]" />
       ) : (
         <div className="flex items-center text-[14px] font-[400] gap-[3px] mt-[10px]">
           <p className={isDark ? "text-[#D1D1D6]" : "text-[#5D5D90]"}>

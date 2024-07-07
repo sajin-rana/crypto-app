@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import DownArrow from "../DownArrow/DownArrow";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const ConvertorBoxCoinDetails = ({
   data,
@@ -21,7 +22,7 @@ const ConvertorBoxCoinDetails = ({
       onClick={() => setIsCoinDropDownOpen(true)}
     >
       {isError || isLoading ? (
-        <div className="skeleton w-[100px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px]" />
+        <LoadingSkeleton style="w-[100px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px]" />
       ) : (
         <>
           <Image src={data?.image} height={24} width={24} alt={data?.id} />

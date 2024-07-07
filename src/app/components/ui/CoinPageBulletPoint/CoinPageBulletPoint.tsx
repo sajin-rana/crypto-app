@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const CoinPageBulletPoint = ({
   text,
@@ -27,7 +28,7 @@ const CoinPageBulletPoint = ({
         <p className="text-[14px] sm:text-[16px] font-[400]">{text}</p>
       </div>
       {isError || isLoading ? (
-        <div className="skeleton w-[50px] h-[22px] sm:w-[100px] sm:h-[32px] rounded-[8px] mt-[5px] sm:mt-[10px]" />
+        <LoadingSkeleton style="w-[50px] h-[22px] sm:w-[100px] sm:h-[32px] rounded-[8px] mt-[5px] sm:mt-[10px]" />
       ) : (
         <p className="text-[16px] sm:text-[20px] font-[500]">{amount}</p>
       )}

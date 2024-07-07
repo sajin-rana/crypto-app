@@ -1,4 +1,5 @@
 import React from "react";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const CoinPageProgressBar = ({
   data,
@@ -12,7 +13,7 @@ const CoinPageProgressBar = ({
   return (
     <>
       {isError || isLoading ? (
-        <div className="skeleton w-full h-[12px]  sm:h-[22px] rounded-[8px] mt-[5px] sm:mt-[10px]" />
+        <LoadingSkeleton style=" w-full h-[12px]  sm:h-[22px] rounded-[8px] mt-[5px] sm:mt-[10px]" />
       ) : (
         <div className="flex flex-col gap-[4px]">
           <div className="flex items-center justify-between">

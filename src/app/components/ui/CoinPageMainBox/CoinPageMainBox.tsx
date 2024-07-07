@@ -5,6 +5,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import Line from "../Line/Line";
 import CopyIcon from "../CopyIcon/CopyIcon";
 import UpDownArrow from "../UpDownArrow/UpDownArrow";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 import AllTimeHighAndLow from "../AllTimeHighAndLow/AllTimeHighAndLow";
 import {
   greaterThanZero,
@@ -52,10 +53,10 @@ const CoinPageMainBox = ({
       {isLoading || isError ? (
         <div className="flex items-center gap-[16px] sm:gap-[24px]">
           {" "}
-          <div className="skeleton w-[32px] h-[32px] sm:w-[42px] sm:h-[42px] rounded-full" />
+          <LoadingSkeleton style="w-[32px] h-[32px] sm:w-[42px] sm:h-[42px] rounded-full" />
           <div className="">
-            <div className="skeleton w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px]" />
-            <div className="skeleton w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px] mt-[5px] sm:mt-[10px]" />
+            <LoadingSkeleton style="w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px]" />
+            <LoadingSkeleton style=" w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px] mt-[5px] sm:mt-[10px]" />
           </div>
         </div>
       ) : (
@@ -89,8 +90,8 @@ const CoinPageMainBox = ({
 
       {isLoading || isError ? (
         <div>
-          <div className="skeleton w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px] mt-[20px] sm:mt-[40px]" />
-          <div className="skeleton w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px] mt-[5px] sm:mt-[10px]" />
+          <LoadingSkeleton style="w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px] mt-[20px] sm:mt-[40px]" />
+          <LoadingSkeleton style="w-[150px] h-[22px] sm:w-[177px] sm:h-[32px] rounded-[8px] mt-[5px] sm:mt-[10px]" />
         </div>
       ) : (
         <>

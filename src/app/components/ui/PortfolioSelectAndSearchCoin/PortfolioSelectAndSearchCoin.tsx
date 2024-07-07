@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 import PortfolioSearchCoinInput from "../PortfolioSearchCoinInput/PortfolioSearchCoinInput";
 
 const PortfolioSelectAndSearchCoin = ({
@@ -25,8 +26,8 @@ const PortfolioSelectAndSearchCoin = ({
       >
         {isLoading || isError ? (
           <>
-            <div className="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px] rounded-full skeleton" />
-            <div className="skeleton w-[100px] h-[12px] sm:w-[177px] sm:h-[22px] rounded-[8px]" />
+            <LoadingSkeleton style="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px] rounded-full " />
+            <LoadingSkeleton style="w-[100px] h-[12px] sm:w-[177px] sm:h-[22px] rounded-[8px]" />
           </>
         ) : (
           <>
