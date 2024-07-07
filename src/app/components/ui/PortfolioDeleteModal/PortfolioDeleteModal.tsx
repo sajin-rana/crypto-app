@@ -5,10 +5,14 @@ import { useHandleClickOutside } from "@/app/customHook/CustomHook";
 import PortfolioImageContainer from "../PortfolioImageContainer/PortfolioImageContainer";
 
 const PortfolioDeleteModal = ({
+  isError,
+  isLoading,
   setIsDeleteOpen,
   historyDateCoinData,
   handleDeleteButtonClick,
 }: {
+  isError?: boolean;
+  isLoading?: boolean;
   setIsDeleteOpen: any;
   historyDateCoinData: any;
   handleDeleteButtonClick: any;
@@ -31,6 +35,8 @@ const PortfolioDeleteModal = ({
             Are you sure you want to delete?
           </h4>
           <PortfolioImageContainer
+            isError={isError}
+            isLoading={isLoading}
             data={historyDateCoinData}
             isLightBackground="bg-[#EBEBFC]"
             isLightImageBackground="bg-[white]"

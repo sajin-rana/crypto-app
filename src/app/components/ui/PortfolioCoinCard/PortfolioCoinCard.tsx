@@ -40,7 +40,11 @@ const PortfolioCoinCard = ({
   const { data, isLoading, isError } = useGetOneCoinDetailQuery(coinName);
   const purchaseDate = coin.purchaseTime?.split("-").reverse().join("-");
   const query = `${coinName}/history?date=${purchaseDate}`;
-  const { data: historyDateCoinData } = useGetHistoryDateCoinDetailQuery(query);
+  const {
+    isError: historyIsError,
+    data: historyDateCoinData,
+    isLoading: historyIsLoading,
+  } = useGetHistoryDateCoinDetailQuery(query);
 
   const marketVsVolume = getPercentage(
     data?.market_data?.total_volume?.[currency],
@@ -73,9 +77,9 @@ const PortfolioCoinCard = ({
   return (
     <div className="h-[530px] sm:h-[292px] block sm:flex mt-[20px] sm:mt-[24px] ">
       <PortfolioImageContainer
-        isError={isError}
-        isLoading={isLoading}
+        isError={historyIsError}
         data={historyDateCoinData}
+        isLoading={historyIsLoading}
         style="w-full sm:w-[258px] h-[40%] sm:h-full"
       />
       <div
@@ -90,6 +94,8 @@ const PortfolioCoinCard = ({
         >
           <PortfolioCoinCardHeading
             isDark={isDark}
+            isError={historyIsError}
+            isLoading={historyIsLoading}
             historyDateCoinData={historyDateCoinData}
             handleDeleteButtonClick={handleDeleteButtonClick}
           />
