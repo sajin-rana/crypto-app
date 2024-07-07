@@ -1,12 +1,21 @@
+import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 import StoreProvider from "./StoreProvider";
 import { Space_Grotesk } from "next/font/google";
-import PageStyle from "./components/ui/PageStyle/PageStyle";
-import TopGlobalNavbar from "./components/blocks/TopGlobalNavbar/TopGlobalNavbar";
-import MainGlobalNavbar from "./components/blocks/MainGlobalNavbar/MainGlobalNavbar";
 import "./globals.css";
-
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+
+const TopGlobalNavbar = dynamic(
+  () => import("./components/blocks/TopGlobalNavbar/TopGlobalNavbar"),
+  { ssr: false }
+);
+const MainGlobalNavbar = dynamic(
+  () => import("./components/blocks/MainGlobalNavbar/MainGlobalNavbar"),
+  { ssr: false }
+);
+const PageStyle = dynamic(() => import("./components/ui/PageStyle/PageStyle"), {
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   title: "Crypto App",
