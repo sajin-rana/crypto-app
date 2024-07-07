@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
+import Modal from "../Modal/Modal";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
 import { useHandleClickOutside } from "@/app/customHook/CustomHook";
 import PortfolioImageContainer from "../PortfolioImageContainer/PortfolioImageContainer";
@@ -23,7 +24,7 @@ const PortfolioDeleteModal = ({
   const isDarkColor = isDark ? "darkGlowBackground" : "lightGlowBackground";
 
   return (
-    <div className="fixed top-0 left-0 z-10 flex bg-[#26243752] backdrop-blur-[1px] w-full h-full">
+    <Modal>
       <div
         className={`absolute w-[343px] left-[calc(50%-171.5px)] sm:w-[584px] h-[346px] top-[calc(50%-173px)] sm:h-[479px] p-[16px] sm:p-[48px] sm:top-[calc(50%-239.5px)] sm:left-[calc(50%-292px)] rounded-[20px]  ${
           isDark ? "bg-[#13121A] text-[#ffffff]" : "bg-[#FFFFFF] text-[#424286]"
@@ -58,7 +59,7 @@ const PortfolioDeleteModal = ({
           </button>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 };
 
