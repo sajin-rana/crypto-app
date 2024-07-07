@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
 
-function saveAndContinueColor(purchaseAmount: number, isDark: boolean) {
-  if (purchaseAmount > 0) {
+function saveAndContinueColor(isReadyToSave: boolean, isDark: boolean) {
+  if (isReadyToSave) {
     if (isDark) {
       return "darkGlowBackground";
     } else {
@@ -20,12 +20,12 @@ function saveAndContinueColor(purchaseAmount: number, isDark: boolean) {
 
 const PortfolioSaveAndCancelButton = ({
   handleSubmit,
-  purchaseAmount,
+  isReadyToSave,
   setIsAddAssetOpen,
 }: {
   handleSubmit: any;
+  isReadyToSave: boolean;
   setIsAddAssetOpen: any;
-  purchaseAmount: number;
 }) => {
   const isDark = useSelector(selectIsDark);
 
@@ -42,7 +42,7 @@ const PortfolioSaveAndCancelButton = ({
       <button
         onClick={handleSubmit}
         className={`w-[222.5px] h-[44px] rounded-[6px] ${saveAndContinueColor(
-          purchaseAmount,
+          isReadyToSave,
           isDark
         )}`}
       >
