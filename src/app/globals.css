@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+div,
+button {
+  outline: none;
+}
+
 .navbar-loading {
   width: 16px;
   padding: 8px;
