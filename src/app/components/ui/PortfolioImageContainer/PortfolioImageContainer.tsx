@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const PortfolioImageContainer = ({
   data,
@@ -33,7 +34,7 @@ const PortfolioImageContainer = ({
         }`}
       >
         {isLoading || isError ? (
-          <div className="skeleton w-[24px] h-[24px] sm:w-[32px] sm:h-[32px] rounded-full" />
+          <LoadingSkeleton style="w-[24px] h-[24px] sm:w-[32px] sm:h-[32px] rounded-full" />
         ) : (
           <div className="h-[24px] w-[24px] sm:h-[32px] sm:w-[32px]">
             <Image
@@ -46,7 +47,7 @@ const PortfolioImageContainer = ({
         )}
       </div>
       {isLoading || isError ? (
-        <div className="skeleton w-[150px] h-[22px] sm:w-[177px] sm:h-[42px] rounded-[8px]" />
+        <LoadingSkeleton style="w-[150px] h-[22px] sm:w-[177px] sm:h-[42px] rounded-[8px]" />
       ) : (
         <h4
           className={`text-[20px] font-[500] sm:text-[28px] sm:font-[700] ${

@@ -1,5 +1,6 @@
 import React from "react";
 import { numberWithCommas } from "@/app/utils/utils";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const ConvertorBoxQuantity = ({
   isError,
@@ -15,7 +16,7 @@ const ConvertorBoxQuantity = ({
   return (
     <>
       {isError || isLoading ? (
-        <div className="skeleton w-[50px] h-[22px] sm:w-[80px] sm:h-[32px] rounded-[8px]" />
+        <LoadingSkeleton style="w-[50px] h-[22px] sm:w-[80px] sm:h-[32px] rounded-[8px]" />
       ) : (
         <h4
           onClick={() => setIsQuantityOpen(true)}

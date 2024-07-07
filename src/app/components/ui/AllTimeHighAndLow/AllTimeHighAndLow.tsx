@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import BigArrow from "../BigArrow/BigArrow";
 import { numberWithCommas } from "@/app/utils/utils";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const AllTimeHighAndLow = ({
   text,
@@ -35,7 +36,7 @@ const AllTimeHighAndLow = ({
         <div className="">
           <h4 className="text-[16px] sm:text-[20px] font-[400]">{text}</h4>
           {isError || isLoading ? (
-            <div className="skeleton w-[100px] h-[12px] sm:w-[177px] sm:h-[22px] rounded-[8px]" />
+            <LoadingSkeleton style="w-[100px] h-[12px] sm:w-[177px] sm:h-[22px] rounded-[8px]" />
           ) : (
             <p
               className={`text-[12px] sm:text-[16px] font-[400] ${
@@ -48,7 +49,7 @@ const AllTimeHighAndLow = ({
         </div>
       </div>
       {isError || isLoading ? (
-        <div className="skeleton w-[50px] h-[22px] sm:w-[100px] sm:h-[32px] rounded-[8px]" />
+        <LoadingSkeleton style="w-[50px] h-[22px] sm:w-[100px] sm:h-[32px] rounded-[8px]" />
       ) : (
         <p className="text-[20px] sm:text-[24px] font-[500]">
           {currencySign}
