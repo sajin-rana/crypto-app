@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { uid } from "uid";
+import Modal from "../Modal/Modal";
 import { useGetOneCoinDetailQuery } from "@/lib/features/cryptoApi";
 import PortfolioHeading from "../PortfolioHeading/PortfolioHeading";
 import { selectIsDark, selectedCoinOne } from "@/lib/features/cryptoSlice";
@@ -80,7 +81,7 @@ const PortfolioAddAsset = ({
   }
 
   return (
-    <div className="top-0 left-0 z-10 bg-[#26243752] bg-opacity-65 backdrop-blur-[2px] fixed h-full w-full">
+    <Modal>
       <div
         className={`absolute w-[343px] sm:w-[886px] h-[410px] top-[calc(50%-205px)] left-[calc(50%-171.5px)]  sm:left-[calc(50%-443px)] rounded-[20px] p-[16px] sm:px-[48px] sm:py-[38px]  ${
           isDark ? "bg-[#13121A] text-[#ffffff]" : "bg-[#FFFFFF] text-[#424286]"
@@ -122,7 +123,7 @@ const PortfolioAddAsset = ({
           </div>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 };
 
