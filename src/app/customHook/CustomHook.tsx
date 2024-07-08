@@ -38,7 +38,7 @@ export const useWindowWidth = () => {
 export function useInputFocus(inputRef: any) {
   useEffect(
     function () {
-      inputRef.current.focus();
+      inputRef?.current?.focus();
     },
     [inputRef]
   );

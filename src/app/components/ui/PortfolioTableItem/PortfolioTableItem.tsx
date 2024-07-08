@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
 import PortfolioInput from "../PortfolioInput/PortfolioInput";
@@ -12,17 +12,22 @@ const PortfolioTableItem = ({
   quantity,
   setQuantity,
   allQuantity,
+  index = false,
+  itemIndex = 0,
   isEdited = true,
+  setIndex = null,
 }: {
+  index?: any;
   name: string;
+  setIndex?: any;
   content: string;
   itemName: string;
   quantity: number;
   setQuantity: any;
   allQuantity: any;
+  itemIndex?: number;
   isEdited?: boolean;
 }) => {
-  const [showInput, setShowInput] = useState(false);
   const isDark = useSelector(selectIsDark);
 
   function handleQuantityChange(e: any) {
@@ -37,18 +42,19 @@ const PortfolioTableItem = ({
         <p className="text-[14px] sm:text-[16px] font-[400]">{itemName}</p>
         <PortfolioTooltip dataTooltipId={name} content={content} />
       </div>
-      {showInput ? (
+      {index === itemIndex ? (
         <PortfolioInput
           isDark={isDark}
           quantity={quantity}
-          setShowInput={setShowInput}
+          setIndex={setIndex}
           handleQuantityChange={handleQuantityChange}
         />
       ) : (
         <PortfolioQuantity
           isEdited={isEdited}
           quantity={quantity}
-          setShowInput={setShowInput}
+          setIndex={setIndex}
+          itemIndex={itemIndex}
         />
       )}
     </div>

@@ -9,16 +9,16 @@ import {
 const PortfolioInput = ({
   isDark,
   quantity,
-  setShowInput,
+  setIndex,
   handleQuantityChange,
 }: {
+  setIndex: any;
   isDark: boolean;
   quantity: number;
-  setShowInput: any;
   handleQuantityChange: any;
 }) => {
   const quantityRef: any = useRef();
-  useHandleClickOutside(quantityRef, setShowInput);
+  useHandleClickOutside(quantityRef, setIndex);
   useInputFocus(quantityRef);
 
   return (
@@ -28,7 +28,7 @@ const PortfolioInput = ({
       ref={quantityRef}
       onChange={handleQuantityChange}
       placeholder="Enter coin quantity"
-      onKeyDown={(e) => handleKeyDown(e, setShowInput)}
+      onKeyDown={(e) => handleKeyDown(e, setIndex)}
       className={`py-[4px] sm:py-[8px] px-[8px] sm:px-[16px] rounded-[6px] border border-[#FFFFFF0D] w-[150px] sm:w-[200px] h-[25px] sm:h-[40px]  focus:outline-none  placeholder:w-400 placeholder:text-[12px] sm:placeholder:text-[14px] ${
         isDark
           ? "placeholder-[#D1D1D6] bg-[#191925]"
