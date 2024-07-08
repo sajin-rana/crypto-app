@@ -21,7 +21,7 @@ const ConvertorBoxQuantityInput = ({
   useInputFocus(quantityRef);
   return (
     <input
-      type="text"
+      type="number"
       ref={quantityRef}
       value={coinQuantity}
       onChange={handleQuantityChange}
