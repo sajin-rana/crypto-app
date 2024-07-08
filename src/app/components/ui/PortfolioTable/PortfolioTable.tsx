@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useKey } from "@/app/customHook/CustomHook";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
 import PortfolioLine from "../PortfolioLine/PortfolioLine";
 import PortfolioTableItem from "../PortfolioTableItem/PortfolioTableItem";
@@ -13,7 +14,19 @@ const PortfolioTable = ({
   setQuantity: any;
   isValueSelected: boolean;
 }) => {
+  const [index, setIndex] = useState<any>(false);
   const isDark = useSelector(selectIsDark);
+
+  useKey("Tab", function () {
+    if (index === false) {
+      setIndex(1);
+    } else if (index === 3) {
+      setIndex(1);
+    } else {
+      setIndex((index: any) => index + 1);
+    }
+  });
+
   return (
     <div
       className={`w-full h-[308px] rounded-[12px] py-[20px] sm:py-[40px] px-[16px] sm:px-[32px] mt-[10px] sm:mt-[16px] flex flex-col gap-[4px] ${
@@ -21,6 +34,9 @@ const PortfolioTable = ({
       }`}
     >
       <PortfolioTableItem
+        index={index}
+        itemIndex={1}
+        setIndex={setIndex}
         allQuantity={quantity}
         setQuantity={setQuantity}
         name="contributionInterval"
@@ -30,6 +46,9 @@ const PortfolioTable = ({
       />
       <PortfolioLine />
       <PortfolioTableItem
+        index={index}
+        itemIndex={2}
+        setIndex={setIndex}
         allQuantity={quantity}
         name="initialInvestment"
         setQuantity={setQuantity}
@@ -39,6 +58,9 @@ const PortfolioTable = ({
       />
       <PortfolioLine />
       <PortfolioTableItem
+        index={index}
+        itemIndex={3}
+        setIndex={setIndex}
         allQuantity={quantity}
         setQuantity={setQuantity}
         name={isValueSelected ? "growRate" : "investmentAdded"}
