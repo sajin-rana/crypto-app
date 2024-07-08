@@ -7,11 +7,13 @@ const PageStyle = ({ children }: { children: any }) => {
   const isDark = useSelector(selectIsDark);
   return (
     <div
-      className={` w-full  flex justify-center flex-col items-center ${
+      className={` w-full  flex justify-center flex-col items-center  ${
         isDark ? "bg-[#13121B]" : "bg-[#F2F5F9]"
       }`}
     >
-      <div className="sm:w-[1296px] w-[343px] ">{children}</div>
+      <div className="min-h-[calc(100vh-136px)] sm:w-[1296px] w-[343px] ">
+        {children}
+      </div>
     </div>
   );
 };
