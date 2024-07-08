@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import CalendarSvg from "../CalendarSvg/CalendarSvg";
-import { handleCalendarClick } from "@/app/utils/utils";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
 import PortfolioTooltip from "../PortfolioTooltip/PortfolioTooltip";
+import { disableFutureDate, handleCalendarClick } from "@/app/utils/utils";
 
 const PortfolioDateAndQuantity = ({
   endDateAndTime,
@@ -40,6 +40,7 @@ const PortfolioDateAndQuantity = ({
             ref={startDateRef}
             type="datetime-local"
             value={startDateAndTime}
+            max={disableFutureDate()}
             placeholder="Start date and time"
             onClick={() => handleCalendarClick(startDateRef)}
             onChange={(e) => setStartDateAndTime(e.target.value)}
@@ -71,6 +72,7 @@ const PortfolioDateAndQuantity = ({
             ref={endDateRef}
             type="datetime-local"
             value={endDateAndTime}
+            max={disableFutureDate()}
             placeholder="End date and time"
             onClick={() => handleCalendarClick(endDateRef)}
             onChange={(e) => setEndDateAndTime(e.target.value)}
