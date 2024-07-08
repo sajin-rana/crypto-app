@@ -241,6 +241,10 @@ export function chartData(
   return data;
 }
 
+export function disableFutureDate() {
+  return new Date().toISOString().slice(0, -8);
+}
+
 export function convertToUnixTimestamp(dateStr: string) {
   const date = new Date(dateStr);
   const unixTimestamp = Math.floor(date.getTime() / 1000).toString();

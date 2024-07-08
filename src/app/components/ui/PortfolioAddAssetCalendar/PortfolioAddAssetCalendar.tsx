@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import CalendarSvg from "../CalendarSvg/CalendarSvg";
-import { handleCalendarClick } from "@/app/utils/utils";
 import { selectIsDark } from "@/lib/features/cryptoSlice";
 import { useOpenCalendar } from "@/app/customHook/CustomHook";
+import { disableFutureDate, handleCalendarClick } from "@/app/utils/utils";
 
 const PortfolioAddAssetCalendar = ({
   purchaseDate,
@@ -37,6 +37,7 @@ const PortfolioAddAssetCalendar = ({
             ref={dateRef}
             value={purchaseDate}
             type="datetime-local"
+            max={disableFutureDate()}
             placeholder="Purchased date"
             onClick={() => handleCalendarClick(dateRef)}
             onChange={(e) => setPurchaseDate(e.target.value)}
