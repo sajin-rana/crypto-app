@@ -32,7 +32,7 @@ const Logo = ({ isDark }: { isDark: boolean }) => {
           isDark ? "text-[#FFFFFF]" : "text-[#353570]"
         }`}
       >
-        Logoipsm
+        CryptoApp
       </h4>
     </Link>
   );
